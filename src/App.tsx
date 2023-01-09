@@ -19,6 +19,17 @@ function App() {
   return (
     <div className="App">
       <h1>Hello</h1>
+
+      <Link style={{ marginRight: "5px" }} to="/">Home</Link>
+
+      {buttonsList.map((btn: buttonListType) => <Link style={{ margin: "5px" }} key={btn.name} to={`/${btn.name}`}>{btn.logo}</Link>)}
+
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/weather" element={<Weather />} />
+        <Route path="/crypto" element={<Crypto />} />
+      </Routes>
     </div>
   );
 }
