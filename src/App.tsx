@@ -5,7 +5,7 @@ import {
   Link
 } from "react-router-dom";
 import Weather from "./components/Weather"
-import Home from "./components/Home"
+import Home from "./components/pages/Home/Home"
 import Crypto from './components/Crypto';
 import buttonsList from "./datas/buttonsList"
 
@@ -17,10 +17,11 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
+    <Routes>
+      <Route path='/' element={<Home/>}/>
+    </Routes>
   );
 }
+
 
 export default App;
