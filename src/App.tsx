@@ -11,6 +11,9 @@ import buttonsList from "./datas/buttonsList"
 
 function App() {
 
+
+
+
   type buttonListType = {
     name: string;
     logo: string;
@@ -18,7 +21,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path='/' element={<Home/>}/>
+      <Route path='/' element={<Home />} />
     </Routes>
   );
 }
