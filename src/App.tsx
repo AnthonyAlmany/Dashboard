@@ -1,18 +1,28 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
+import styled from "styled-components";
+import Home from "./components/Home/Home";
+import { theme } from "./theme/theme";
 
 function App() {
    return (
-      <div className="App">
+      <AppStyled>
          <Routes>
             <Route path="/" element={<Home />} />
             {/* <Route path="/weather" element={<Weather />} />
                 <Route path="/crypto" element={<Crypto />} />
                 <Route path="/movies" element={<Movies />} /> */}
          </Routes>
-      </div>
+      </AppStyled>
    );
 }
+
+const AppStyled = styled.div`
+   height: 100vh;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: ${theme.colors.xtraLightGrey};
+`;
 
 export default App;

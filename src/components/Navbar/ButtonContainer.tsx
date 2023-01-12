@@ -1,10 +1,8 @@
 import styled from "styled-components";
+import { theme } from "../../theme/theme";
+import { ContainerType } from "../../types/types";
 
-type ButtonContainerProps = {
-   children: React.ReactNode;
-};
-
-function ButtonContainer({ children }: ButtonContainerProps) {
+function ButtonContainer({ children }: ContainerType) {
    return <ButtonCoantainerStyled>{children}</ButtonCoantainerStyled>;
 }
 
@@ -16,10 +14,10 @@ const ButtonCoantainerStyled = styled.div`
    border-radius: 1rem;
    padding-left: 12px;
    :hover {
-      background-color: antiquewhite;
+      background-color: ${theme.colors.background.antique};
    }
    .active {
-      background-color: antiquewhite;
+      background-color: ${theme.colors.background.antique};
    }
 `;
 

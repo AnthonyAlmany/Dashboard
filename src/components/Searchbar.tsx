@@ -3,6 +3,7 @@ import { styled as styledMUI, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import styled from "styled-components";
+import { theme } from "../theme/theme";
 
 function Searchbar() {
    const [search, setSearch] = useState("");
@@ -34,7 +35,7 @@ const SearchContainerStyled = styled.div`
    align-items: center;
    width: 90%;
    height: 3rem;
-   background-color: bisque;
+   background-color: ${theme.colors.background.bisque};
 `;
 
 const Search = styledMUI("div")(({ theme }) => ({

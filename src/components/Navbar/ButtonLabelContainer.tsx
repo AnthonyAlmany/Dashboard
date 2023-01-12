@@ -1,10 +1,7 @@
 import styled from "styled-components";
+import { ContainerType } from "../../types/types";
 
-type ButtonLabelProps = {
-   children: React.ReactNode;
-};
-
-function ButtonLabelContainer({ children }: ButtonLabelProps) {
+function ButtonLabelContainer({ children }: ContainerType) {
    return <ButtonLabelContainerStyled>{children}</ButtonLabelContainerStyled>;
 }
 

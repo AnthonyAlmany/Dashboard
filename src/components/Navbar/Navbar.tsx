@@ -6,11 +6,12 @@ import AccountBalanceOutlinedIcon from "@mui/icons-material/AccountBalanceOutlin
 import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
 import styled from "styled-components";
 import NavButton from "./NavButton";
+import Title from "./Title";
 
 function Navbar() {
    return (
       <LinksContainerStyled>
-         <h1>DASHBOARD</h1>
+         <Title />
          <NavButton label="Home" icon={<GridViewOutlinedIcon />} />
          <NavButton label="Weather" icon={<WbSunnyOutlinedIcon />} />
          <NavButton label="Market" icon={<AccountBalanceOutlinedIcon />} />
@@ -26,9 +27,6 @@ const LinksContainerStyled = styled.div`
    height: 100%;
    margin-left: 2rem;
    margin-bottom: 4rem;
-   h1 {
-      margin: 4rem 0;
-   }
 `;
 
 export default Navbar;
