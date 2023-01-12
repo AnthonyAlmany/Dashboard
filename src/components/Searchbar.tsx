@@ -1,0 +1,77 @@
+import React, { useState } from 'react'
+import { styled as styledMUI, alpha } from '@mui/material/styles';
+import SearchIcon from '@mui/icons-material/Search';
+import InputBase from '@mui/material/InputBase';
+
+
+import './searchbar.css'
+
+const Search = styledMUI('div')(({ theme }) => ({
+    position: 'relative',
+    // borderRadius: theme.shape.borderRadius,
+    borderRadius: '1rem',
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    '&:hover': {
+        backgroundColor: alpha(theme.palette.common.white, 0.25),
+    },
+    marginLeft: 0,
+    height: '2rem',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'auto',
+    },
+}));
+
+const SearchIconWrapper = styledMUI('div')(({ theme }) => ({
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+}));
+
+const StyledInputBase = styledMUI(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 0),
+        // vertical padding + font size from searchIcon
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '30ch',
+            },
+        },
+    },
+}));
+
+function Searchbar() {
+
+    const [search, setSearch] = useState('')
+
+    console.log(search)
+
+    return (
+        <div className='search-container'>
+
+            <Search>
+                <SearchIconWrapper>
+                    <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                    placeholder="Search…"
+                    inputProps={{ 'aria-label': 'search' }}
+                    value={search}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
+                />
+            </Search>
+
+        </div>
+    )
+}
+
+export default Searchbar
