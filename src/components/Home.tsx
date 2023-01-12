@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../theme/theme";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar";
 
 function Home() {
    return (
