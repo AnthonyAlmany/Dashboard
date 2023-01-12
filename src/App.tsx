@@ -4,6 +4,7 @@ import React from 'react';
 
 
 import Navbar from './components/Navbar';
+import Home from './components/Home'
 
 
 function App() {
@@ -11,9 +12,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <Home />
       <Navbar />
-
     </div>
 
   );

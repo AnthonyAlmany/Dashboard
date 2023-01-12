@@ -3,15 +3,15 @@ import React from 'react'
 import {
     Routes,
     Route,
-    Link
+    NavLink
 } from "react-router-dom";
 // import styled from 'styled-components';
 
-import Weather from "../components/Weather";
-import Home from "../components/Home";
-import Crypto from '../components/Crypto';
-import Movies from '../components/Movies';
+import Weather from "./Weather";
+import Crypto from './Crypto';
+import Movies from './Movies';
 import Searchbar from './Searchbar';
+import Home from './Home';
 
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined';
 import WbSunnyOutlinedIcon from '@mui/icons-material/WbSunnyOutlined';
@@ -23,7 +23,18 @@ import './navbar.css';
 
 function Navbar() {
 
-    const styleLink = { textDecoration: 'none', color: 'inherit', marginBottom: '2rem' }
+    const styleLink = {
+        display: 'flex',
+        alignItems: 'center',
+        textDecoration: 'none',
+        color: 'inherit',
+        marginBottom: '2rem',
+        width: '8rem',
+        height: '2rem',
+        borderRadius: '1rem',
+    }
+
+
 
     // const Wrapper = styled.div`
     // display: flex;
@@ -35,18 +46,18 @@ function Navbar() {
     return (
         <div>
             <div className='links-container'>
-                <Link to="/" style={styleLink}>
-                    <div className='button-container'><GridViewOutlinedIcon /><div className="text-button">Dashboard</div></div>
-                </Link>
-                <Link to="/Weather" style={styleLink}>
+                <NavLink to="/Home" style={{ ...styleLink, ...({ isActive }) => { return (isActive ? 'active' : '') } }}  >
+                    <div className='button-container'><GridViewOutlinedIcon /><div className="text-button">Home</div></div>
+                </NavLink>
+                <NavLink to="/Weather" style={styleLink}>
                     <div className='button-container'><WbSunnyOutlinedIcon /><div className="text-button">Weather</div></div>
-                </Link>
-                <Link to="/Crypto" style={styleLink}>
+                </NavLink>
+                <NavLink to="/Crypto" style={styleLink}>
                     <div className='button-container'><AccountBalanceOutlinedIcon /><div className="text-button">Market</div></div>
-                </Link>
-                <Link to="/Movies" style={styleLink}>
+                </NavLink>
+                <NavLink to="/Movies" style={styleLink}>
                     <div className='button-container'><MovieOutlinedIcon /><div className="text-button">Movies</div></div>
-                </Link>
+                </NavLink>
             </div>
 
             <Routes>

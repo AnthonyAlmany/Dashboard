@@ -7,7 +7,6 @@
 .button-container {
     display: flex;
     align-items: center;
-    background-color: bisque;
     height: 2rem;
     width: 8rem;
     border-radius: 1rem;
@@ -21,4 +20,8 @@
 .text-button {
     margin-top: 3px;
     margin-left: 1rem;
+}
+
+.active {
+    background-color: antiquewhite;
 }
