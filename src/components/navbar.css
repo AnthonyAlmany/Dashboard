@@ -1,0 +1,24 @@
+.links-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 4rem;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+    background-color: bisque;
+    height: 2rem;
+    width: 8rem;
+    border-radius: 1rem;
+    padding-left: 12px;
+}
+
+.button-container:hover {
+    background-color: antiquewhite;
+}
+
+.text-button {
+    margin-top: 3px;
+    margin-left: 1rem;
+}
