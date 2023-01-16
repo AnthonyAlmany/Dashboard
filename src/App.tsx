@@ -6,11 +6,7 @@ import { theme } from "./theme/theme";
 import Api from "./api/Api";
 
 function App() {
-
-
-
    return (
-
       <AppStyled>
          <Routes>
             <Route path="/" element={<Home />} />

@@ -1,3 +1,4 @@
+import Crypto from "../Cryptos/Crypto";
 import Navbar from "../Navbar/Navbar";
 import MainContainer from "./MainContainer";
 import NavbarContainer from "./NavbarContainer";
@@ -10,7 +11,7 @@ function Home() {
             <Navbar />
          </NavbarContainer>
          <PanelContainer>
-            <h2>PANEL</h2>
+            <Crypto />
          </PanelContainer>
       </MainContainer>
    );
