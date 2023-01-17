@@ -18,7 +18,7 @@ function App() {
                 <Route path="/crypto" element={<Crypto />} />
                 <Route path="/movies" element={<Movies />} /> */}
          </Routes>
-         {/* <Api /> */}
+         <Api />
       </AppStyled>
    );
 }
