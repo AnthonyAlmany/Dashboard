@@ -1,22 +1,30 @@
 import { useEffect, useState } from "react";
 import { customAxios } from "../../src/axios/axios";
+import { CryptoType } from "../components/Cryptos/Crypto";
 
-export function useFetch(baseURL: string):any {
-    const [data, setData] = useState([])
 
-    useEffect(() => {
-        if(!baseURL) return 
-        async function fetchData() {
-       await customAxios({baseURL}).get(baseURL)
-            .then(res => {
-                //const data = res.data
-                setData(res.data)
+type responseType = {
+    data?: CryptoType[],
+    isLoading: boolean
+}
+
+export function useFetch(baseURL: string) :responseType {
+   const [data, setData] = useState();
+   const [isLoading, setIsLoading] = useState(true);
+   useEffect(() => {
+      if (!baseURL) return;
+       async function fetchData() {
+         await customAxios({ baseURL })
+            .get(baseURL)
+            .then((res) => {
+               setData(res.data);
+               setIsLoading(false)
             })
-            .catch(error => console.log(error));
-        }
-        fetchData()
-    
-    }, [baseURL])
+            .catch((error) => console.log(error));
+      }
+      setIsLoading(true)
+      fetchData();
+   }, [baseURL]);
 
-    return data
+   return {data, isLoading};
 }
