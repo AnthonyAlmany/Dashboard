@@ -9,26 +9,18 @@ import axios from 'axios';
 //     data: any
 
 // }
-interface valueType {
-    config: any
-    data: any
-    headers: any
-    request: any
-    status: any
-    statusText: any
-}
 
-interface marketType {
-    value: valueType
-    status: string
 
+interface weatherType {
+    temperature: number,
+    city: string
 }
 
 function Api() {
     const [weatherData, setWeatherData] = useState<any[]>([])
     const cities: string[] = ['Paris', 'London', 'Sydney']
     const coins = ['bitcoin', 'ripple']
-    const [marketData, setMarketData] = useState<marketType[]>()
+    // const [marketData, setMarketData] = useState<marketType[]>()
 
     // useEffect(() => {
     //     const fetchCrypto = () => {
@@ -51,9 +43,14 @@ function Api() {
             Promise.allSettled(cities.map((city: string) => axios.get(`https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${city}&aqi=no`)))
                 .then(responses => {
                     setWeatherData(responses.map(result => {
-                        const data: any = result.status === 'fulfilled' && result.value
+
+                        const temperatureData: string | number = result.status === 'fulfilled' && result.value.data.current.temp_c
+                        const cityData: string = result.status === 'fulfilled' && result.value.data.location.name
+
+
                         return {
-                            temperature: data.data.current.temp_c
+                            temperature: temperatureData,
+                            city: cityData
                         }
                     }
                     ));
@@ -68,7 +65,7 @@ function Api() {
 
     return (
         <div>
-            {weatherData ? weatherData.map((weather: any, i: number) => <p key={i}>{weather.temperature}</p>) : null}
+            {weatherData ? weatherData.map((weather: weatherType, i: number) => <p key={i}>{weather.city} {weather.temperature}</p>) : null}
         </div>
     )
 }
