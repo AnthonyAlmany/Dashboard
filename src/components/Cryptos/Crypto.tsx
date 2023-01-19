@@ -2,6 +2,7 @@ import { useFetch } from "../../hooks/useFetch";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import * as React from "react";
 
 export type CryptoType = {
    ath: number;
@@ -35,7 +36,8 @@ export type CryptoType = {
 function Crypto() {
    const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
    const { data, isLoading } = useFetch(baseURL);
-   console.log(data);
+   const [value, setValue] = React.useState<CryptoType | null>(null);
+   const [inputValue, setInputValue] = React.useState("");
 
    if (isLoading) {
       return (
@@ -45,12 +47,21 @@ function Crypto() {
          </>
       );
    } else if (!isLoading && data) {
-      const cryptos: CryptoType[] = data;
+      const cryptos: CryptoType[] | undefined = data;
+
       return (
          <div>
             <h1>CRYPTOS CURRENCIES</h1>
             <Autocomplete
                id="crypto-select"
+               value={value}
+               onChange={(event: any, newValue: CryptoType | null) => {
+                  setValue(newValue);
+               }}
+               inputValue={inputValue}
+               onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+               }}
                sx={{ width: 300 }}
                options={cryptos}
                autoHighlight
@@ -75,13 +86,14 @@ function Crypto() {
                   <TextField
                      {...params}
                      label="Choose a crypto"
-                     inputProps={{
-                        ...params.inputProps,
-                        autoComplete: "new-password", // disable autocomplete and autofill
-                     }}
+                     // inputProps={{
+                     //    ...params.inputProps,
+                     //    autoComplete: "new-password", // disable autocomplete and autofill
+                     // }}
                   />
                )}
             />
+            <p>{value?.name}</p>
          </div>
       );
    } else return null;

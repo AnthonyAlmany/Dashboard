@@ -4,16 +4,30 @@ import Home from "./components/Home/Home";
 import { theme } from "./theme/theme";
 
 import Api from "./api/Api";
+import Weather from "./components/Weather/Weather";
+import Crypto from "./components/Cryptos/Crypto";
+import Movies from "./components/Movies/Movies";
+import MainContainer from "./components/containers/MainContainer";
+import NavbarContainer from "./components/containers/NavbarContainer";
+import Navbar from "./components/Navbar/Navbar";
+import PanelContainer from "./components/containers/PanelContainer";
 
 function App() {
    return (
       <AppStyled>
-         <Routes>
-            <Route path="/" element={<Home />} />
-            {/* <Route path="/weather" element={<Weather />} />
-                <Route path="/crypto" element={<Crypto />} />
-                <Route path="/movies" element={<Movies />} /> */}
-         </Routes>
+         <MainContainer>
+            <NavbarContainer>
+               <Navbar />
+            </NavbarContainer>
+            <PanelContainer>
+               <Routes>
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/weather" element={<Weather />} />
+                  <Route path="/market" element={<Crypto />} />
+                  <Route path="/movies" element={<Movies />} />
+               </Routes>
+            </PanelContainer>
+         </MainContainer>
          {/* <Api /> */}
       </AppStyled>
    );

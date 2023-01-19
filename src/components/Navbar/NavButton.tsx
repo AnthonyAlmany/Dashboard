@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import ButtonContainer from "./ButtonContainer";
 import ButtonLabelContainer from "./ButtonLabelContainer";
+import { theme } from "../../theme/theme";
 
 type NavButtonProps = {
    label: string;
@@ -36,5 +37,11 @@ const NavButtonStyled = styled(NavLink)`
    width: 8rem;
    height: 2rem;
    border-radius: 1rem;
+   &:focus {
+      background-color: ${theme.colors.background.antique};
+   }
+   :hover {
+      color: ${theme.colors.background.antique};
+   }
 `;
 export default NavButton;

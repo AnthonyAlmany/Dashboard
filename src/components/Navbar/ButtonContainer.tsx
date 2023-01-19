@@ -13,12 +13,6 @@ const ButtonCoantainerStyled = styled.div`
    width: 8rem;
    border-radius: 1rem;
    padding-left: 12px;
-   :hover {
-      background-color: ${theme.colors.background.antique};
-   }
-   .active {
-      background-color: ${theme.colors.background.antique};
-   }
 `;
 
 export default ButtonContainer;
