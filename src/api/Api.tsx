@@ -17,7 +17,7 @@ interface weatherType {
 }
 
 function Api() {
-    const [weatherData, setWeatherData] = useState<any[]>([])
+    const [weatherData, setWeatherData] = useState<weatherType[]>([])
     const cities: string[] = ['Paris', 'London', 'Sydney']
     const coins = ['bitcoin', 'ripple']
     // const [marketData, setMarketData] = useState<marketType[]>()
@@ -44,9 +44,8 @@ function Api() {
                 .then(responses => {
                     setWeatherData(responses.map(result => {
 
-                        const temperatureData: string | number = result.status === 'fulfilled' && result.value.data.current.temp_c
+                        const temperatureData: number = result.status === 'fulfilled' && result.value.data.current.temp_c
                         const cityData: string = result.status === 'fulfilled' && result.value.data.location.name
-
 
                         return {
                             temperature: temperatureData,
