@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Home from "./components/Home/Home";
 import { theme } from "./theme/theme";
 
-import Api from "./api/Api";
+// import Api from "./api/Api";
 import Weather from "./components/Weather/Weather";
 import Crypto from "./components/Cryptos/Crypto";
 import Movies from "./components/Movies/Movies";

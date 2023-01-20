@@ -4,16 +4,16 @@ import { CryptoType } from "../components/Cryptos/Crypto";
 
 
 type responseType = {
-    data?: CryptoType[],
-    isLoading: boolean
+   data?: CryptoType[],
+   isLoading: boolean
 }
 
-export function useFetch(baseURL: string) :responseType {
+export function useFetch(baseURL: string,): responseType {
    const [data, setData] = useState();
    const [isLoading, setIsLoading] = useState(true);
    useEffect(() => {
       if (!baseURL) return;
-       async function fetchData() {
+      async function fetchData() {
          await customAxios({ baseURL })
             .get(baseURL)
             .then((res) => {
@@ -26,5 +26,5 @@ export function useFetch(baseURL: string) :responseType {
       fetchData();
    }, [baseURL]);
 
-   return {data, isLoading};
+   return { data, isLoading };
 }

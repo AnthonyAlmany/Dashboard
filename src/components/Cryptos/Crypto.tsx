@@ -39,6 +39,7 @@ function Crypto() {
    const [value, setValue] = React.useState<CryptoType | null>(null);
    const [inputValue, setInputValue] = React.useState("");
 
+
    if (isLoading) {
       return (
          <>
@@ -86,10 +87,10 @@ function Crypto() {
                   <TextField
                      {...params}
                      label="Choose a crypto"
-                     // inputProps={{
-                     //    ...params.inputProps,
-                     //    autoComplete: "new-password", // disable autocomplete and autofill
-                     // }}
+                  // inputProps={{
+                  //    ...params.inputProps,
+                  //    autoComplete: "new-password", // disable autocomplete and autofill
+                  // }}
                   />
                )}
             />
