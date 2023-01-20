@@ -3,8 +3,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import * as React from "react";
-import styled from "styled-components";
-import { theme } from "../../theme/theme";
+import CryptoCard from "./CryptoCard";
 
 export type CryptoType = {
    ath: number;
@@ -41,7 +40,6 @@ function Crypto() {
    const [value, setValue] = React.useState<CryptoType | null>(null);
    const [inputValue, setInputValue] = React.useState("");
 
-
    if (isLoading) {
       return (
          <>
@@ -53,7 +51,7 @@ function Crypto() {
       const cryptos: CryptoType[] | undefined = data;
 
       return (
-         <div>
+         <>
             <h1>CRYPTOS CURRENCIES</h1>
             <Autocomplete
                id="crypto-select"
@@ -86,57 +84,13 @@ function Crypto() {
                   </Box>
                )}
                renderInput={(params) => (
-                  <TextField
-                     {...params}
-                     label="Choose a crypto"
-                  // inputProps={{
-                  //    ...params.inputProps,
-                  //    autoComplete: "new-password", // disable autocomplete and autofill
-                  // }}
-                  />
+                  <TextField {...params} label="Choose a crypto" />
                )}
             />
-            <CryptoCardStyled>
-               <img src={value?.image} alt="crypto-logo" />
-               <h3>{value?.name.toUpperCase()}</h3>
-               {/* <h5>Current price :</h5>
-               <p>{value?.current_price} $</p> */}
-               <button>Add to favorite</button>
-            </CryptoCardStyled>
-         </div>
+            {value && <CryptoCard value={value} />}
+         </>
       );
    } else return null;
 }
-
-const CryptoCardStyled = styled.div`
-   width: 200px;
-   height: 250px;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: space-around;
-   color: ${theme.colors.tertiary};
-   border-radius: ${theme.borderRadius.extraRounded};
-   background-color: ${theme.colors.primary};
-   box-shadow: 5px 5px 8px ${theme.colors.tertiary};
-   img {
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-   }
-   button {
-      height: 50px;
-      border: none;
-      color: ${theme.colors.primary};
-      background-color: ${theme.colors.secondary};
-      border-radius: ${theme.borderRadius.rounded};
-      &:hover {
-         border: 2px solid ${theme.colors.secondary};
-         color: ${theme.colors.secondary};
-         background-color: ${theme.colors.primary};
-         box-shadow: 3px 3px 5px ${theme.colors.secondary};
-      }
-   }
-`;
 
 export default Crypto;
