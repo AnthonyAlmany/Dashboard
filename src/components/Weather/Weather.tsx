@@ -13,8 +13,8 @@ function Weather() {
 
 
   interface City {
-    city: string;
-    country: string;
+    city: string,
+    country: string
   }
   interface weatherType {
     temperature: number,
@@ -25,13 +25,13 @@ function Weather() {
   const [inputValue, setInputValue] = useState('');
 
   const [weatherData, setWeatherData] = useState<weatherType>()
-  const cities: string[] = ['Paris', 'London', 'Sydney']
-  console.log(weatherData)
+  // const cities: string[] = ['Paris', 'London', 'Sydney']
+
 
   useEffect(() => {
     if (!value) return;
     const fetchWeather = async () => {
-      await axios.get(`https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${value}`)
+      await axios.get(`https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${value.city}`)
         .then(res => {
 
           const data = { city: res.data.location.name, temperature: res.data.current.temp_c }
@@ -45,8 +45,6 @@ function Weather() {
 
   return (
     <div>
-      <div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>
-      <div>{`inputValue: '${inputValue}'`}</div>
       <br />
 
       <Autocomplete
@@ -60,7 +58,11 @@ function Weather() {
           setInputValue(newInputValue);
         }}
         id="manageable-states-demo"
-        options={uniqueCities.map((location) => location.city)}
+        options={uniqueCities}
+        getOptionLabel={option =>
+          `${option.city} ${option.country}`
+        }
+        isOptionEqualToValue={(option, value) => option.city === value.city}
         autoHighlight
         sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label="Choose city" />}
