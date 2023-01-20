@@ -37,9 +37,6 @@ const NavButtonStyled = styled(NavLink)`
    width: 8rem;
    height: 2rem;
    border-radius: 1rem;
-   &:focus {
-      background-color: ${theme.colors.background.antique};
-   }
    :hover {
       color: ${theme.colors.background.antique};
    }
