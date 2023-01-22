@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Home from "./components/Home/Home";
@@ -12,7 +13,20 @@ import NavbarContainer from "./components/containers/NavbarContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
 
+export type weatherType = {
+   city: string;
+   temperature: number;
+}
+
 function App() {
+
+   const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(null);
+
+   const weatherHandle = (value: weatherType) => {
+      setWeatherFavorite(value)
+   }
+
+
    return (
       <AppStyled>
          <MainContainer>
@@ -21,8 +35,8 @@ function App() {
             </NavbarContainer>
             <PanelContainer>
                <Routes>
-                  <Route path="/home" element={<Home />} />
-                  <Route path="/weather" element={<Weather />} />
+                  <Route path="/home" element={<Home weatherFavorite={weatherFavorite} />} />
+                  <Route path="/weather" element={<Weather weatherHandle={weatherHandle} />} />
                   <Route path="/market" element={<Crypto />} />
                   <Route path="/movies" element={<Movies />} />
                </Routes>

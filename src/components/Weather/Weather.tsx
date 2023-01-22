@@ -2,24 +2,22 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
 import citiesList from "./CitiesList"
+import WeatherCard from './WeatherCard';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+import { weatherType } from '../../App';
 
-function Weather() {
+type City = {
+  city: string,
+  country: string
+}
+
+function Weather({ weatherHandle }: any) {
 
 
   const uniqueCities = Array.from(new Set(citiesList.map(city => JSON.stringify(city)))).map(city => JSON.parse(city));
 
-
-  interface City {
-    city: string,
-    country: string
-  }
-  interface weatherType {
-    temperature: number,
-    city: string
-  }
 
   const [value, setValue] = useState<City | null>(null);
   const [inputValue, setInputValue] = useState('');
@@ -70,7 +68,7 @@ function Weather() {
 
       <div>
         <br />
-        {weatherData == null ? "" : <h3>{weatherData?.city}: {weatherData?.temperature}°C</h3>}
+        {value && <WeatherCard weatherData={weatherData} weatherHandle={weatherHandle} />}
       </div>
     </div>
   )
