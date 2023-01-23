@@ -16,6 +16,7 @@ import PanelContainer from "./components/containers/PanelContainer";
 export type weatherType = {
    city: string;
    temperature: number;
+   icon: string;
 }
 
 function App() {
