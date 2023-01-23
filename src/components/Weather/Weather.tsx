@@ -13,6 +13,8 @@ type City = {
   country: string
 }
 
+
+
 function Weather({ weatherHandle }: any) {
 
 
@@ -31,9 +33,9 @@ function Weather({ weatherHandle }: any) {
     const fetchWeather = async () => {
       await axios.get(`https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${value.city}`)
         .then(res => {
-          console.log(res)
-          const data = { city: res.data.location.name, temperature: res.data.current.temp_c, icon: res.data.condition.icon }
+          const data = { city: res.data.location.name, temperature: res.data.current.temp_c, icon: res.data.current.condition.icon }
           setWeatherData(data)
+
 
         }).catch(error => console.log(error));
     }

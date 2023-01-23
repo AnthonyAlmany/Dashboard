@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import Home from "./components/Home/Home";
 import { theme } from "./theme/theme";
@@ -36,6 +36,7 @@ function App() {
             </NavbarContainer>
             <PanelContainer>
                <Routes>
+                  <Route path="/" element={<Navigate to="/home" />} />
                   <Route path="/home" element={<Home weatherFavorite={weatherFavorite} />} />
                   <Route path="/weather" element={<Weather weatherHandle={weatherHandle} />} />
                   <Route path="/market" element={<Crypto />} />

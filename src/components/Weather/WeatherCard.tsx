@@ -17,7 +17,7 @@ function WeatherCard({ weatherData, weatherHandle }: props) {
         <WeatherCardStyled>
             <h3>{weatherData?.city.toUpperCase()}</h3>
             <h3>{weatherData?.temperature} °C</h3>
-            <img src="//cdn.weatherapi.com/weather/64x64/night/296.png" alt="weather-icon" />
+            <img src={weatherData?.icon} alt="weather-icon" />
             <button onClick={() => weatherHandle(weatherData)}>Add to favorite</button>
         </WeatherCardStyled>
     )

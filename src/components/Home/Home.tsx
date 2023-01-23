@@ -11,17 +11,17 @@ type props = {
 function Home({ weatherFavorite }: props) {
 
 
-   // if (!weatherFavorite) {
-   //    return (<h3>"No Favorites for weather"</h3>)
-   // } else {
-   return (
-      <WeatherCardStyled>
-         <h3>{weatherFavorite?.city.toUpperCase()}</h3>
-         <h3>{weatherFavorite?.temperature} °C</h3>
-         <img src={weatherFavorite?.icon} alt="weather-icon" />
-      </WeatherCardStyled>
-   )
-
+   if (!weatherFavorite) {
+      return (<h3>"No Favorites for weather"</h3>)
+   } else {
+      return (
+         <WeatherCardStyled>
+            <h3>{weatherFavorite?.city.toUpperCase()}</h3>
+            <h3>{weatherFavorite?.temperature} °C</h3>
+            <img src={weatherFavorite?.icon} alt="weather-icon" />
+         </WeatherCardStyled>
+      )
+   }
 
 
 
