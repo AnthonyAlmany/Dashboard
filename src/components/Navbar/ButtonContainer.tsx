@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "../../theme/theme";
 import { ContainerType } from "../../types/types";
 
 function ButtonContainer({ children }: ContainerType) {

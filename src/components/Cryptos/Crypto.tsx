@@ -50,7 +50,6 @@ function Crypto({ handleCrypto }: any) {
       return bestCryptos;
    };
    getBestCryptos(data);
-   console.log(data);
 
    if (isLoading) {
       return (
