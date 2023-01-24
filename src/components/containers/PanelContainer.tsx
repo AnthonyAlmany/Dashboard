@@ -12,6 +12,9 @@ const PanelContainerStyled = styled.div`
    flex-direction: column;
    align-items: center;
    justify-content: space-evenly;
+   position: relative;
+   overflow: hidden;
+   overflow-y: scroll;
 `;
 
 export default PanelContainer;

@@ -6,7 +6,7 @@ function Title() {
 }
 
 const TitleStyled = styled.div`
-   margin: 4rem 0;
+   margin: 2rem 0;
    max-width: 80%;
 `;
 

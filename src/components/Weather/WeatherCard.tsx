@@ -1,26 +1,24 @@
-import React, { useState } from 'react'
+import React from "react";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
-import { weatherType } from '../../App';
+import { weatherType } from "../../App";
 
 type props = {
-    weatherData?: weatherType;
-    weatherHandle: Function;
-}
-
+   weatherData?: weatherType;
+   weatherHandle: Function;
+};
 
 function WeatherCard({ weatherData, weatherHandle }: props) {
-
-
-    return (
-
-        <WeatherCardStyled>
-            <h3>{weatherData?.city.toUpperCase()}</h3>
-            <h3>{weatherData?.temperature} °C</h3>
-            <img src={weatherData?.icon} alt="weather-icon" />
-            <button onClick={() => weatherHandle(weatherData)}>Add to favorite</button>
-        </WeatherCardStyled>
-    )
+   return (
+      <WeatherCardStyled>
+         <h3>{weatherData?.city.toUpperCase()}</h3>
+         <h3>{weatherData?.temperature} °C</h3>
+         <img src={weatherData?.icon} alt="weather-icon" />
+         <button onClick={() => weatherHandle(weatherData)}>
+            Add to favorite
+         </button>
+      </WeatherCardStyled>
+   );
 }
 
 const WeatherCardStyled = styled.div`
@@ -51,4 +49,4 @@ const WeatherCardStyled = styled.div`
    }
 `;
 
-export default WeatherCard
+export default WeatherCard;

@@ -7,10 +7,9 @@ function MainContainer({ children }: ContainerType) {
 }
 
 const MainContainerStyled = styled.div`
-   height: 90%;
+   height: 90vh;
    width: 95%;
    display: flex;
-   overflow: hidden;
    border-radius: ${theme.borderRadius.extraRounded};
    background-color: ${theme.colors.primary};
 `;

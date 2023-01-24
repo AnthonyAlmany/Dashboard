@@ -33,7 +33,7 @@ const NavButtonStyled = styled(NavLink)`
    align-items: center;
    text-decoration: none;
    color: inherit;
-   margin-bottom: 2rem;
+   margin-bottom: 1rem;
    width: 8rem;
    height: 2rem;
    border-radius: 1rem;

@@ -5,16 +5,22 @@ import { CryptoType } from "./Crypto";
 
 type ValueProps = {
    value: CryptoType;
+   handleCrypto?: any;
 };
 
-function CryptoCard({ value }: ValueProps) {
-   const { image, name } = value;
+function CryptoCard({ value, handleCrypto }: ValueProps): JSX.Element {
+   const pathname: string = window.location.pathname;
+
+   const { image, name, current_price } = value;
 
    return (
       <CryptoCardStyled>
          <img src={image} alt="crypto-logo" />
          <h3>{name.toUpperCase()}</h3>
-         <button>Add to favorite</button>
+         <p>Current price : {current_price} $</p>
+         {pathname === "/market" && (
+            <button onClick={() => handleCrypto(value)}>Add to favorite</button>
+         )}
       </CryptoCardStyled>
    );
 }

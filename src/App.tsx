@@ -6,7 +6,7 @@ import { theme } from "./theme/theme";
 
 // import Api from "./api/Api";
 import Weather from "./components/Weather/Weather";
-import Crypto from "./components/Cryptos/Crypto";
+import Crypto, { CryptoType } from "./components/Cryptos/Crypto";
 import Movies from "./components/Movies/Movies";
 import MainContainer from "./components/containers/MainContainer";
 import NavbarContainer from "./components/containers/NavbarContainer";
@@ -17,16 +17,23 @@ export type weatherType = {
    city: string;
    temperature: number;
    icon: string;
-}
+};
 
 function App() {
-
-   const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(null);
+   const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(
+      null
+   );
+   const [favoriteCrypto, setFavoriteCrypto] = useState<null | CryptoType>(
+      null
+   );
 
    const weatherHandle = (value: weatherType) => {
-      setWeatherFavorite(value)
-   }
+      setWeatherFavorite(value);
+   };
 
+   const handleCrypto = (value: CryptoType) => {
+      setFavoriteCrypto(value);
+   };
 
    return (
       <AppStyled>
@@ -37,9 +44,23 @@ function App() {
             <PanelContainer>
                <Routes>
                   <Route path="/" element={<Navigate to="/home" />} />
-                  <Route path="/home" element={<Home weatherFavorite={weatherFavorite} />} />
-                  <Route path="/weather" element={<Weather weatherHandle={weatherHandle} />} />
-                  <Route path="/market" element={<Crypto />} />
+                  <Route
+                     path="/home"
+                     element={
+                        <Home
+                           weatherFavorite={weatherFavorite}
+                           favoriteCrypto={favoriteCrypto}
+                        />
+                     }
+                  />
+                  <Route
+                     path="/weather"
+                     element={<Weather weatherHandle={weatherHandle} />}
+                  />
+                  <Route
+                     path="/market"
+                     element={<Crypto handleCrypto={handleCrypto} />}
+                  />
                   <Route path="/movies" element={<Movies />} />
                </Routes>
             </PanelContainer>
