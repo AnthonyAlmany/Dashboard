@@ -64,47 +64,19 @@ const TableStyled = styled.table`
             display: flex;
             align-items: center;
             justify-content: center;
-            button {
-               width: 25px;
-               height: 25px;
-               border-radius: ${theme.borderRadius.circle};
-               border: none;
-               background-color: ${theme.colors.secondary};
-               color: white;
-               &:hover {
-                  cursor: pointer;
-                  font-size: 20px;
-               }
-            }
-         }
-         img {
-            width: 20px;
-            height: 20px;
-         }
-         &:hover {
-            cursor: default;
-            background-color: ${theme.colors.secondary};
-            button {
-               background-color: ${theme.colors.background.bisque};
-               color: ${theme.colors.secondary};
-            }
          }
       }
       .table-name {
          display: flex;
+         align-items: center;
          justify-content: center;
          width: 100%;
          color: ${theme.colors.secondary};
          font-size: 25px;
-         &:hover {
-            background-color: inherit;
-         }
       }
       .columns-names {
+         margin-bottom: 15px;
          background-color: ${theme.colors.background.bisque};
-         &:hover {
-            background-color: inherit;
-         }
       }
    }
 `;

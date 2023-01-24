@@ -2,6 +2,7 @@ import React from "react";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
 import { CryptoType } from "./Crypto";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 type ValueProps = {
    value: CryptoType;
@@ -19,7 +20,10 @@ function CryptoCard({ value, handleCrypto }: ValueProps): JSX.Element {
          <h3>{name.toUpperCase()}</h3>
          <p>Current price : {current_price} $</p>
          {pathname === "/market" && (
-            <button onClick={() => handleCrypto(value)}>Add to favorite</button>
+            <PrimaryButton
+               label={"Add to favorite"}
+               onClick={() => handleCrypto(value)}
+            />
          )}
       </CryptoCardStyled>
    );
@@ -40,20 +44,6 @@ const CryptoCardStyled = styled.div`
       height: 50px;
       width: 50px;
       border-radius: 50%;
-   }
-   button {
-      height: 50px;
-      border: none;
-      color: ${theme.colors.primary};
-      background-color: ${theme.colors.secondary};
-      border-radius: ${theme.borderRadius.rounded};
-      &:hover {
-         font-weight: bold;
-         border: 2px solid ${theme.colors.secondary};
-         color: ${theme.colors.secondary};
-         background-color: ${theme.colors.primary};
-         box-shadow: 3px 3px 5px ${theme.colors.tertiary};
-      }
    }
 `;
 
