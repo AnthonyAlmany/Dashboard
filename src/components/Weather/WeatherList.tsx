@@ -1,46 +1,40 @@
-import React from "react";
-import { theme } from "../../theme/theme";
+import React from 'react'
 import styled from "styled-components";
-import { weatherType } from "../../App";
+import { theme } from "../../theme/theme";
+
+import { weatherType } from '../../App';
 
 type props = {
-   weatherData?: weatherType;
-   weatherHandle: Function;
-   clear: Function;
-   addCity: Function;
-};
+    weather: weatherType;
+    weatherHandle: Function;
+    deleteCity: Function;
+}
 
-function WeatherCard({ weatherData, weatherHandle, clear, addCity }: props) {
+function WeatherList({ weather, weatherHandle, deleteCity }: props) {
+    return (
+        <div className='cards-container'>
+            <WeatherCardStyled>
+                <CityStyled>{weather?.city.toUpperCase()}</CityStyled>
+                <h3>{weather?.temperature} °C</h3>
+                <img src={weather?.icon} alt="weather-icon" />
+                <button onClick={() => deleteCity(weather.city)}>Delete</button>
+                <button onClick={() => weatherHandle(weather)}>Add to favorite</button>
+            </WeatherCardStyled>
+        </div>
 
-   const buttonHandler = () => {
-      weatherHandle(weatherData);
-      clear();
-   }
-
-   return (
-      <WeatherCardStyled>
-         <CityStyled>{weatherData?.city.toUpperCase()}</CityStyled>
-         <h3>{weatherData?.temperature} °C</h3>
-         <img src={weatherData?.icon} alt="weather-icon" />
-         <button onClick={() => addCity(weatherData?.city)}>Add to List</button>
-         <button onClick={() => buttonHandler()}>Add to favorite</button>
-      </WeatherCardStyled>
-   );
+    )
 }
 
 const WeatherCardStyled = styled.div`
    width: 800px;
    height: 80px;
-   margin-top: 15px;
    display: flex;
-   flex-direction: row;
    align-items: center;
    justify-content: space-around;
    color: ${theme.colors.tertiary};
    border-radius: ${theme.borderRadius.mRounded};
    background-color: ${theme.colors.primary};
    box-shadow: 1px 1px 6px ${theme.colors.tertiary};
-
 
    button {
       height: 50px;
@@ -57,9 +51,13 @@ const WeatherCardStyled = styled.div`
          box-shadow: 3px 3px 5px ${theme.colors.tertiary};
       }
    }
+   
 `;
+
 const CityStyled = styled.h3`
 width: 120px;
 `
 
-export default WeatherCard;
+
+
+export default WeatherList

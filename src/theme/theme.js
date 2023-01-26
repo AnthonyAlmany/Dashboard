@@ -29,6 +29,7 @@ const shadows = {};
 
 const borderRadius = {
    rounded: "5px",
+   mRounded: "20px",
    extraRounded: "40px",
    circle: "50%",
 };
