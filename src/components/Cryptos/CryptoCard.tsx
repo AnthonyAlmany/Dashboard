@@ -1,8 +1,8 @@
 import React from "react";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
-import { CryptoType } from "./Crypto";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import { CryptoType } from "../../types/types";
 
 type ValueProps = {
    value: CryptoType;

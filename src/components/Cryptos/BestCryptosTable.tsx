@@ -1,8 +1,8 @@
 import React from "react";
-import { CryptoType } from "./Crypto";
 import CryptoTr from "./CryptoTr";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
+import { CryptoType } from "../../types/types";
 
 export type TableProps = {
    bestCryptos?: CryptoType[];

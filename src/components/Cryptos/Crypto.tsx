@@ -6,39 +6,11 @@ import * as React from "react";
 import CryptoCard from "./CryptoCard";
 import BestCryptosTable from "./BestCryptosTable";
 import styled from "styled-components";
-
-export type CryptoType = {
-   ath: number;
-   ath_change_percentage: number;
-   ath_date: string;
-   atl: number;
-   atl_change_percentage: number;
-   atl_date: string;
-   circulating_supply: number;
-   current_price: number;
-   fully_diluted_valuation: number;
-   high_24h: number;
-   id: string;
-   image: string;
-   last_updated: string;
-   low_24h: number;
-   market_cap: number;
-   market_cap_change_24h: number;
-   market_cap_change_percentage_24h: number;
-   market_cap_rank: number;
-   max_supply: number;
-   name: string;
-   price_change_24h: number;
-   price_change_percentage_24h: number;
-   roi: any;
-   symbol: string;
-   total_supply: number;
-   total_volume: number;
-};
+import { CryptoResponse, CryptoType } from "../../types/types";
 
 function Crypto({ handleCrypto }: any) {
    const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
-   const { data, isLoading } = useFetch(baseURL);
+   const crypto: CryptoResponse | null = useFetch(baseURL, "market");
    const [value, setValue] = React.useState<CryptoType | null>(null);
    const [inputValue, setInputValue] = React.useState("");
 
@@ -49,17 +21,18 @@ function Crypto({ handleCrypto }: any) {
       }
       return bestCryptos;
    };
-   getBestCryptos(data);
+   getBestCryptos(crypto?.cryptoDatas);
+   console.log(crypto);
 
-   if (isLoading) {
+   if (crypto?.isLoading) {
       return (
          <CryptoPanelStyled>
             <h1>Fetching Datas...</h1>
             {/* Add a loader */}
          </CryptoPanelStyled>
       );
-   } else if (!isLoading && data) {
-      const cryptos: CryptoType[] | undefined = data;
+   } else if (!crypto?.isLoading && crypto?.cryptoDatas) {
+      const cryptos: any = crypto.cryptoDatas; //any?
 
       return (
          <CryptoPanelStyled>

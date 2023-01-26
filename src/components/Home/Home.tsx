@@ -1,8 +1,8 @@
 import { weatherType } from "../../App";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
-import { CryptoType } from "../Cryptos/Crypto";
 import CryptoCard from "../Cryptos/CryptoCard";
+import { CryptoType } from "../../types/types";
 
 type props = {
    weatherFavorite: weatherType | null;

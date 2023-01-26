@@ -6,12 +6,13 @@ import { theme } from "./theme/theme";
 
 // import Api from "./api/Api";
 import Weather from "./components/Weather/Weather";
-import Crypto, { CryptoType } from "./components/Cryptos/Crypto";
+import Crypto from "./components/Cryptos/Crypto";
 import Movies from "./components/Movies/Movies";
 import MainContainer from "./components/containers/MainContainer";
 import NavbarContainer from "./components/containers/NavbarContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
+import { CryptoType } from "./types/types";
 
 export type weatherType = {
    city: string;

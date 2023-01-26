@@ -1,7 +1,7 @@
-import { CryptoType } from "./Crypto";
 import AddButton from "../../reusable-ui/AddButton";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
+import { CryptoType } from "../../types/types";
 
 type TrProps = {
    cryptos: CryptoType;
