@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import { MovieType } from "../../types/types";
@@ -12,7 +11,7 @@ function MovieCard({ movie }: MovieCardProps) {
 
    return (
       <MovieCardStyled>
-         <h4>{title}</h4>
+         <h3>{title}</h3>
 
          <div className="img-container">
             {poster_path ? (
@@ -24,27 +23,37 @@ function MovieCard({ movie }: MovieCardProps) {
          </div>
 
          <div className="overview-container">
+            <p>Synopsis : </p>
             <p>{overview}</p>
          </div>
          <div className="average-container">
-            <span>{vote_average}</span>
+            <span>Note {vote_average} / 10</span>
          </div>
       </MovieCardStyled>
    );
 }
 
 const MovieCardStyled = styled.div`
-   width: 200px;
+   width: 250px;
    display: flex;
    flex-direction: column;
+   white-space: nowrap;
+   row-gap: 1rem;
+   padding: 1rem 0;
    align-items: center;
    justify-content: space-around;
    color: ${theme.colors.tertiary};
    border-radius: ${theme.borderRadius.extraRounded};
    background-color: ${theme.colors.primary};
    box-shadow: 5px 5px 8px ${theme.colors.tertiary};
-   h4 {
-      margin: 1rem;
+   h3 {
+      width: 250px;
+      height: 70px;
+      //width: 90%;
+      padding: 0 5px;
+      overflow: hidden;
+      white-space: normal;
+      text-align: center;
    }
    .img-container {
       height: 200px;
@@ -57,13 +66,14 @@ const MovieCardStyled = styled.div`
    }
    .overview-container {
       width: 90%;
-      overflow-y: hidden;
       p {
-         display: -webkit-box;
-         -webkit-line-clamp: 3;
-         -webkit-box-orient: vertical;
-         overflow: hidden;
          text-overflow: ellipsis;
+         overflow: hidden;
+         // Addition lines for 2 line or multiline ellipsis
+         display: -webkit-box !important;
+         -webkit-line-clamp: 4;
+         -webkit-box-orient: vertical;
+         white-space: normal;
       }
    }
    .average-container {

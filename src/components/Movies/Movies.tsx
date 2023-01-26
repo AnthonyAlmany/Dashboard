@@ -3,6 +3,7 @@ import { useFetch } from "../../hooks/useFetch";
 import styled from "styled-components";
 import MovieCard from "./MovieCard";
 import { MovieResponse, MovieType } from "../../types/types";
+import { theme } from "../../theme/theme";
 
 function Movies(): any {
    const upcomingMovies: MovieResponse | null = useFetch(
@@ -17,7 +18,7 @@ function Movies(): any {
 
    return (
       <MoviesPanelStyled>
-         <h1>Now playing</h1>
+         <h1>Now playing :</h1>
          {nowPlayingMovies?.isLoading ? (
             <h1>Fetching datas...</h1>
          ) : (
@@ -27,7 +28,7 @@ function Movies(): any {
                })}
             </div>
          )}
-         <h1>Upcoming movies</h1>
+         <h1>Upcoming :</h1>
          {upcomingMovies?.isLoading ? (
             <h1>Fetching datas...</h1>
          ) : (
@@ -51,10 +52,26 @@ const MoviesPanelStyled = styled.div`
    row-gap: 25px;
    padding: 25px 0 50px 0;
    align-items: center;
+   overflow: hidden;
+   h1 {
+      color: ${theme.colors.secondary};
+      text-decoration: underline;
+   }
    .movies-card-wrapper {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
+      display: flex;
+      width: 100%;
+      overflow-x: scroll;
+      column-gap: 40px;
+      padding: 20px;
+      //white-space: nowrap;
+      /*column-gap: 35px;
+      width: 100%;
+      padding: 20px;
+      overflow-x: scroll;
+      white-space: normal; */
+      /* display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 35px; */
    }
 `;
 
