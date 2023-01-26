@@ -9,22 +9,19 @@ type MovieCardProps = {
 
 function MovieCard({ movie }: MovieCardProps) {
    const { title, poster_path, overview, vote_average } = movie;
-   //console.log(poster_path);
-   //console.log(movie.poster_path);
 
    return (
       <MovieCardStyled>
          <h4>{title}</h4>
 
-         {/* <div className="img-container">
+         <div className="img-container">
             {poster_path ? (
                <img
-                  src={`https://image.tmdb.org/t/p/original
-                 ${poster_path}`}
+                  src={`https://image.tmdb.org/t/p/original${poster_path}`}
                   alt="wallpaper"
                />
             ) : null}
-         </div> */}
+         </div>
 
          <div className="overview-container">
             <p>{overview}</p>
@@ -38,7 +35,6 @@ function MovieCard({ movie }: MovieCardProps) {
 
 const MovieCardStyled = styled.div`
    width: 200px;
-   //height: 250px;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -54,11 +50,21 @@ const MovieCardStyled = styled.div`
       height: 200px;
       width: 150px;
       object-fit: cover;
+      img {
+         width: 100%;
+         height: 100%;
+      }
    }
    .overview-container {
-      height: 100px;
       width: 90%;
-      overflow: scroll;
+      overflow-y: hidden;
+      p {
+         display: -webkit-box;
+         -webkit-line-clamp: 3;
+         -webkit-box-orient: vertical;
+         overflow: hidden;
+         text-overflow: ellipsis;
+      }
    }
    .average-container {
       display: flex;

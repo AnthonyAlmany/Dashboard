@@ -1,9 +1,18 @@
 import React from "react";
 import { customAxios } from "../../src/axios/axios";
-import { CryptoResponse, CryptoType, MovieResponse, MovieType, WeatherResponse, WeatherType } from "../types/types";
+import {
+   CryptoResponse,
+   CryptoType,
+   MovieResponse,
+   MovieType,
+   WeatherResponse,
+   WeatherType,
+} from "../types/types";
 
-
-export function useFetch(baseURL: string, api:string): CryptoResponse | MovieResponse | WeatherResponse | null {
+export function useFetch(
+   baseURL: string,
+   api: string
+): CryptoResponse | MovieResponse | WeatherResponse | null {
    const [cryptoDatas, setCryprosDatas] = React.useState<CryptoType[]>();
    const [movieDatas, setMovieDatas] = React.useState<MovieType[]>([]);
    const [weatherDatas, setWeatherDatas] = React.useState<WeatherType>({
@@ -35,16 +44,15 @@ export function useFetch(baseURL: string, api:string): CryptoResponse | MovieRes
                   default:
                      break;
                }
-               setIsLoading(false)
+               setIsLoading(false);
             })
             .catch((error) => console.log(error));
       }
-      setIsLoading(true)
+      setIsLoading(true);
       fetchData();
    }, [baseURL, api]);
    if (baseURL.includes("market")) return { cryptoDatas, isLoading };
-   else if (baseURL.includes("upcoming")) return { movieDatas, isLoading };
+   else if (baseURL.includes("themoviedb")) return { movieDatas, isLoading };
    else if (baseURL.includes("weather")) return { weatherDatas, isLoading };
    else return null;
 }
-   

@@ -10,7 +10,8 @@ function Movies(): any {
       "movie"
    );
    const nowPlayingMovies: MovieResponse | null = useFetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR`,
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR
+      `,
       "movie"
    );
 

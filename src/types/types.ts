@@ -67,7 +67,8 @@ export type MovieType = {
  };
 
  export type MovieResponse = ResponseType & {
-    movieDatas?: MovieType[]
+    movieDatas?: MovieType[],
+    theaterDatas?: MovieType[]
  }
  export type CryptoResponse = ResponseType & {
     cryptoDatas?: CryptoType[]
