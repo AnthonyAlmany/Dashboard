@@ -8,7 +8,7 @@ function NavbarContainer({ children }: ContainerType) {
 
 const NavcontainerStyled = styled.div`
    height: 100%;
-   width: 25%;
+   width: 20rem;
    min-width: 200px;
    background-color: ${theme.colors.secondary};
    border-radius: ${theme.borderRadius.extraRounded};

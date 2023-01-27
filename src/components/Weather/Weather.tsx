@@ -8,6 +8,7 @@ import WeatherList from './WeatherList';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+
 import { weatherType } from '../../App';
 
 
@@ -29,10 +30,11 @@ function Weather({ weatherHandle }: any) {
 
   // Set Favorite state
   const [weatherData, setWeatherData] = useState<weatherType>()
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // Weather List state
   const [weatherList, setWeatherList] = useState<weatherType[]>([])
-  const [cities, setCities] = useState<string[]>(['Paris', 'London', 'Sydney'])
+  const [cities, setCities] = useState<string[]>(['Rome', 'Dubai', 'Chicago'])
 
   // Clear Autocomplete field function
   const clearAutocomplete = () => { setValue(null) }
@@ -58,8 +60,10 @@ function Weather({ weatherHandle }: any) {
         .then(res => {
           const data = { city: res.data.location.name, temperature: res.data.current.temp_c, icon: res.data.current.condition.icon }
           setWeatherData(data)
+          setIsLoading(false);
         }).catch(error => console.log(error));
     }
+    setIsLoading(true);
     fetchWeather();
   }, [value])
 
@@ -75,42 +79,54 @@ function Weather({ weatherHandle }: any) {
             const iconData: string = result.status === 'fulfilled' && result.value.data.current.condition.icon
 
             return { city: cityData, temperature: temperatureData, icon: iconData }
+
           }
+
           ));
+          setIsLoading(false)
         })
         .catch(console.error)
     }
+    setIsLoading(true);
     fetchWeather();
   }, [cities])
 
 
   return (
     <WeatherContainer>
+      <TopContainer>
+        <AutocompleteContainer>
+          <Autocomplete
+            value={value}
+            onChange={(event: any, newValue: City | null) => {
+              setValue(newValue);
+            }}
+            inputValue={inputValue}
+            onInputChange={(event, newInputValue) => {
+              setInputValue(newInputValue);
+            }}
+            id="manageable-states-demo"
+            options={uniqueCities}
+            getOptionLabel={option =>
+              `${option.city} ${option.country}`
+            }
+            isOptionEqualToValue={(option, value) => option.city === value.city}
+            autoHighlight
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Choose city" />}
+          />
+          {isLoading && <h4>Fetching Data...</h4>}
 
-      <Autocomplete
-        value={value}
-        onChange={(event: any, newValue: City | null) => {
-          setValue(newValue);
-        }}
-        inputValue={inputValue}
-        onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
-        }}
-        id="manageable-states-demo"
-        options={uniqueCities}
-        getOptionLabel={option =>
-          `${option.city} ${option.country}`
-        }
-        isOptionEqualToValue={(option, value) => option.city === value.city}
-        autoHighlight
-        sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Choose city" />}
-      />
+        </AutocompleteContainer>
+        {!isLoading ? <FavoriteContainer>{value && <WeatherCard weatherData={weatherData} weatherHandle={weatherHandle} clear={clearAutocomplete} addCity={addCity} />}</FavoriteContainer>
+          : <FavoriteContainer></FavoriteContainer>}
+      </TopContainer>
 
-      <div>
-        <AutocompleteContainer>{value && <WeatherCard weatherData={weatherData} weatherHandle={weatherHandle} clear={clearAutocomplete} addCity={addCity} />}</AutocompleteContainer>
-        <WeatherCardsContainer>{weatherList.map((weather: any, i: any) => <WeatherList key={i} weather={weather} weatherHandle={weatherHandle} deleteCity={deleteCity} />)}</WeatherCardsContainer>
-      </div>
+
+
+
+      <WeatherCardsContainer>{weatherList.map((weather: any, i: any) => <WeatherList key={i} weather={weather} weatherHandle={weatherHandle} deleteCity={deleteCity} />)}</WeatherCardsContainer>
+
 
     </WeatherContainer>
 
@@ -118,8 +134,27 @@ function Weather({ weatherHandle }: any) {
   )
 }
 
+const TopContainer = styled.div`
+min-height: 18rem;
+display: flex;
+flex-direction: column;
+justify-content: start;
+`
+
 const AutocompleteContainer = styled.div`
-height: 200px;
+
+display:flex;
+align-items: start;
+& :first-child{
+  margin-right: 10px;
+}
+
+
+`
+
+const FavoriteContainer = styled.div`
+
+
 `
 
 const WeatherContainer = styled.div`

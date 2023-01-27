@@ -4,6 +4,9 @@ import { theme } from "../../theme/theme";
 
 import { weatherType } from '../../App';
 
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+
 type props = {
     weather: weatherType;
     weatherHandle: Function;
@@ -17,8 +20,10 @@ function WeatherList({ weather, weatherHandle, deleteCity }: props) {
                 <CityStyled>{weather?.city.toUpperCase()}</CityStyled>
                 <h3>{weather?.temperature} °C</h3>
                 <img src={weather?.icon} alt="weather-icon" />
-                <button onClick={() => deleteCity(weather.city)}>Delete</button>
-                <button onClick={() => weatherHandle(weather)}>Add to favorite</button>
+                <ButtonsContainer>
+                    <button onClick={() => weatherHandle(weather)}><StarBorderIcon></StarBorderIcon></button>
+                    <button onClick={() => deleteCity(weather.city)}><DeleteOutlineIcon></DeleteOutlineIcon></button>
+                </ButtonsContainer>
             </WeatherCardStyled>
         </div>
 
@@ -37,13 +42,14 @@ const WeatherCardStyled = styled.div`
    box-shadow: 1px 1px 6px ${theme.colors.tertiary};
 
    button {
-      height: 50px;
-      width: 60px;
+      height: 40px;
+      width: 45px;
       border: none;
       color: ${theme.colors.primary};
       background-color: ${theme.colors.secondary};
       border-radius: ${theme.borderRadius.rounded};
       &:hover {
+         cursor: pointer;
          font-weight: bold;
          border: 2px solid ${theme.colors.secondary};
          color: ${theme.colors.secondary};
@@ -57,7 +63,11 @@ const WeatherCardStyled = styled.div`
 const CityStyled = styled.h3`
 width: 120px;
 `
-
+const ButtonsContainer = styled.div`
+display: flex;
+justify-content: space-between;
+width: 7rem;
+`
 
 
 export default WeatherList

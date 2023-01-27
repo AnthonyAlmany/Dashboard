@@ -66,7 +66,6 @@ function App() {
                </Routes>
             </PanelContainer>
          </MainContainer>
-         {/* <Api /> */}
       </AppStyled>
    );
 }
