@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../theme/theme";
 import { ButtonProps } from "../types/types";
 
-function AddButton({ label, onClick }: ButtonProps) {
+function AddButton({ label, onClick }: ButtonProps): JSX.Element {
    return <AddButtonStyled onClick={onClick}>{label}</AddButtonStyled>;
 }
 

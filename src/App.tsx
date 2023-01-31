@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
 import { CryptoType, MovieType } from "./types/types";
 import TopbarContainer from "./components/containers/TopbarContainer";
+import TopbarRightSide from "./components/Topbar/TopbarRightSide";
 
 export type weatherType = {
    city: string;
@@ -49,7 +50,7 @@ function App() {
                <Navbar />
             </NavbarContainer>
             <TopbarContainer>
-               <h2>Welcome</h2>
+               <TopbarRightSide />
             </TopbarContainer>
             <PanelContainer>
                <Routes>

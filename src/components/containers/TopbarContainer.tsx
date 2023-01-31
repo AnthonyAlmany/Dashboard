@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { ContainerType } from "../../types/types";
 
-function TopbarContainer({ children }: ContainerType) {
+function TopbarContainer({ children }: ContainerType): JSX.Element {
    return <TopbarContainerStyled>{children}</TopbarContainerStyled>;
 }
 

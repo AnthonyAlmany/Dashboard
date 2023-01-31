@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import { ContainerType } from "../../types/types";
 
-function MainContainer({ children }: ContainerType) {
+function MainContainer({ children }: ContainerType): JSX.Element {
    return <MainContainerStyled>{children}</MainContainerStyled>;
 }
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ContainerType } from "../../types/types";
 import { theme } from "../../theme/theme";
 
-function PanelContainer({ children }: ContainerType) {
+function PanelContainer({ children }: ContainerType): JSX.Element {
    return <PanelContainerStyled>{children}</PanelContainerStyled>;
 }
 

@@ -21,7 +21,10 @@ const fonts = {
       XL: "20px",
       XXL: "25px",
    },
-   weights: {},
+   weights: {
+      bold: 700,
+      xtraBold: 900,
+   },
 };
 
 const spacing = {};

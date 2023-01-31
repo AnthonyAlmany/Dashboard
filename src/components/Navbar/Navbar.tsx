@@ -9,7 +9,7 @@ import NavButton from "./NavButton";
 import Title from "./Title";
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
+function Navbar(): JSX.Element {
    return (
       <LinksContainerStyled>
          <Title />
