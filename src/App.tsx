@@ -13,6 +13,7 @@ import NavbarContainer from "./components/containers/NavbarContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
 import { CryptoType, MovieType } from "./types/types";
+import TopbarContainer from "./components/containers/TopbarContainer";
 
 export type weatherType = {
    city: string;
@@ -47,6 +48,9 @@ function App() {
             <NavbarContainer>
                <Navbar />
             </NavbarContainer>
+            <TopbarContainer>
+               <h2>Welcome</h2>
+            </TopbarContainer>
             <PanelContainer>
                <Routes>
                   <Route path="/" element={<Navigate to="/home" />} />
@@ -86,6 +90,9 @@ const AppStyled = styled.div`
    align-items: center;
    justify-content: center;
    background-color: ${theme.colors.xtraLightGrey};
+   h1:first-of-type {
+      margin-top: 100px;
+   }
 `;
 
 export default App;
