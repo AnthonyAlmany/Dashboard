@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 import { MovieResponse, MovieType } from "../../types/types";
 import { theme } from "../../theme/theme";
 
-function Movies({ handleMovie }: any): any {
+function Movies({ handleMovie }: any): JSX.Element {
    const upcomingMovies: MovieResponse | null = useFetch(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR`,
       "movie"

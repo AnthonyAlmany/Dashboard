@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import { ContainerType } from "../../types/types";
 
-function NavbarContainer({ children }: ContainerType) {
+function NavbarContainer({ children }: ContainerType): JSX.Element {
    return <NavcontainerStyled>{children}</NavcontainerStyled>;
 }
 

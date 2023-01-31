@@ -10,7 +10,7 @@ type NavButtonProps = {
    icon: any; //Voir pour retirer le any
 };
 
-function NavButton({ label, icon }: NavButtonProps): React.ReactElement {
+function NavButton({ label, icon }: NavButtonProps): JSX.Element {
    return (
       <NavButtonStyled
          to={`/${label.toLocaleLowerCase()}`}

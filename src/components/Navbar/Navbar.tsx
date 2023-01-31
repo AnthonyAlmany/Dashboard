@@ -8,7 +8,7 @@ import styled from "styled-components";
 import NavButton from "./NavButton";
 import Title from "./Title";
 
-function Navbar() {
+function Navbar(): JSX.Element {
    return (
       <LinksContainerStyled>
          <Title />

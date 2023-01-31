@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { ContainerType } from "../../types/types";
 
-function ButtonContainer({ children }: ContainerType) {
+function ButtonContainer({ children }: ContainerType): JSX.Element {
    return <ButtonCoantainerStyled>{children}</ButtonCoantainerStyled>;
 }
 

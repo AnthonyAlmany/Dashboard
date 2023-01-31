@@ -5,13 +5,17 @@ import CryptoCard from "../Cryptos/CryptoCard";
 import { CryptoType, MovieType } from "../../types/types";
 import MovieCard from "../Movies/MovieCard";
 
-type props = {
+type HomeProps = {
    weatherFavorite: weatherType | null;
    favoriteCrypto: CryptoType | null;
    favoriteMovies: MovieType | null;
 };
 
-function Home({ weatherFavorite, favoriteCrypto, favoriteMovies }: props) {
+function Home({
+   weatherFavorite,
+   favoriteCrypto,
+   favoriteMovies,
+}: HomeProps): JSX.Element {
    return (
       <>
          {!weatherFavorite ? (

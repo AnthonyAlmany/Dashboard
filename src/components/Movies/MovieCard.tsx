@@ -9,7 +9,7 @@ type MovieCardProps = {
    handleMovie?: any;
 };
 
-function MovieCard({ movie, handleMovie }: MovieCardProps) {
+function MovieCard({ movie, handleMovie }: MovieCardProps): JSX.Element {
    const { title, poster_path, overview, vote_average } = movie;
 
    return (
