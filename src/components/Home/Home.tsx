@@ -2,14 +2,16 @@ import { weatherType } from "../../App";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
 import CryptoCard from "../Cryptos/CryptoCard";
-import { CryptoType } from "../../types/types";
+import { CryptoType, MovieType } from "../../types/types";
+import MovieCard from "../Movies/MovieCard";
 
 type props = {
    weatherFavorite: weatherType | null;
    favoriteCrypto: CryptoType | null;
+   favoriteMovies: MovieType | null;
 };
 
-function Home({ weatherFavorite, favoriteCrypto }: props) {
+function Home({ weatherFavorite, favoriteCrypto, favoriteMovies }: props) {
    return (
       <>
          {!weatherFavorite ? (
@@ -25,6 +27,11 @@ function Home({ weatherFavorite, favoriteCrypto }: props) {
             <h3>"No Favorites for crypto"</h3>
          ) : (
             <CryptoCard value={favoriteCrypto}></CryptoCard>
+         )}
+         {!favoriteMovies ? (
+            <h3>"No Favorites for movies</h3>
+         ) : (
+            <MovieCard movie={favoriteMovies}></MovieCard>
          )}
       </>
    );

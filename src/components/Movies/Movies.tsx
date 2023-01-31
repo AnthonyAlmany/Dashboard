@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 import { MovieResponse, MovieType } from "../../types/types";
 import { theme } from "../../theme/theme";
 
-function Movies(): any {
+function Movies({ handleMovie }: any): any {
    const upcomingMovies: MovieResponse | null = useFetch(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR`,
       "movie"
@@ -24,7 +24,13 @@ function Movies(): any {
          ) : (
             <div className="movies-card-wrapper">
                {nowPlayingMovies?.movieDatas?.map((movie: MovieType) => {
-                  return <MovieCard key={movie.id} movie={movie} />;
+                  return (
+                     <MovieCard
+                        key={movie.id}
+                        movie={movie}
+                        handleMovie={handleMovie}
+                     />
+                  );
                })}
             </div>
          )}
@@ -34,7 +40,13 @@ function Movies(): any {
          ) : (
             <div className="movies-card-wrapper">
                {upcomingMovies?.movieDatas?.map((movie: MovieType) => {
-                  return <MovieCard key={movie.id} movie={movie} />;
+                  return (
+                     <MovieCard
+                        key={movie.id}
+                        movie={movie}
+                        handleMovie={handleMovie}
+                     />
+                  );
                })}
             </div>
          )}

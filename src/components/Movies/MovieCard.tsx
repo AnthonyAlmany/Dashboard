@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import AddButton from "../../reusable-ui/AddButton";
+import PrimaryButton from "../../reusable-ui/PrimaryButton";
 import { theme } from "../../theme/theme";
 import { MovieType } from "../../types/types";
 
 type MovieCardProps = {
    movie: MovieType;
+   handleMovie?: any;
 };
 
-function MovieCard({ movie }: MovieCardProps) {
+function MovieCard({ movie, handleMovie }: MovieCardProps) {
    const { title, poster_path, overview, vote_average } = movie;
 
    return (
@@ -31,6 +32,10 @@ function MovieCard({ movie }: MovieCardProps) {
          <div className="average-container">
             <span>Note {vote_average} / 10</span>
          </div>
+         <PrimaryButton
+            label={"Add to favorites"}
+            onClick={() => handleMovie(movie)}
+         />
       </MovieCardStyled>
    );
 }
@@ -88,6 +93,9 @@ const MovieCardStyled = styled.div`
       display: flex;
       align-items: center;
       height: 50px;
+   }
+   .button {
+      width: fit-content;
    }
 `;
 

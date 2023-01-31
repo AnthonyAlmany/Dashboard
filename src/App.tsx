@@ -12,7 +12,7 @@ import MainContainer from "./components/containers/MainContainer";
 import NavbarContainer from "./components/containers/NavbarContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
-import { CryptoType } from "./types/types";
+import { CryptoType, MovieType } from "./types/types";
 
 export type weatherType = {
    city: string;
@@ -27,6 +27,7 @@ function App() {
    const [favoriteCrypto, setFavoriteCrypto] = useState<null | CryptoType>(
       null
    );
+   const [favoriteMovies, setFavoriteMovies] = useState<null | MovieType>(null);
 
    const weatherHandle = (value: weatherType) => {
       setWeatherFavorite(value);
@@ -34,6 +35,10 @@ function App() {
 
    const handleCrypto = (value: CryptoType) => {
       setFavoriteCrypto(value);
+   };
+
+   const handleMovie = (value: MovieType) => {
+      setFavoriteMovies(value);
    };
 
    return (
@@ -51,6 +56,7 @@ function App() {
                         <Home
                            weatherFavorite={weatherFavorite}
                            favoriteCrypto={favoriteCrypto}
+                           favoriteMovies={favoriteMovies}
                         />
                      }
                   />
@@ -62,7 +68,10 @@ function App() {
                      path="/market"
                      element={<Crypto handleCrypto={handleCrypto} />}
                   />
-                  <Route path="/movies" element={<Movies />} />
+                  <Route
+                     path="/movies"
+                     element={<Movies handleMovie={handleMovie} />}
+                  />
                </Routes>
             </PanelContainer>
          </MainContainer>
