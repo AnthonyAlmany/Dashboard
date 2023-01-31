@@ -8,7 +8,7 @@ import { theme } from "../theme/theme";
 function Searchbar() {
    const [search, setSearch] = useState("");
 
-   console.log(search);
+   //console.log(search);
 
    return (
       <SearchContainerStyled>
