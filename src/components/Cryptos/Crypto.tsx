@@ -22,7 +22,6 @@ function Crypto({ handleCrypto }: any) {
       return bestCryptos;
    };
    getBestCryptos(crypto?.cryptoDatas);
-   console.log(crypto);
 
    if (crypto?.isLoading) {
       return (

@@ -1,4 +1,6 @@
+import React from "react";
 import styled from "styled-components";
+import AddButton from "../../reusable-ui/AddButton";
 import { theme } from "../../theme/theme";
 import { MovieType } from "../../types/types";
 
@@ -35,6 +37,7 @@ function MovieCard({ movie }: MovieCardProps) {
 
 const MovieCardStyled = styled.div`
    width: 250px;
+   position: relative;
    display: flex;
    flex-direction: column;
    white-space: nowrap;
@@ -46,10 +49,16 @@ const MovieCardStyled = styled.div`
    border-radius: ${theme.borderRadius.extraRounded};
    background-color: ${theme.colors.primary};
    box-shadow: 5px 5px 8px ${theme.colors.tertiary};
+   transition: 150ms ease-in-out;
+
+   &:hover {
+      transform: scale(1.1);
+      transition: 150ms ease-in-out;
+      z-index: 4;
+   }
    h3 {
       width: 250px;
-      height: 70px;
-      //width: 90%;
+      height: 60px;
       padding: 0 5px;
       overflow: hidden;
       white-space: normal;
@@ -69,7 +78,6 @@ const MovieCardStyled = styled.div`
       p {
          text-overflow: ellipsis;
          overflow: hidden;
-         // Addition lines for 2 line or multiline ellipsis
          display: -webkit-box !important;
          -webkit-line-clamp: 4;
          -webkit-box-orient: vertical;

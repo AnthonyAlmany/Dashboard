@@ -62,7 +62,7 @@ const MoviesPanelStyled = styled.div`
       width: 100%;
       overflow-x: scroll;
       column-gap: 40px;
-      padding: 20px;
+      padding: 40px 20px;
       //white-space: nowrap;
       /*column-gap: 35px;
       width: 100%;
