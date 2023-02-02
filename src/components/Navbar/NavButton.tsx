@@ -33,12 +33,17 @@ const NavButtonStyled = styled(NavLink)`
    align-items: center;
    text-decoration: none;
    color: inherit;
-   margin-bottom: 1rem;
+   font-size: 20px;
+   margin-bottom: 4rem;
    width: 8rem;
    height: 2rem;
    border-radius: 1rem;
    :hover {
       color: ${theme.colors.background.antique};
    }
+   &.active {
+      background-color: ${theme.colors.xtraLightSecondary};
+      color: ${theme.colors.background.antique};
+    }
 `;
 export default NavButton;

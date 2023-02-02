@@ -71,7 +71,7 @@ const MoviesPanelStyled = styled.div`
    }
    .movies-card-wrapper {
       display: flex;
-      width: 100%;
+      width: 99%;
       overflow-x: scroll;
       column-gap: 40px;
       padding: 40px 20px;
@@ -84,6 +84,15 @@ const MoviesPanelStyled = styled.div`
       /* display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 35px; */
+      &::-webkit-scrollbar {
+         background: ${theme.colors.xtraLightSecondary};
+         border-radius: 2rem;
+         }
+     
+         &::-webkit-scrollbar-thumb {
+           background: ${theme.colors.secondary};
+           border-radius: 2rem;
+         }
    }
 `;
 

@@ -41,7 +41,7 @@ function MovieCard({ movie, handleMovie }: MovieCardProps) {
 }
 
 const MovieCardStyled = styled.div`
-   width: 250px;
+   width: 248px;
    position: relative;
    display: flex;
    flex-direction: column;
@@ -97,6 +97,7 @@ const MovieCardStyled = styled.div`
    .button {
       width: fit-content;
    }
+   
 `;
 
 export default MovieCard;

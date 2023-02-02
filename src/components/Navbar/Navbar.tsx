@@ -7,6 +7,7 @@ import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
 import styled from "styled-components";
 import NavButton from "./NavButton";
 import Title from "./Title";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
    return (
@@ -16,10 +17,12 @@ function Navbar() {
          <NavButton label="Weather" icon={<WbSunnyOutlinedIcon />} />
          <NavButton label="Market" icon={<AccountBalanceOutlinedIcon />} />
          <NavButton label="Movies" icon={<MovieOutlinedIcon />} />
-         <Searchbar />
+         {/* <Searchbar /> */}
       </LinksContainerStyled>
    );
 }
+
+
 
 const LinksContainerStyled = styled.div`
    display: flex;
@@ -28,5 +31,6 @@ const LinksContainerStyled = styled.div`
    margin-left: 2rem;
    margin-bottom: 4rem;
 `;
+
 
 export default Navbar;
