@@ -33,6 +33,7 @@ function MovieCard({ movie, handleMovie }: MovieCardProps): JSX.Element {
             <span>Note {vote_average} / 10</span>
          </div>
          <PrimaryButton
+            disabled={false}
             label={"Add to favorites"}
             onClick={() => handleMovie(movie)}
          />
@@ -97,7 +98,6 @@ const MovieCardStyled = styled.div`
    .button {
       width: fit-content;
    }
-   
 `;
 
 export default MovieCard;

@@ -15,6 +15,8 @@ import PanelContainer from "./components/containers/PanelContainer";
 import { CryptoType, MovieType } from "./types/types";
 import TopbarContainer from "./components/containers/TopbarContainer";
 import TopbarRightSide from "./components/Topbar/TopbarRightSide";
+import Signup from "./components/Register/Signup";
+import Login from "./components/Register/Login";
 
 export type weatherType = {
    city: string;
@@ -22,7 +24,16 @@ export type weatherType = {
    icon: string;
 };
 
+export type DisplayModal = {
+   signupModal: boolean;
+   loginModal: boolean;
+};
+
 function App() {
+   const [displayModal, setDisplayModal] = useState<DisplayModal>({
+      signupModal: false,
+      loginModal: false,
+   });
    const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(
       null
    );
@@ -46,11 +57,16 @@ function App() {
    return (
       <AppStyled>
          <MainContainer>
+            <Signup
+               signupModal={displayModal?.signupModal}
+               setDisplayModal={setDisplayModal}
+            />
+            <Login />
             <NavbarContainer>
                <Navbar />
             </NavbarContainer>
             <TopbarContainer>
-               <TopbarRightSide />
+               <TopbarRightSide setDisplayModal={setDisplayModal} />
             </TopbarContainer>
             <PanelContainer>
                <Routes>

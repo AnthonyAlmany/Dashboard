@@ -21,6 +21,7 @@ function CryptoCard({ value, handleCrypto }: ValueProps): JSX.Element {
          <p>Current price : {current_price} $</p>
          {pathname === "/market" && (
             <PrimaryButton
+               disabled={false}
                label={"Add to favorite"}
                onClick={() => handleCrypto(value)}
             />

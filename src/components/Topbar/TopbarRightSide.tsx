@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import RegisterButtonsContainer from "../containers/RegisterButtonsContainer";
+import RegisterButtonsContainer from "./RegisterButtonsContainer";
 import Profile from "../Profile/Profile";
 
-function TopbarRightSide(): JSX.Element {
+function TopbarRightSide({ setDisplayModal }: any): JSX.Element {
    const [isConnected, setIsConnected] = React.useState<boolean>(false);
 
    return (
       <TopbarRightSideStyled>
          {!isConnected ? (
-            <RegisterButtonsContainer setIsConnected={setIsConnected} />
+            <RegisterButtonsContainer
+               setIsConnected={setIsConnected}
+               setDisplayModal={setDisplayModal}
+            />
          ) : (
             <Profile setIsConnected={setIsConnected} />
          )}

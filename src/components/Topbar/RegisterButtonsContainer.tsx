@@ -4,18 +4,25 @@ import PrimaryButton from "../../reusable-ui/PrimaryButton";
 
 type RegisterButtonsContainerProps = {
    setIsConnected: React.Dispatch<React.SetStateAction<boolean>>;
+   setDisplayModal: any;
 };
 
 function RegisterButtonsContainer({
    setIsConnected,
+   setDisplayModal,
 }: RegisterButtonsContainerProps): JSX.Element {
    return (
       <RegisterButtonsContainerStyled>
          <PrimaryButton
-            label={"SIGNIN"}
-            onClick={() => console.log("WELCOME")}
+            disabled={false}
+            label={"SIGNUP"}
+            onClick={() => setDisplayModal({ signupModal: true })}
          />
-         <PrimaryButton label={"LOGIN"} onClick={() => setIsConnected(true)} />
+         <PrimaryButton
+            disabled={false}
+            label={"LOGIN"}
+            onClick={() => setIsConnected(true)}
+         />
       </RegisterButtonsContainerStyled>
    );
 }
