@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ContainerType } from "../../types/types";
 import { theme } from "../../theme/theme";
 
-function PanelContainer({ children }: ContainerType): JSX.Element {
+function PanelContainer({ children }: ContainerType) {
    return <PanelContainerStyled>{children}</PanelContainerStyled>;
 }
 
@@ -29,6 +29,7 @@ const PanelContainerStyled = styled.div`
       background: ${theme.colors.secondary};
       border-radius: 2rem;
    }
+   padding: 100px 0;
 `;
 
 export default PanelContainer;
