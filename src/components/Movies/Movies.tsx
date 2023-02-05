@@ -1,28 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useFetch } from "../../hooks/useFetch";
+import axios from "axios"
+
 import styled from "styled-components";
-import MovieCard from "./MovieCard";
+
+import MoviesList from "./MoviesList"
 import { MovieResponse, MovieType } from "../../types/types";
-import { theme } from "../../theme/theme";
 
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
-
-
 function Movies({ handleMovie }: any): any {
-   const upcomingMovies: MovieResponse | null = useFetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR`,
-      "movie"
-   );
-   const nowPlayingMovies: MovieResponse | null = useFetch(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR
-      `,
-      "movie"
-   );
 
-   const listRef: any = useRef()
-   const [slideNumber, setSlideNumber] = useState(0);
+   const [data, setData] = useState<any>([]);
+   const [error, setError] = useState<any>(null);
+   const [loading, setLoading] = useState(false);
+
+   const listRef = useRef<HTMLDivElement>(null)
+   const [slideNumber, setSlideNumber] = useState<number>(0);
    const [distance, setDistance] = useState<number>(0)
 
    useEffect(() => {
@@ -32,7 +26,7 @@ function Movies({ handleMovie }: any): any {
 
    }, [distance])
 
-   const handleClick = (direction: any) => {
+   const handleClick: any = (direction: string) => {
 
       if (direction === "left" && slideNumber > 0) {
          setSlideNumber(slideNumber - 1);
@@ -44,53 +38,48 @@ function Movies({ handleMovie }: any): any {
       }
    };
 
+   useEffect(() => {
+      setLoading(true);
+      const apiData = [
+         { url: `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR`, title: 'Upcoming' },
+         { url: `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR`, title: 'Now Playing' },
+      ];
+
+      Promise.all(apiData.map(item => axios.get(item.url)))
+         .then(responses => {
+            const newData = apiData.map((item, index) => ({
+               title: item.title,
+               data: responses[index].data.results,
+            }));
+            setData(newData);
+            setLoading(false);
+         })
+         .catch(e => {
+            setError(e);
+            setLoading(false);
+         });
+   }, []);
+
+   if (loading) {
+      return <div>Loading...</div>;
+   }
+
+   if (error) {
+      return <div>An error occurred: {error.message}</div>;
+   }
+
    return (
       <MoviesPanelStyled>
-         <h1>Now playing :</h1>
 
-         {nowPlayingMovies?.isLoading ? (
-            <h1>Fetching datas...</h1>
-         ) : (
-
-            <div className="wrapper">
-               <ArrowBackIosNewIcon className="arrow arrow-left" onClick={() => handleClick("left")} />
-               <div className="movies-card-wrapper" ref={listRef}>
-
-                  {nowPlayingMovies?.movieDatas?.map((movie: MovieType) => {
-                     return (
-                        <MovieCard
-                           key={movie.id}
-                           movie={movie}
-                           handleMovie={handleMovie}
-                        />
-                     );
-                  })}
-
-               </div>
-               <ArrowForwardIosIcon className="arrow arrow-right" onClick={() => handleClick("right")} />
+         {data.map((list: any, i: any) => (
+            <div className="wrapper" key={i}>
+               <ArrowBackIosNewIcon className="arrow arrow-left" onClick={() => handleClick("left").bind(null, list)} />
+               <MoviesList key={list.title} list={list} listRef={listRef} />
+               <ArrowForwardIosIcon className="arrow arrow-right" onClick={() => handleClick("right").bind(null, list)} />
             </div>
 
+         ))}
 
-
-
-         )}
-
-         <h1>Upcoming :</h1>
-         {upcomingMovies?.isLoading ? (
-            <h1>Fetching datas...</h1>
-         ) : (
-            <div className="movies-card-wrapper">
-               {upcomingMovies?.movieDatas?.map((movie: MovieType) => {
-                  return (
-                     <MovieCard
-                        key={movie.id}
-                        movie={movie}
-                        handleMovie={handleMovie}
-                     />
-                  );
-               })}
-            </div>
-         )}
       </MoviesPanelStyled>
    );
 }
@@ -98,40 +87,18 @@ function Movies({ handleMovie }: any): any {
 const MoviesPanelStyled = styled.div`
    display: flex;
    width: 100%;
-   position: absolute;
+   position: relative;
    top: 0;
    right: 0;
    flex-direction: column;
    row-gap: 25px;
    padding: 25px 0 50px 0;
    overflow: hidden;
-   
-   h1 {
-      color: ${theme.colors.secondary};
-      text-decoration: underline;
-   }
 
    .wrapper{
       position: relative;
    }
 
-   .movies-card-wrapper {
-      display: flex;
-      width: max-content;
-      transition: all 0.6s ease;
-      column-gap: 40px;
-      padding: 40px 20px;
-      // &::-webkit-scrollbar {
-      //    background: ${theme.colors.xtraLightSecondary};
-      //    border-radius: 2rem;
-      //    }
-     
-      //    &::-webkit-scrollbar-thumb {
-      //      background: ${theme.colors.secondary};
-      //      border-radius: 2rem;
-      //    }
-   }
-   
    .arrow{
       position: absolute;
       z-index: 90;
@@ -146,9 +113,11 @@ const MoviesPanelStyled = styled.div`
       }
    }
    .arrow-left{
+      top: 0;
       left: 2px;
    }
    .arrow-right{
+      top: 0;
       right: 2px;
    }
 `;
