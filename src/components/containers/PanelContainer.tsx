@@ -15,17 +15,17 @@ const PanelContainerStyled = styled.div`
    justify-content: space-evenly;
    position: relative;
    overflow: hidden;
-   overflow-y: scroll;
+   // overflow-y: scroll;
 
-   &::-webkit-scrollbar {
-    background: ${theme.colors.xtraLightSecondary};
-    border-radius: 2rem;
-    }
+   // &::-webkit-scrollbar {
+   //  background: ${theme.colors.xtraLightSecondary};
+   //  border-radius: 2rem;
+   //  }
 
-    &::-webkit-scrollbar-thumb {
-      background: ${theme.colors.secondary};
-      border-radius: 2rem;
-    }
+   //  &::-webkit-scrollbar-thumb {
+   //    background: ${theme.colors.secondary};
+   //    border-radius: 2rem;
+   //  }
      
       
 `;

@@ -19,7 +19,7 @@ function MovieCard({ movie, handleMovie }: MovieCardProps) {
          <div className="img-container">
             {poster_path ? (
                <img
-                  src={`https://image.tmdb.org/t/p/original${poster_path}`}
+
                   alt="wallpaper"
                />
             ) : null}
