@@ -3,8 +3,14 @@ import styled from "styled-components";
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
+import { MovieType } from "../../types/types";
 
-function MovieCardTest({ movie }: any) {
+type props = {
+    movie: MovieType;
+    handleMovie: Function;
+}
+
+function MovieCardTest({ movie, handleMovie }: props) {
 
     const [scale, setScale] = useState(1);
 
@@ -27,8 +33,7 @@ function MovieCardTest({ movie }: any) {
         <MovieCardStyled>
             <div className='image-movie'>
                 <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="movie-poster" />
-                <div><StarBorderIcon id="fav" style={{ transform: `scale(${scale})`, transition: 'transform 0.5s ease' }} onClick={handleClick} /></div>
-
+                <div><StarBorderIcon id="fav" style={{ transform: `scale(${scale})`, transition: 'transform 0.5s ease' }} onClick={() => { handleClick(); handleMovie(movie) }} /></div>
             </div>
 
             <div className='movie-infos'>

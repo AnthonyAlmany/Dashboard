@@ -14,6 +14,7 @@ type props = {
 }
 
 function WeatherList({ weather, weatherHandle, deleteCity }: props) {
+    console.log(weather)
     return (
         <div className='cards-container'>
             <WeatherCardStyled>

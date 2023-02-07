@@ -4,15 +4,19 @@ import axios from "axios"
 import styled from "styled-components";
 
 import MoviesList from "./MoviesList"
-import { MovieResponse, MovieType } from "../../types/types";
+import { MovieDataType, MovieType } from "../../types/types";
 
 
+type props = {
+   handleMovie: Function;
+}
 
-function Movies({ handleMovie }: any): any {
+function Movies({ handleMovie }: props) {
 
-   const [data, setData] = useState<any>([]);
+
+   const [data, setData] = useState<MovieDataType[] | undefined>([]);
    const [error, setError] = useState<any>(null);
-   const [loading, setLoading] = useState(false);
+   const [loading, setLoading] = useState<boolean>(false);
 
 
    useEffect(() => {
@@ -31,7 +35,7 @@ function Movies({ handleMovie }: any): any {
             setData(newData);
             setLoading(false);
          })
-         .catch(e => {
+         .catch((e) => {
             setError(e);
             setLoading(false);
          });
@@ -47,8 +51,8 @@ function Movies({ handleMovie }: any): any {
 
    return (
       <MoviesPanelStyled>
-         {data.map((list: any) => (
-            <MoviesList key={list.title} list={list} />
+         {data?.map((list: MovieDataType) => (
+            <MoviesList key={list.title} title={list.title} data={list.data} handleMovie={handleMovie} />
          ))}
       </MoviesPanelStyled>
    );

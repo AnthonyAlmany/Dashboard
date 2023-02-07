@@ -10,16 +10,20 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 
 import { weatherType } from '../../App';
-
+import { WeatherDataType } from '../../types/types';
 
 type City = {
   city: string,
   country: string
 }
 
+type props = {
+  weatherHandle: Function;
+}
 
 
-function Weather({ weatherHandle }: any) {
+
+function Weather({ weatherHandle }: props) {
 
 
   const uniqueCities = Array.from(new Set(citiesList.map(city => JSON.stringify(city)))).map(city => JSON.parse(city));
@@ -52,13 +56,13 @@ function Weather({ weatherHandle }: any) {
 
   }
 
-  //  Fetch Favorite City Data
+  //  Fetch Searched City Data
   useEffect(() => {
     if (!value) return;
     const fetchWeather = async () => {
       await axios.get(`https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${value.city}`)
         .then(res => {
-          const data = { city: res.data.location.name, temperature: res.data.current.temp_c, icon: res.data.current.condition.icon }
+          const data: WeatherDataType = { city: res.data.location.name, temperature: res.data.current.temp_c, icon: res.data.current.condition.icon }
           setWeatherData(data)
           setIsLoading(false);
         }).catch(error => console.log(error));

@@ -8,6 +8,9 @@ import BestCryptosTable from "./BestCryptosTable";
 import styled from "styled-components";
 import { CryptoResponse, CryptoType } from "../../types/types";
 
+
+
+
 function Crypto({ handleCrypto }: any) {
    const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
    const crypto: CryptoResponse | null = useFetch(baseURL, "market");

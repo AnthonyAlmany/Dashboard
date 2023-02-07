@@ -7,10 +7,19 @@ import { theme } from "../../theme/theme";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
+import { MovieDataType , MovieType } from "../../types/types";
 
-function MoviesList({ list }: any) {
 
-    console.log(list.data)
+type props ={
+title: string;
+data: MovieType[];
+handleMovie: Function;
+}
+
+
+function MoviesList({ title, data, handleMovie }: props) {
+
+
    const listRef = useRef<HTMLDivElement>(null)
    const [slideNumber, setSlideNumber] = useState<number>(0);
    const [distance, setDistance] = useState<number>(0)
@@ -38,12 +47,12 @@ function MoviesList({ list }: any) {
 
     return (
         <MoviesListContainer>
-            <h3>{list.title}</h3>
+            <h3>{title}</h3>
             <div className="wrapper">
             <ArrowBackIosNewIcon className="arrow arrow-left" onClick={() => handleClick("left")} />
 
                 <div className="movies-list" ref={listRef}>
-                    {list.data.map((movie: any) => <MovieCardTest key={movie.id} movie={movie} />)}
+                    {data.map((movie) => <MovieCardTest key={movie.id} movie={movie} handleMovie={handleMovie} />)}
                 </div>
                 
                 <ArrowForwardIosIcon className="arrow arrow-right" onClick={() => handleClick("right")} />

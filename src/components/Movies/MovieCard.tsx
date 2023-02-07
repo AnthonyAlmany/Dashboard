@@ -6,36 +6,16 @@ import { MovieType } from "../../types/types";
 
 type MovieCardProps = {
    movie: MovieType;
-   handleMovie?: any;
+
 };
 
-function MovieCard({ movie, handleMovie }: MovieCardProps) {
+function MovieCard({ movie }: MovieCardProps) {
    const { title, poster_path, overview, vote_average } = movie;
 
    return (
       <MovieCardStyled>
          <h3>{title}</h3>
 
-         <div className="img-container">
-            {poster_path ? (
-               <img
-
-                  alt="wallpaper"
-               />
-            ) : null}
-         </div>
-
-         <div className="overview-container">
-            <p>Synopsis : </p>
-            <p>{overview}</p>
-         </div>
-         <div className="average-container">
-            <span>Note {vote_average} / 10</span>
-         </div>
-         <PrimaryButton
-            label={"Add to favorites"}
-            onClick={() => handleMovie(movie)}
-         />
       </MovieCardStyled>
    );
 }
@@ -94,9 +74,7 @@ const MovieCardStyled = styled.div`
       align-items: center;
       height: 50px;
    }
-   .button {
-      width: fit-content;
-   }
+
    
 `;
 

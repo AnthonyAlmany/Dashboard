@@ -12,6 +12,8 @@ type props = {
 };
 
 function Home({ weatherFavorite, favoriteCrypto, favoriteMovies }: props) {
+
+   console.log(favoriteMovies)
    return (
       <>
          {!weatherFavorite ? (
