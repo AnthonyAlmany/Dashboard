@@ -27,7 +27,7 @@ function App() {
    const [favoriteCrypto, setFavoriteCrypto] = useState<null | CryptoType>(
       null
    );
-   const [favoriteMovies, setFavoriteMovies] = useState<null | MovieType>(null);
+   const [favoriteMovies, setFavoriteMovies] = useState<MovieType[]>([]);
 
    const weatherHandle = (value: weatherType) => {
       setWeatherFavorite(value);
@@ -38,7 +38,9 @@ function App() {
    };
 
    const handleMovie = (value: MovieType) => {
-      setFavoriteMovies(value);
+      if (!favoriteMovies.includes(value) && favoriteMovies.length < 5) {
+         setFavoriteMovies([...favoriteMovies, value]);
+      }
    };
 
    return (

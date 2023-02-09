@@ -8,12 +8,12 @@ import MovieCard from "../Movies/MovieCard";
 type props = {
    weatherFavorite: weatherType | null;
    favoriteCrypto: CryptoType | null;
-   favoriteMovies: MovieType | null;
+   favoriteMovies: MovieType[] | null;
 };
 
 function Home({ weatherFavorite, favoriteCrypto, favoriteMovies }: props) {
 
-   console.log(favoriteMovies)
+
    return (
       <>
          {!weatherFavorite ? (
@@ -30,11 +30,16 @@ function Home({ weatherFavorite, favoriteCrypto, favoriteMovies }: props) {
          ) : (
             <CryptoCard value={favoriteCrypto}></CryptoCard>
          )}
-         {!favoriteMovies ? (
+
+         {favoriteMovies?.length === 0 ? (
             <h3>"No Favorites for movies</h3>
          ) : (
-            <MovieCard movie={favoriteMovies}></MovieCard>
-         )}
+
+            favoriteMovies?.map((movie: MovieType) => { return <h3>{movie.title}</h3> })
+
+         )
+
+         }
       </>
    );
 }
