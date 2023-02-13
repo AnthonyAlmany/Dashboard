@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from "styled-components";
-
+import { theme } from "../../theme/theme";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 import { MovieType } from "../../types/types";
@@ -98,17 +98,21 @@ const MovieCardStyled = styled.div`
 
    h5{
 
-    color: white;
+   
     margin-left: 5px;
     margin-top: 10px;
+    color: ${theme.fonts.color.white};
+    font-family: 'Source Sans Pro', sans-serif;
    }
    h6{
 
     
     overflow: hidden;
     white-space: break-spaces;
-    color: white;
+
     margin-left: 5px;
+    color: ${theme.fonts.color.white};
+    font-family: 'Source Sans Pro', sans-serif;
    }
 
    `

@@ -11,6 +11,8 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 import { weatherType } from '../../App';
 import { WeatherDataType } from '../../types/types';
+import { theme } from '../../theme/theme';
+import { isWhiteSpaceLike } from 'typescript';
 
 type City = {
   city: string,
@@ -101,6 +103,7 @@ function Weather({ weatherHandle }: props) {
       <TopContainer>
         <AutocompleteContainer>
           <Autocomplete
+            style={{ width: 400, backgroundColor: "#1F2A40", borderRadius: "5px" }}
             value={value}
             onChange={(event: any, newValue: City | null) => {
               setValue(newValue);
@@ -117,7 +120,7 @@ function Weather({ weatherHandle }: props) {
             isOptionEqualToValue={(option, value) => option.city === value.city}
             autoHighlight
             sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Choose city" />}
+            renderInput={(params) => <TextField {...params} label={<h4>Choose a City</h4>} />}
           />
           {isLoading && <h4>Fetching Data...</h4>}
 
@@ -146,20 +149,20 @@ justify-content: start;
 `
 
 const AutocompleteContainer = styled.div`
-
 display:flex;
 align-items: start;
 & :first-child{
   margin-right: 10px;
 }
+border-color: ${theme.colors.secondary};
+color:"white";
 
 
 `
 
-const FavoriteContainer = styled.div`
+const FavoriteContainer = styled.div``
 
 
-`
 
 const WeatherContainer = styled.div`
 width: 90%;
@@ -169,7 +172,8 @@ const WeatherCardsContainer = styled.div`
 height: 500px;
 display: flex;
 flex-direction: column; 
-justify-content: space-around;
+justify-content: start;
+
 
 `
 

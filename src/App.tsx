@@ -24,9 +24,7 @@ function App() {
    const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(
       null
    );
-   const [favoriteCrypto, setFavoriteCrypto] = useState<null | CryptoType>(
-      null
-   );
+   const [favoriteCrypto, setFavoriteCrypto] = useState<CryptoType[]>([]);
    const [favoriteMovies, setFavoriteMovies] = useState<MovieType[]>([]);
 
    const weatherHandle = (value: weatherType) => {
@@ -34,7 +32,9 @@ function App() {
    };
 
    const handleCrypto = (value: CryptoType) => {
-      setFavoriteCrypto(value);
+      if (!favoriteCrypto.includes(value) && favoriteCrypto.length < 5) {
+         setFavoriteCrypto([...favoriteCrypto, value]);
+      }
    };
 
    const handleMovie = (value: MovieType) => {
@@ -42,6 +42,13 @@ function App() {
          setFavoriteMovies([...favoriteMovies, value]);
       }
    };
+
+   const deleteMovie = (arg: number) => {
+      setFavoriteMovies(favoriteMovies.filter(movie => movie.id !== arg))
+   }
+   const deleteCoin = (arg: string) => {
+      setFavoriteCrypto(favoriteCrypto.filter(coin => coin.id !== arg))
+   }
 
    return (
       <AppStyled>
@@ -59,6 +66,8 @@ function App() {
                            weatherFavorite={weatherFavorite}
                            favoriteCrypto={favoriteCrypto}
                            favoriteMovies={favoriteMovies}
+                           deleteMovie={deleteMovie}
+                           deleteCoin={deleteCoin}
                         />
                      }
                   />
@@ -87,7 +96,7 @@ const AppStyled = styled.div`
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: ${theme.colors.xtraLightGrey};
+   background-color: ${theme.colors.background.antique};
 `;
 
 export default App;

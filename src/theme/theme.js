@@ -1,13 +1,16 @@
 const colors = {
-   primary: "#FFF7F7",
-   secondary: "#F17266",
+   primary: "#141b2d",
+   secondary: "#1F2A40",
    tertiary: "#BB5A50",
    xtraLightGrey: "#E6E6E6",
-   xtraLightSecondary: "#f08d84",
-   white: "#FFF",
+   xtraLightSecondary: "#c2c2c2",
+   white: "#e0e0e0",
    black: "#000",
+   red: "#af3f3b",
+   purple: "#6870fa",
+   green: "#4cceac",
    background: {
-      antique: "antiquewhite",
+      antique: "#080b12",
       bisque: "bisque",
    },
 };
@@ -22,6 +25,10 @@ const fonts = {
       XXL: "25px",
    },
    weights: {},
+   color: {
+      white: "#e0e0e0",
+      green: "#4cceac",
+   }
 };
 
 const spacing = {};

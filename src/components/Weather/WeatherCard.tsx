@@ -23,46 +23,57 @@ function WeatherCard({ weatherData, weatherHandle, clear, addCity }: props) {
    return (
       <WeatherCardStyled>
          <CityStyled>{weatherData?.city.toUpperCase()}</CityStyled>
-         <h3>{weatherData?.temperature} °C</h3>
+         <h4>{weatherData?.temperature} °C</h4>
          <img src={weatherData?.icon} alt="weather-icon" />
          <ButtonsContainer>
-            <button onClick={() => buttonHandler()}><StarBorderIcon></StarBorderIcon></button>
-            <button onClick={() => addCity(weatherData?.city)}><AddIcon></AddIcon></button>
+            <button className='favorite' onClick={() => buttonHandler()}><StarBorderIcon></StarBorderIcon></button>
+            <button className="add" onClick={() => addCity(weatherData?.city)}><AddIcon></AddIcon></button>
          </ButtonsContainer>
       </WeatherCardStyled>
    );
 }
 
 const WeatherCardStyled = styled.div`
-   width: 800px;
-   height: 80px;
-   margin-top: 15px;
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-around;
-   color: ${theme.colors.tertiary};
-   border-radius: ${theme.borderRadius.mRounded};
-   background-color: ${theme.colors.primary};
-   box-shadow: 1px 1px 6px ${theme.colors.tertiary};
+width: 800px;
+height: 80px;
+display: flex;
+align-items: center;
+justify-content: space-around;
+margin-top: 2rem;
+font-family: 'Source Sans Pro', sans-serif;
+font-size: 14px;
+color: ${theme.fonts.color.white};
+border-radius: ${theme.borderRadius.rounded};
+background-color: ${theme.colors.secondary};
+//    box-shadow: 1px 1px 6px ${theme.colors.tertiary};
 
+h4{
+   color: ${theme.fonts.color.green};
+   font-size: 17px;
+  }
 
    button {
       height: 40px;
       width: 45px;
       border: none;
-      color: ${theme.colors.primary};
+      color: ${theme.colors.white};
       background-color: ${theme.colors.secondary};
       border-radius: ${theme.borderRadius.rounded};
       &:hover {
          cursor: pointer;
          font-weight: bold;
-         border: 2px solid ${theme.colors.secondary};
-         color: ${theme.colors.secondary};
-         background-color: ${theme.colors.primary};
-         box-shadow: 3px 3px 5px ${theme.colors.tertiary};
+         // border: 2px solid ${theme.colors.secondary};
+         // color: ${theme.colors.secondary};
+         // background-color: ${theme.colors.primary};
+         // box-shadow: 3px 3px 5px ${theme.colors.tertiary};
       }
    }
+   .favorite{
+      background-color: ${theme.colors.green};
+     }
+   .add{
+      background-color: ${theme.colors.purple};
+     }
 `;
 const CityStyled = styled.h3`
 width: 120px;

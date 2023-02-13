@@ -16,17 +16,17 @@ type props = {
 function WeatherList({ weather, weatherHandle, deleteCity }: props) {
     console.log(weather)
     return (
-        <div className='cards-container'>
-            <WeatherCardStyled>
-                <CityStyled>{weather?.city.toUpperCase()}</CityStyled>
-                <h3>{weather?.temperature} °C</h3>
-                <img src={weather?.icon} alt="weather-icon" />
-                <ButtonsContainer>
-                    <button onClick={() => weatherHandle(weather)}><StarBorderIcon></StarBorderIcon></button>
-                    <button onClick={() => deleteCity(weather.city)}><DeleteOutlineIcon></DeleteOutlineIcon></button>
-                </ButtonsContainer>
-            </WeatherCardStyled>
-        </div>
+
+        <WeatherCardStyled>
+            <CityStyled>{weather?.city.toUpperCase()}</CityStyled>
+            <h4>{weather?.temperature} °C</h4>
+            <img src={weather?.icon} alt="weather-icon" />
+            <ButtonsContainer>
+                <button className='favorite' onClick={() => weatherHandle(weather)}><StarBorderIcon></StarBorderIcon></button>
+                <button className='delete' onClick={() => deleteCity(weather.city)}><DeleteOutlineIcon></DeleteOutlineIcon></button>
+            </ButtonsContainer>
+        </WeatherCardStyled>
+
 
     )
 }
@@ -34,29 +34,43 @@ function WeatherList({ weather, weatherHandle, deleteCity }: props) {
 const WeatherCardStyled = styled.div`
    width: 800px;
    height: 80px;
+   margin-bottom: 1rem;
    display: flex;
    align-items: center;
    justify-content: space-around;
-   color: ${theme.colors.tertiary};
-   border-radius: ${theme.borderRadius.mRounded};
-   background-color: ${theme.colors.primary};
-   box-shadow: 1px 1px 6px ${theme.colors.tertiary};
+   font-family: 'Source Sans Pro', sans-serif;
+   font-size: 14px;
+   color: ${theme.fonts.color.white};
+   border-radius: ${theme.borderRadius.rounded};
+   background-color: ${theme.colors.secondary};
+//    box-shadow: 1px 1px 6px ${theme.colors.tertiary};
+
+   h4{
+    color: ${theme.fonts.color.green};
+    font-size: 17px;
+   }
 
    button {
       height: 40px;
       width: 45px;
       border: none;
-      color: ${theme.colors.primary};
+      color: ${theme.colors.white};
       background-color: ${theme.colors.secondary};
       border-radius: ${theme.borderRadius.rounded};
       &:hover {
          cursor: pointer;
          font-weight: bold;
-         border: 2px solid ${theme.colors.secondary};
-         color: ${theme.colors.secondary};
-         background-color: ${theme.colors.primary};
-         box-shadow: 3px 3px 5px ${theme.colors.tertiary};
+        //  border: 2px solid ${theme.colors.secondary};
+        //  color: ${theme.colors.secondary};
+        //  background-color: ${theme.colors.primary};
+        //  box-shadow: 3px 3px 5px ${theme.colors.tertiary};
       }
+   }
+   .favorite{
+    background-color: ${theme.colors.green};
+   }
+   .delete{
+    background-color: ${theme.colors.red};
    }
    
 `;

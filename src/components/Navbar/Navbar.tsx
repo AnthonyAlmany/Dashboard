@@ -30,6 +30,7 @@ const LinksContainerStyled = styled.div`
    height: 100%;
    margin-left: 2rem;
    margin-bottom: 4rem;
+   font-family: 'Source Sans Pro', sans-serif;
 `;
 
 

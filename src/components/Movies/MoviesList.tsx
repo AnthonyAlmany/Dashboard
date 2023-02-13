@@ -72,6 +72,11 @@ const MoviesListContainer = styled.div`
     flex-direction: column; 
     width: 100%;
    
+    h3{
+      color: ${theme.colors.purple};
+      font-family: 'Source Sans Pro', sans-serif;
+      margin-left: 4px;
+    }
 
     .movies-list{
         display: flex;
