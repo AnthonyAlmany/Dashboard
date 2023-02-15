@@ -14,7 +14,7 @@ function BestCryptosTable({ bestCryptos, handleCrypto }: TableProps) {
       <TableStyled>
          <thead>
             <tr className="table-name">
-               <th>---Best Cryptos---</th>
+               <th>---Top 5---</th>
             </tr>
          </thead>
          <tbody>
@@ -48,7 +48,7 @@ const TableStyled = styled.table`
    align-items: center;
    width: 90%;
    padding: 25px 10px;
-   background-color: ${theme.colors.background.bisque};
+   background-color: ${theme.colors.secondary};
    border-radius: ${theme.borderRadius.extraRounded};
    overflow: hidden;
    thead,
@@ -60,11 +60,21 @@ const TableStyled = styled.table`
       tr {
          display: grid;
          grid-template-columns: repeat(8, 1fr);
+         
+
          td {
             display: flex;
             align-items: center;
             justify-content: center;
          }
+      }
+      th, td{
+         color: ${theme.fonts.color.white};
+         background-color: ${theme.colors.secondary};
+         font-family: 'Source Sans Pro', sans-serif;
+      }
+      th{
+         font-size: ${theme.fonts.size.M}
       }
       .table-name {
          display: flex;

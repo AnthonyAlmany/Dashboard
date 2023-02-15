@@ -18,7 +18,7 @@ function CryptoCard({ value, handleCrypto }: ValueProps): JSX.Element {
       <CryptoCardStyled>
          <img src={image} alt="crypto-logo" />
          <h3>{name.toUpperCase()}</h3>
-         <p>Current price : {current_price} $</p>
+         <p>{current_price} $</p>
          {pathname === "/market" && (
             <PrimaryButton
                label={"Add to favorite"}
@@ -36,14 +36,18 @@ const CryptoCardStyled = styled.div`
    flex-direction: column;
    align-items: center;
    justify-content: space-around;
-   color: ${theme.colors.tertiary};
-   border-radius: ${theme.borderRadius.extraRounded};
-   background-color: ${theme.colors.primary};
-   box-shadow: 5px 5px 8px ${theme.colors.tertiary};
+   font-family: 'Source Sans Pro', sans-serif;
+   color: ${theme.colors.white};
+   border-radius: ${theme.borderRadius.rounded};
+   background-color: ${theme.colors.secondary};
+
    img {
       height: 50px;
       width: 50px;
       border-radius: 50%;
+   }
+   p{
+      color: ${theme.colors.green};
    }
 `;
 

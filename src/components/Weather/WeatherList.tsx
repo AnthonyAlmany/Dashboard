@@ -2,8 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
 
-import { weatherType } from '../../App';
-
+import { weatherType } from "../../types/types";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 

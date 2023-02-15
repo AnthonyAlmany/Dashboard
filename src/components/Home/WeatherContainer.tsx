@@ -1,7 +1,7 @@
 import React from 'react'
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
-import { weatherType } from "../../App";
+import { weatherType } from "../../types/types";
 
 type props = {
     weatherFavorite: weatherType | null;

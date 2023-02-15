@@ -7,17 +7,15 @@ function PrimaryButton({ label, onClick }: ButtonProps) {
 }
 
 const PrimaryButtonStyled = styled.button`
-   height: 50px;
+   height: 30px;
    border: none;
-   color: ${theme.colors.primary};
-   background-color: ${theme.colors.secondary};
+   font-family: 'Source Sans Pro', sans-serif;
+   color: ${theme.colors.white};
+   background-color: ${theme.colors.purple};
    border-radius: ${theme.borderRadius.rounded};
    &:hover {
       font-weight: bold;
-      border: 2px solid ${theme.colors.secondary};
-      color: ${theme.colors.secondary};
-      background-color: ${theme.colors.primary};
-      box-shadow: 3px 3px 5px ${theme.colors.tertiary};
+      cursor: pointer;
    }
 `;
 

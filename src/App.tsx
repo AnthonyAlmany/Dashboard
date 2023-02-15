@@ -12,13 +12,9 @@ import MainContainer from "./components/containers/MainContainer";
 import NavbarContainer from "./components/containers/NavbarContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
-import { CryptoType, MovieType } from "./types/types";
+import { CryptoType, MovieType, weatherType } from "./types/types";
 
-export type weatherType = {
-   city: string;
-   temperature: number;
-   icon: string;
-};
+
 
 function App() {
    const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(

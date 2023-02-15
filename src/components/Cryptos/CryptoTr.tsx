@@ -34,17 +34,17 @@ const CryptoTrStyled = styled.tr`
       display: flex;
       align-items: center;
       justify-content: center;
+      
+
    }
    img {
       width: 20px;
       height: 20px;
    }
-   &:hover {
-      cursor: default;
-      background-color: ${theme.colors.secondary};
-      button {
-         background-color: ${theme.colors.background.bisque};
-         color: ${theme.colors.secondary};
+
+   button {
+      &:hover{
+      background-color: ${theme.colors.purple};
       }
    }
 `;

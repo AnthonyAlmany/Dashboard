@@ -10,6 +10,13 @@ export type ButtonProps = {
 }
 
 // API datas types
+
+export type weatherType = {
+   city: string;
+   temperature: number;
+   icon: string;
+};
+
 export type MovieType = {
    poster_path: string | undefined;
    adult: boolean;
@@ -56,11 +63,11 @@ export type CryptoType = {
    total_volume: number;
 };
 
-export type WeatherType = {
-   location: string,
-   temperature: number | null,
-   condition: string
-}
+// export type WeatherType = {
+//    location: string,
+//    temperature: number | null,
+//    condition: string
+// }
 
 export type WeatherDataType = {
    city: string;
@@ -83,6 +90,6 @@ export type MovieResponse = ResponseType & {
 export type CryptoResponse = ResponseType & {
    cryptoDatas?: CryptoType[]
 }
-export type WeatherResponse = ResponseType & {
-   weatherDatas?: WeatherType
-}
+// export type WeatherResponse = ResponseType & {
+//    weatherDatas?: WeatherType
+// }

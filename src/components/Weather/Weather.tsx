@@ -9,8 +9,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 
-import { weatherType } from '../../App';
-import { WeatherDataType } from '../../types/types';
+import { WeatherDataType, weatherType } from '../../types/types';
 import { theme } from '../../theme/theme';
 import { isWhiteSpaceLike } from 'typescript';
 
@@ -122,7 +121,7 @@ function Weather({ weatherHandle }: props) {
             sx={{ width: 300 }}
             renderInput={(params) => <TextField {...params} label={<h4>Choose a City</h4>} />}
           />
-          {isLoading && <h4>Fetching Data...</h4>}
+          {isLoading && <h4>Loading...</h4>}
 
         </AutocompleteContainer>
         {!isLoading ? <FavoriteContainer>{value && <WeatherCard weatherData={weatherData} weatherHandle={weatherHandle} clear={clearAutocomplete} addCity={addCity} />}</FavoriteContainer>
@@ -156,7 +155,10 @@ align-items: start;
 }
 border-color: ${theme.colors.secondary};
 color:"white";
-
+h4{
+  color: ${theme.fonts.color.white};
+  font-family: 'Source Sans Pro', sans-serif;
+}
 
 `
 

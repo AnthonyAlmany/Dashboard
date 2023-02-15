@@ -7,6 +7,7 @@ import CryptoCard from "./CryptoCard";
 import BestCryptosTable from "./BestCryptosTable";
 import styled from "styled-components";
 import { CryptoResponse, CryptoType } from "../../types/types";
+import { theme } from "../../theme/theme";
 
 
 
@@ -38,7 +39,7 @@ function Crypto({ handleCrypto }: any) {
 
       return (
          <CryptoPanelStyled>
-            <h1>CRYPTOS CURRENCIES</h1>
+            <h1>CRYPTO CURRENCIES</h1>
             {bestCryptos ? (
                <BestCryptosTable
                   bestCryptos={bestCryptos}
@@ -95,6 +96,12 @@ const CryptoPanelStyled = styled.div`
    row-gap: 25px;
    padding: 25px 0 50px 0;
    align-items: center;
+
+   h1{
+      font-family: 'Source Sans Pro', sans-serif;
+      color: ${theme.fonts.color.white};
+      font-size: ${theme.fonts.size.M}
+   }
 `;
 
 export default Crypto;

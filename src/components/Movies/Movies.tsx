@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios"
 
 import styled from "styled-components";
+import { theme } from "../../theme/theme";
 
 import MoviesList from "./MoviesList"
 import { MovieDataType, MovieType } from "../../types/types";
