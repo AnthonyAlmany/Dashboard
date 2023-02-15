@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
 
-type InputType = {
+export type InputType = {
    type: string;
    id: string;
    value: string;

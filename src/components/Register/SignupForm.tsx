@@ -3,20 +3,24 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LockIcon from "@mui/icons-material/Lock";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
-import { UserType } from "./Signup";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import InputContainer from "./InputContainer";
 import Label from "./Label";
 import Input from "./Input";
+import { UserType } from "./Signup";
 
-type FormProps = {
+type SignupFormProps = {
    signupDatas: UserType;
    handleSubmit: any;
    handleChange: any;
 };
 
-function Form({ signupDatas, handleSubmit, handleChange }: FormProps) {
+function SignupForm({
+   signupDatas,
+   handleSubmit,
+   handleChange,
+}: SignupFormProps) {
    return (
       <FormStyled action="submit" onSubmit={handleSubmit}>
          <InputContainer>
@@ -77,7 +81,7 @@ function Form({ signupDatas, handleSubmit, handleChange }: FormProps) {
    );
 }
 
-const FormStyled = styled.form`
+export const FormStyled = styled.form`
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -104,4 +108,4 @@ const FormStyled = styled.form`
    }
 `;
 
-export default Form;
+export default SignupForm;

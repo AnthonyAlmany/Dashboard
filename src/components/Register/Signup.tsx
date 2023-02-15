@@ -9,8 +9,8 @@ import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, user } from "../../firebase/firebaseConfig";
-import { setDoc } from "firebase/firestore";
-import Form from "./Form";
+import { doc, setDoc } from "firebase/firestore";
+import SignupForm from "./SignupForm";
 
 type SignupProps = {
    signupModal: boolean;
@@ -24,7 +24,7 @@ export type UserType = {
    confirmPassword: string;
 };
 
-function Signup({ signupModal, setDisplayModal }: SignupProps) {
+function Signup({ signupModal, setDisplayModal }: SignupProps): JSX.Element {
    const navigate = useNavigate();
    const [signupDatas, setSignupDatas] = React.useState<UserType>({
       username: "",
@@ -34,26 +34,25 @@ function Signup({ signupModal, setDisplayModal }: SignupProps) {
    });
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(event.target.value);
-
       setSignupDatas({
          ...signupDatas,
          [event.target.id]: event.target.value,
       });
    };
 
-   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>): void => {
+   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>): any => {
       event.preventDefault();
       const { email, password, username } = signupDatas;
       createUserWithEmailAndPassword(auth, email, password)
          .then((authUser) => {
             return setDoc(user(authUser.user.uid), {
-               username: username,
-               email: email,
+               username,
+               email,
             });
          })
          .then((user) => {
             setSignupDatas({ ...signupDatas });
+            setDisplayModal({ signupModal: false });
             navigate("/");
          })
          .catch((error) => {
@@ -87,7 +86,7 @@ function Signup({ signupModal, setDisplayModal }: SignupProps) {
                   >
                      Create an account :
                   </Typography>
-                  <Form
+                  <SignupForm
                      signupDatas={signupDatas}
                      handleSubmit={handleSubmit}
                      handleChange={handleChange}
@@ -103,7 +102,7 @@ function Signup({ signupModal, setDisplayModal }: SignupProps) {
    );
 }
 
-const BoxStyled = styled(Box)`
+export const BoxStyled = styled(Box)`
    position: absolute;
    display: flex;
    flex-direction: column;

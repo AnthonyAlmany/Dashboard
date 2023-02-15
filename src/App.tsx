@@ -61,7 +61,10 @@ function App() {
                signupModal={displayModal?.signupModal}
                setDisplayModal={setDisplayModal}
             />
-            <Login />
+            <Login
+               loginModal={displayModal?.loginModal}
+               setDisplayModal={setDisplayModal}
+            />
             <NavbarContainer>
                <Navbar />
             </NavbarContainer>
