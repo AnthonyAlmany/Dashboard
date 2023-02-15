@@ -9,29 +9,24 @@ import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, user } from "../../firebase/firebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
+import { setDoc } from "firebase/firestore";
 import SignupForm from "./SignupForm";
+import { UserType } from "../../types/types";
 
 type SignupProps = {
    signupModal: boolean;
    setDisplayModal: any;
 };
 
-export type UserType = {
-   username: string;
-   email: string;
-   password: string;
-   confirmPassword: string;
-};
-
 function Signup({ signupModal, setDisplayModal }: SignupProps): JSX.Element {
    const navigate = useNavigate();
-   const [signupDatas, setSignupDatas] = React.useState<UserType>({
+   const datas: UserType = {
       username: "",
       email: "",
       password: "",
       confirmPassword: "",
-   });
+   };
+   const [signupDatas, setSignupDatas] = React.useState<UserType>(datas);
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setSignupDatas({
@@ -45,29 +40,32 @@ function Signup({ signupModal, setDisplayModal }: SignupProps): JSX.Element {
       const { email, password, username } = signupDatas;
       createUserWithEmailAndPassword(auth, email, password)
          .then((authUser) => {
-            return setDoc(user(authUser.user.uid), {
+            setDoc(user(authUser.user.uid), {
                username,
                email,
             });
          })
          .then((user) => {
-            setSignupDatas({ ...signupDatas });
+            setSignupDatas(datas);
             setDisplayModal({ signupModal: false });
             navigate("/");
          })
          .catch((error) => {
-            setSignupDatas({ ...signupDatas });
+            setSignupDatas(datas);
          });
    };
 
-   const handleClose = (): void => setDisplayModal({ signupModal: false });
+   const handleClose = (): void => {
+      setDisplayModal({ signupModal: false });
+      setSignupDatas(datas);
+   };
 
    return (
       <>
          <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            open={signupModal}
+            open={signupModal ? signupModal : false}
             onClose={handleClose}
             closeAfterTransition
             slots={{ backdrop: Backdrop }}

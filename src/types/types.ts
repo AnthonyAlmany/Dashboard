@@ -11,6 +11,15 @@ export type ButtonProps = {
 };
 export type AddButtonProps = Omit<ButtonProps, "disabled">;
 
+//User types
+
+export type UserType = {
+   username: string;
+   email: string;
+   password: string;
+   confirmPassword: string;
+};
+
 // API datas types
 export type MovieType = {
    poster_path: string | undefined;

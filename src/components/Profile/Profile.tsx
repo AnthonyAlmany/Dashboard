@@ -1,12 +1,11 @@
-import React from "react";
 import styled from "styled-components";
 import ProfilePicture from "./ProfilePicture";
-import ProfileRightSide from "./ProfileRightSide";
+import ProfileLeftSide from "./ProfileLeftSide";
 
 function Profile({ setIsConnected }: any): JSX.Element {
    return (
       <ProfileStyled>
-         <ProfileRightSide setIsConnected={setIsConnected} />
+         <ProfileLeftSide setIsConnected={setIsConnected} />
          <ProfilePicture />
       </ProfileStyled>
    );

@@ -30,6 +30,7 @@ export type DisplayModal = {
 };
 
 function App() {
+   const [isConnected, setIsConnected] = React.useState<boolean>(false);
    const [displayModal, setDisplayModal] = useState<DisplayModal>({
       signupModal: false,
       loginModal: false,
@@ -64,12 +65,17 @@ function App() {
             <Login
                loginModal={displayModal?.loginModal}
                setDisplayModal={setDisplayModal}
+               setIsConnected={setIsConnected}
             />
             <NavbarContainer>
                <Navbar />
             </NavbarContainer>
             <TopbarContainer>
-               <TopbarRightSide setDisplayModal={setDisplayModal} />
+               <TopbarRightSide
+                  setDisplayModal={setDisplayModal}
+                  isConnected={isConnected}
+                  setIsConnected={setIsConnected}
+               />
             </TopbarContainer>
             <PanelContainer>
                <Routes>

@@ -25,7 +25,7 @@ function RegisterButtonsContainer({
             label={"LOGIN"}
             onClick={() => {
                setDisplayModal({ loginModal: true, signupModal: false });
-               setIsConnected(true);
+               //setIsConnected(true);
             }}
          />
       </RegisterButtonsContainerStyled>

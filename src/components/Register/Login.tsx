@@ -1,24 +1,30 @@
 import React from "react";
 import { Backdrop, Fade, Modal, Typography } from "@mui/material";
-import { BoxStyled, UserType } from "./Signup";
+import { BoxStyled } from "./Signup";
 import LoginForm from "./LoginForm";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { UserType } from "../../types/types";
 
 type LoginProps = {
    loginModal: boolean;
    setDisplayModal: any;
+   setIsConnected: any;
 };
 
-function Login({ loginModal, setDisplayModal }: LoginProps): JSX.Element {
+function Login({
+   loginModal,
+   setDisplayModal,
+   setIsConnected,
+}: LoginProps): JSX.Element {
    const navigate = useNavigate();
-   const [loginDatas, setLoginDatas] = React.useState<
-      Omit<UserType, "username" | "confirmPassword">
-   >({
+   const datas: Omit<UserType, "username" | "confirmPassword"> = {
       email: "",
       password: "",
-   });
+   };
+   const [loginDatas, setLoginDatas] =
+      React.useState<Omit<UserType, "username" | "confirmPassword">>(datas);
 
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setLoginDatas({ ...loginDatas, [event.target.id]: event.target.value });
@@ -29,13 +35,13 @@ function Login({ loginModal, setDisplayModal }: LoginProps): JSX.Element {
       event.preventDefault();
       signInWithEmailAndPassword(auth, email, password)
          .then((user) => {
-            setLoginDatas({ email: "", password: "" });
+            setLoginDatas(datas);
             setDisplayModal({ loginModal: false });
+            setIsConnected(true);
             navigate("/home");
          })
          .catch((error) => {
-            setLoginDatas({ email: "", password: "" });
-            console.log(error);
+            setLoginDatas(datas);
          });
    };
    const handleClose = (): void => setDisplayModal({ loginModal: false });

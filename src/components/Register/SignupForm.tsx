@@ -8,7 +8,7 @@ import { theme } from "../../theme/theme";
 import InputContainer from "./InputContainer";
 import Label from "./Label";
 import Input from "./Input";
-import { UserType } from "./Signup";
+import { UserType } from "../../types/types";
 
 type SignupFormProps = {
    signupDatas: UserType;

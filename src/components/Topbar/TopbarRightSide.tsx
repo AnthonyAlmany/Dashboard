@@ -3,9 +3,17 @@ import styled from "styled-components";
 import RegisterButtonsContainer from "./RegisterButtonsContainer";
 import Profile from "../Profile/Profile";
 
-function TopbarRightSide({ setDisplayModal }: any): JSX.Element {
-   const [isConnected, setIsConnected] = React.useState<boolean>(false);
+type TopBarRightSidePropsType = {
+   setDisplayModal: any;
+   isConnected: boolean;
+   setIsConnected: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
+function TopbarRightSide({
+   setDisplayModal,
+   isConnected,
+   setIsConnected,
+}: TopBarRightSidePropsType): JSX.Element {
    return (
       <TopbarRightSideStyled>
          {!isConnected ? (
