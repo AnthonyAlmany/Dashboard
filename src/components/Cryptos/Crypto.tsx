@@ -9,9 +9,6 @@ import styled from "styled-components";
 import { CryptoResponse, CryptoType } from "../../types/types";
 import { theme } from "../../theme/theme";
 
-
-
-
 function Crypto({ handleCrypto }: any) {
    const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
    const crypto: CryptoResponse | null = useFetch(baseURL, "market");
@@ -56,7 +53,11 @@ function Crypto({ handleCrypto }: any) {
                onInputChange={(event, newInputValue) => {
                   setInputValue(newInputValue);
                }}
-               sx={{ width: 300 }}
+               sx={{
+                  width: 300,
+                  backgroundColor: `${theme.colors.xtraLightSecondary}`,
+                  borderRadius: `${theme.borderRadius.rounded}`,
+               }}
                options={cryptos}
                autoHighlight
                getOptionLabel={(option) => option.name}
@@ -77,7 +78,11 @@ function Crypto({ handleCrypto }: any) {
                   </Box>
                )}
                renderInput={(params) => (
-                  <TextField {...params} label="Search a crypto" />
+                  <TextField
+                     {...params}
+                     label={<h4>Search a crypto</h4>}
+                     variant="filled"
+                  />
                )}
             />
             {value && <CryptoCard value={value} handleCrypto={handleCrypto} />}
@@ -97,10 +102,14 @@ const CryptoPanelStyled = styled.div`
    padding: 25px 0 50px 0;
    align-items: center;
 
-   h1{
-      font-family: 'Source Sans Pro', sans-serif;
+   h1 {
+      font-family: "Source Sans Pro", sans-serif;
       color: ${theme.fonts.color.white};
-      font-size: ${theme.fonts.size.M}
+      font-size: ${theme.fonts.size.M};
+   }
+   h4 {
+      color: ${theme.colors.secondary};
+      font-family: "Source Sans Pro", sans-serif;
    }
 `;
 
