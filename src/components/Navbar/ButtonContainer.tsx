@@ -2,16 +2,14 @@ import styled from "styled-components";
 import { ContainerType } from "../../types/types";
 
 function ButtonContainer({ children }: ContainerType) {
-   return <ButtonCoantainerStyled>{children}</ButtonCoantainerStyled>;
+   return <ButtonContainerStyled>{children}</ButtonContainerStyled>;
 }
 
-const ButtonCoantainerStyled = styled.div`
+const ButtonContainerStyled = styled.div`
    display: flex;
    align-items: center;
-   height: 2rem;
-   width: 8rem;
-   border-radius: 1rem;
-   padding-left: 12px;
+   justify-content: center;
+   width: 100%;
 `;
 
 export default ButtonContainer;

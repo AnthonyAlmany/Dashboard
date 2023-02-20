@@ -6,7 +6,6 @@ function ButtonLabelContainer({ children }: ContainerType) {
 }
 
 const ButtonLabelContainerStyled = styled.div`
-   margin-top: 3px;
    margin-left: 1rem;
 `;
 

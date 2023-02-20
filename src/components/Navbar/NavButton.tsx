@@ -37,12 +37,11 @@ const NavButtonStyled = styled(NavLink)`
    color: ${theme.fonts.color.white};
    margin-bottom: 4rem;
    width: 8rem;
-   height: 2rem;
-   border-radius: 1rem;
+   height: 3rem;
    &.active {
       background-color: ${theme.colors.xtraLightSecondary};
       color: ${theme.colors.background.antique};
-      border-radius: 12 px;
-    }
+      border-radius: ${theme.borderRadius.mRounded};
+   }
 `;
 export default NavButton;

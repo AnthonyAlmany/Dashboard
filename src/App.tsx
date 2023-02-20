@@ -14,8 +14,6 @@ import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
 import { CryptoType, MovieType, weatherType } from "./types/types";
 
-
-
 function App() {
    const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(
       null
@@ -40,11 +38,11 @@ function App() {
    };
 
    const deleteMovie = (arg: number) => {
-      setFavoriteMovies(favoriteMovies.filter(movie => movie.id !== arg))
-   }
+      setFavoriteMovies(favoriteMovies.filter((movie) => movie.id !== arg));
+   };
    const deleteCoin = (arg: string) => {
-      setFavoriteCrypto(favoriteCrypto.filter(coin => coin.id !== arg))
-   }
+      setFavoriteCrypto(favoriteCrypto.filter((coin) => coin.id !== arg));
+   };
 
    return (
       <AppStyled>

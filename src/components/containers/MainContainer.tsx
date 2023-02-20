@@ -9,7 +9,7 @@ function MainContainer({ children }: ContainerType) {
 const MainContainerStyled = styled.div`
    height: 60rem;
    width: 80rem;
-   overflow: hidden;
+   overflow: scroll;
    display: flex;
    align-items: center;
    border-radius: ${theme.borderRadius.rounded};
