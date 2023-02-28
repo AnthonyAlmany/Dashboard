@@ -9,7 +9,6 @@ import Weather from "./components/Weather/Weather";
 import Crypto from "./components/Cryptos/Crypto";
 import Movies from "./components/Movies/Movies";
 import MainContainer from "./components/containers/MainContainer";
-import NavbarContainer from "./components/containers/NavbarContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
 import { CryptoType, MovieType } from "./types/types";
@@ -76,9 +75,9 @@ function App() {
                setDisplayModal={setDisplayModal}
                setIsConnected={setIsConnected}
             />
-            <NavbarContainer>
-               <Navbar />
-            </NavbarContainer>
+
+            <Navbar />
+
             <TopbarContainer>
                <TopbarRightSide
                   setDisplayModal={setDisplayModal}

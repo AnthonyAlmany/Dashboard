@@ -4,7 +4,10 @@ import styled from "styled-components";
 import { CryptoType, MovieType } from "../../types/types";
 import WeatherContainer from "./WeatherContainer";
 import FavoriteMovie from "./FavoriteMovie";
-import CryptoContainer from "./CryptoContainer";
+import FavoriteCrypto from "./FavoriteCrypto";
+import GridContainer from "../containers/GridContainer";
+import FavoritesContainer from "../containers/FavoritesContainer";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 type HomeProps = {
    weatherFavorite: weatherType | null;
@@ -22,27 +25,25 @@ function Home({
    deleteMovie,
 }: HomeProps): JSX.Element {
    return (
-      <HomeCardStyled>
-         <GridStyled>
-            <div className="container">
-               <div className="title">
-                  <h4>Coins List</h4>
-               </div>
+      <HomeStyled>
+         <GridContainer>
+            <FavoritesContainer>
+               <h4>Coins List</h4>
+
                {favoriteCrypto?.map((coin, index) => (
-                  <CryptoContainer
+                  <FavoriteCrypto
                      coin={coin}
                      index={index}
                      deleteCoin={deleteCoin}
                   />
                ))}
-            </div>
-            <div className="container">
+            </FavoritesContainer>
+            <FavoritesContainer>
                <WeatherContainer weatherFavorite={weatherFavorite} />
-            </div>
-            <div className="container movies">
-               <div className="title">
-                  <h4>Watch List</h4>
-               </div>
+            </FavoritesContainer>
+            <FavoritesContainer>
+               <h4>Watch List</h4>
+
                {favoriteMovies?.map((movie, index) => (
                   <FavoriteMovie
                      key={movie.id}
@@ -51,62 +52,26 @@ function Home({
                      deleteMovie={deleteMovie}
                   />
                ))}
-            </div>
-            <div className="container"></div>
-         </GridStyled>
-      </HomeCardStyled>
+            </FavoritesContainer>
+            <FavoritesContainer>
+               <h4>Messages</h4>
+               <div className="icon">
+                  <MailOutlineIcon />
+               </div>
+            </FavoritesContainer>
+         </GridContainer>
+      </HomeStyled>
    );
 }
 
 export default Home;
 
-const HomeCardStyled = styled.div`
-   height: 90%;
-   width: 90%;
+const HomeStyled = styled.div`
+   height: ${theme.dimensions.percent.tall};
+   width: ${theme.dimensions.percent.tall};
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
    background-color: ${theme.colors.primary};
 `;
-const GridStyled = styled.div`
-   display: grid;
-   grid-template-columns: 36rem 12rem;
-   grid-template-rows: 15rem 15rem;
-   column-gap: 6rem;
-   row-gap: 2rem;
-
-   .container {
-      background-color: ${theme.colors.secondary};
-      border-radius: 4px;
-   }
-   .movies {
-      display: flex;
-      flex-direction: column;
-      justify-content: start;
-   }
-   .title {
-      color: ${theme.colors.white};
-      font-family: "Source Sans Pro", sans-serif;
-      height: 1.5rem;
-      margin: 10px 0 2px 0;
-
-      h4 {
-         color: ${theme.colors.purple};
-         margin-left: 10px;
-      }
-   }
-`;
-
-// const WeatherCardStyled = styled.div`
-//    width: 200px;
-//    height: 250px;
-//    display: flex;
-//    flex-direction: column;
-//    align-items: center;
-//    justify-content: space-around;
-//    color: ${theme.colors.tertiary};
-//    border-radius: ${theme.borderRadius.extraRounded};
-//    background-color: ${theme.colors.primary};
-//    box-shadow: 5px 5px 8px ${theme.colors.tertiary};
-// `;

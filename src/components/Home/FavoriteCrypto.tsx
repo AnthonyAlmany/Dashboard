@@ -1,41 +1,41 @@
 import React from "react";
+import { CryptoType } from "../../types/types";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
-import { MovieType } from "../../types/types";
 import ClearIcon from "@mui/icons-material/Clear";
 
-type FavoriteMoviePropsType = {
-   movie: MovieType;
+type FavoriteCryptoPropsType = {
+   coin: CryptoType;
    index: number;
-   deleteMovie: Function;
+   deleteCoin: Function;
 };
 
-function FavoriteMovie({
-   movie,
+function FavoriteCrypto({
+   coin,
    index,
-   deleteMovie,
-}: FavoriteMoviePropsType): JSX.Element {
+   deleteCoin,
+}: FavoriteCryptoPropsType): JSX.Element {
    return (
-      <LargeContainerStyled index={index}>
+      <FavoriteCryptoStyled index={index}>
          <div className="data-container">
-            <h3>{movie.title}</h3>
-            <h6>Note: {movie.vote_average}</h6>
+            <h3>{coin.name}</h3>
+            <h6>{coin.current_price} USD</h6>
             <button
                className="unset-all"
                id="margin-button"
-               onClick={() => deleteMovie(movie.id)}
+               onClick={() => deleteCoin(coin.id)}
             >
                <ClearIcon id="clear-icon" />
             </button>
          </div>
          {index !== 4 && <div className="line"></div>}
-      </LargeContainerStyled>
+      </FavoriteCryptoStyled>
    );
 }
 
-const { colors, spacing, fonts, dimensions } = theme;
+const { colors, fonts, spacing, dimensions } = theme;
 
-const LargeContainerStyled = styled.div<any>`
+const FavoriteCryptoStyled = styled.div<any>`
    display: flex;
    flex-direction: column;
    align-items: space-between;
@@ -47,7 +47,7 @@ const LargeContainerStyled = styled.div<any>`
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 0 ${spacing.s};
+      margin: ${spacing.null} ${spacing.s};
       &:hover {
          transform: scale(1.01);
       }
@@ -84,4 +84,4 @@ const LargeContainerStyled = styled.div<any>`
    }
 `;
 
-export default FavoriteMovie;
+export default FavoriteCrypto;

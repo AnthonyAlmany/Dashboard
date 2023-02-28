@@ -7,11 +7,13 @@ function MainContainer({ children }: ContainerType): JSX.Element {
 }
 
 const MainContainerStyled = styled.div`
-   height: 90vh;
-   width: 90%;
+   height: 95vh;
+   width: 95%;
+   position: relative;
    display: flex;
    align-items: center;
-   border-radius: ${theme.borderRadius.rounded};
+   overflow: hidden;
+   border-radius: ${theme.borderRadius.extraRounded};
    background-color: ${theme.colors.primary};
 `;
 

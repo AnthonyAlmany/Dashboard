@@ -7,7 +7,7 @@ import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
 import styled from "styled-components";
 import NavButton from "./NavButton";
 import Title from "./Title";
-import { NavLink } from "react-router-dom";
+import { theme } from "../../theme/theme";
 
 function Navbar(): JSX.Element {
    return (
@@ -22,16 +22,19 @@ function Navbar(): JSX.Element {
    );
 }
 
-
+const { colors, dimensions } = theme;
 
 const LinksContainerStyled = styled.div`
    display: flex;
    flex-direction: column;
-   height: 100%;
-   margin-left: 2rem;
-   margin-bottom: 4rem;
-   font-family: 'Source Sans Pro', sans-serif;
+   align-items: center;
+   height: ${dimensions.percent.max};
+   width: ${dimensions.pixels.xlarge};
+   position: absolute;
+   left: 0;
+   z-index: 3;
+   font-family: "Source Sans Pro", sans-serif;
+   background-color: ${colors.secondary};
 `;
-
 
 export default Navbar;

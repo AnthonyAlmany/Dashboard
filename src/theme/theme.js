@@ -30,7 +30,34 @@ const fonts = {
    },
 };
 
-const spacing = {};
+const spacing = {
+   null: "0",
+   p2: "2px",
+   p4: "4px",
+   xxs: "5px",
+   xs: "8px",
+   s: "15px",
+   m: "20px",
+   l: "25px",
+   xl: "50px",
+   xxl: "100px",
+   xxxl: "150px",
+   xtra: "200px",
+};
+const dimensions = {
+   percent: { small: "25%", medium: "50%", tall: "90%", max: "100%" },
+   pixels: {
+      xxxs: "1px",
+      xs: "25px",
+      small: "35px",
+      l: "50px",
+      medium: "80px",
+      large: "200px",
+      xlarge: "240px",
+      xxl: "300px",
+      xxxl: "580px",
+   },
+};
 
 const shadows = {};
 
@@ -47,4 +74,5 @@ export const theme = {
    spacing,
    shadows,
    borderRadius,
+   dimensions,
 };

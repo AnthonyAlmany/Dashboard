@@ -38,7 +38,7 @@ function ProfileLeftSide({
 const ProfileLeftSideStyled = styled.div`
    display: flex;
    flex-direction: column;
-   height: 100%;
+   height: ${theme.dimensions.percent.max};
    align-items: flex-end;
    justify-content: space-evenly;
    color: ${theme.colors.secondary};
@@ -48,7 +48,7 @@ const ProfileLeftSideStyled = styled.div`
    }
    span:last-of-type {
       text-decoration: underline;
-      text-underline-offset: 2px;
+      text-underline-offset: ${theme.spacing.p2};
       :hover {
          cursor: pointer;
       }

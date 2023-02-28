@@ -1,7 +1,7 @@
 import { MouseEventHandler } from "react";
 
 export type ContainerType = {
-   children: React.ReactNode;
+   children?: React.ReactNode;
 };
 
 export type ButtonProps = {

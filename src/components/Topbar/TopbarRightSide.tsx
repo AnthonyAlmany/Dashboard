@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import RegisterButtonsContainer from "./RegisterButtonsContainer";
 import Profile from "../Profile/Profile";
+import { theme } from "../../theme/theme";
 
 type TopBarRightSidePropsType = {
    setDisplayModal: any;
@@ -17,10 +18,7 @@ function TopbarRightSide({
    return (
       <TopbarRightSideStyled>
          {!isConnected ? (
-            <RegisterButtonsContainer
-               setIsConnected={setIsConnected}
-               setDisplayModal={setDisplayModal}
-            />
+            <RegisterButtonsContainer setDisplayModal={setDisplayModal} />
          ) : (
             <Profile setIsConnected={setIsConnected} />
          )}
@@ -28,10 +26,12 @@ function TopbarRightSide({
    );
 }
 
+const { spacing, dimensions } = theme;
+
 const TopbarRightSideStyled = styled.div`
-   width: 300px;
-   height: 100%;
-   padding: 10px 20px;
+   width: ${dimensions.pixels.xxl};
+   height: ${dimensions.percent.max};
+   padding: ${spacing.xs} ${spacing.m};
 `;
 
 export default TopbarRightSide;

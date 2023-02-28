@@ -2,7 +2,11 @@ import styled from "styled-components";
 import ProfilePicture from "./ProfilePicture";
 import ProfileLeftSide from "./ProfileLeftSide";
 
-function Profile({ setIsConnected }: any): JSX.Element {
+type ProfilePropsType = {
+   setIsConnected: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+function Profile({ setIsConnected }: ProfilePropsType): JSX.Element {
    return (
       <ProfileStyled>
          <ProfileLeftSide setIsConnected={setIsConnected} />
