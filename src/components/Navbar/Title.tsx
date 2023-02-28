@@ -11,7 +11,7 @@ const TitleStyled = styled.div`
    max-width: 80%;
    font-size: 24px;
    font-weight: 600;
-   color: ${theme.fonts.color.white};
+   color: ${theme.colors.white};
 `;
 
 export default Title;

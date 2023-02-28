@@ -63,7 +63,6 @@ const TableStyled = styled.table`
       tr {
          display: grid;
          grid-template-columns: repeat(8, 1fr);
-         
 
          td {
             display: flex;
@@ -71,13 +70,14 @@ const TableStyled = styled.table`
             justify-content: center;
          }
       }
-      th, td{
-         color: ${theme.fonts.color.white};
+      th,
+      td {
+         color: ${theme.colors.white};
          background-color: ${theme.colors.secondary};
-         font-family: 'Source Sans Pro', sans-serif;
+         font-family: "Source Sans Pro", sans-serif;
       }
-      th{
-         font-size: ${theme.fonts.size.M}
+      th {
+         font-size: ${theme.fonts.size.M};
       }
       .table-name {
          display: flex;

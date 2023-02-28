@@ -104,7 +104,7 @@ const MovieCardStyled = styled.div`
    h5 {
       margin-left: 5px;
       margin-top: 10px;
-      color: ${theme.fonts.color.white};
+      color: ${theme.colors.white};
       font-family: "Source Sans Pro", sans-serif;
    }
    h6 {
@@ -112,7 +112,7 @@ const MovieCardStyled = styled.div`
       white-space: break-spaces;
 
       margin-left: 5px;
-      color: ${theme.fonts.color.white};
+      color: ${theme.colors.white};
       font-family: "Source Sans Pro", sans-serif;
    }
 `;

@@ -3,8 +3,8 @@ import { theme } from "../../theme/theme";
 import styled from "styled-components";
 import { weatherType } from "../../types/types";
 
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import AddIcon from '@mui/icons-material/Add';
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import AddIcon from "@mui/icons-material/Add";
 
 type props = {
    weatherData?: weatherType;
@@ -14,11 +14,10 @@ type props = {
 };
 
 function WeatherCard({ weatherData, weatherHandle, clear, addCity }: props) {
-
    const buttonHandler = () => {
       weatherHandle(weatherData);
       clear();
-   }
+   };
 
    return (
       <WeatherCardStyled>
@@ -26,31 +25,35 @@ function WeatherCard({ weatherData, weatherHandle, clear, addCity }: props) {
          <h4>{weatherData?.temperature} °C</h4>
          <img src={weatherData?.icon} alt="weather-icon" />
          <ButtonsContainer>
-            <button className='favorite' onClick={() => buttonHandler()}><StarBorderIcon></StarBorderIcon></button>
-            <button className="add" onClick={() => addCity(weatherData?.city)}><AddIcon></AddIcon></button>
+            <button className="favorite" onClick={() => buttonHandler()}>
+               <StarBorderIcon></StarBorderIcon>
+            </button>
+            <button className="add" onClick={() => addCity(weatherData?.city)}>
+               <AddIcon></AddIcon>
+            </button>
          </ButtonsContainer>
       </WeatherCardStyled>
    );
 }
 
 const WeatherCardStyled = styled.div`
-width: 800px;
-height: 80px;
-display: flex;
-align-items: center;
-justify-content: space-around;
-margin-top: 2rem;
-font-family: 'Source Sans Pro', sans-serif;
-font-size: 14px;
-color: ${theme.fonts.color.white};
-border-radius: ${theme.borderRadius.rounded};
-background-color: ${theme.colors.secondary};
-//    box-shadow: 1px 1px 6px ${theme.colors.tertiary};
+   width: 800px;
+   height: 80px;
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   margin-top: 2rem;
+   font-family: "Source Sans Pro", sans-serif;
+   font-size: 14px;
+   color: ${theme.colors.white};
+   border-radius: ${theme.borderRadius.rounded};
+   background-color: ${theme.colors.secondary};
+   //    box-shadow: 1px 1px 6px ${theme.colors.tertiary};
 
-h4{
-   color: ${theme.fonts.color.green};
-   font-size: 17px;
-  }
+   h4 {
+      color: ${theme.colors.green};
+      font-size: 17px;
+   }
 
    button {
       height: 40px;
@@ -68,21 +71,21 @@ h4{
          // box-shadow: 3px 3px 5px ${theme.colors.tertiary};
       }
    }
-   .favorite{
+   .favorite {
       background-color: ${theme.colors.green};
-     }
-   .add{
+   }
+   .add {
       background-color: ${theme.colors.purple};
-     }
+   }
 `;
 const CityStyled = styled.h3`
-width: 120px;
-`
+   width: 120px;
+`;
 
 const ButtonsContainer = styled.div`
-display: flex;
-justify-content: space-between;
-width: 7rem;
-`
+   display: flex;
+   justify-content: space-between;
+   width: 7rem;
+`;
 
 export default WeatherCard;

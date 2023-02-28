@@ -4,14 +4,15 @@ import axios from "axios";
 import styled from "styled-components";
 
 import MoviesList from "./MoviesList";
-import { MovieDataType } from "../../types/types";
+import { MovieType } from "../../types/types";
+import { useFetch } from "../../hooks/useFetch";
 
 type props = {
    handleMovie: Function;
 };
 
 function Movies({ handleMovie }: props) {
-   const [data, setData] = useState<MovieDataType[] | undefined>([]);
+   const [data, setData] = useState<any[] | undefined>([]);
    const [error, setError] = useState<any>(null);
    const [loading, setLoading] = useState<boolean>(false);
 
@@ -47,32 +48,32 @@ function Movies({ handleMovie }: props) {
       return <div>Loading...</div>;
    }
 
-   function Movies({ handleMovie }: any): any {
-      const upcomingMovies: MovieResponse | null = useFetch(
-         `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR`,
-         "movie"
-      );
-      const nowPlayingMovies: MovieResponse | null = useFetch(
-         `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR
-      `,
-         "movie"
-      );
+   // function Movies({ handleMovie }: any): any {
+   //    const upcomingMovies: MovieResponse | null = useFetch(
+   //       `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR`,
+   //       "movie"
+   //    );
+   //    const nowPlayingMovies: MovieResponse | null = useFetch(
+   //       `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR
+   //    `,
+   //       "movie"
+   //    );
 
-      return (
-         <MoviesPanelStyled>
-            {data?.map((list: MovieDataType) => (
-               <MoviesList
-                  key={list.title}
-                  title={list.title}
-                  data={list.data}
-                  handleMovie={handleMovie}
-               />
-            ))}
-         </MoviesPanelStyled>
-      );
-   }
+   return (
+      <MoviesPanelStyled>
+         {data?.map((list: any) => (
+            <MoviesList
+               key={list.title}
+               title={list.title}
+               data={list.data}
+               handleMovie={handleMovie}
+            />
+         ))}
+      </MoviesPanelStyled>
+   );
+}
 
-   const MoviesPanelStyled = styled.div`
+const MoviesPanelStyled = styled.div`
    display: flex;
    align-items: start;
    width: 100%;
@@ -85,4 +86,4 @@ function Movies({ handleMovie }: props) {
    overflow: hidden;
 `;
 
-   export default Movies;
+export default Movies;

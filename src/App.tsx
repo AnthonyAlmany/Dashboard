@@ -12,9 +12,6 @@ import MainContainer from "./components/containers/MainContainer";
 import NavbarContainer from "./components/containers/NavbarContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
-<<<<<<< HEAD
-import { CryptoType, MovieType, weatherType } from "./types/types";
-=======
 import { CryptoType, MovieType } from "./types/types";
 import TopbarContainer from "./components/containers/TopbarContainer";
 import TopbarRightSide from "./components/Topbar/TopbarRightSide";
@@ -26,7 +23,6 @@ export type weatherType = {
    temperature: number;
    icon: string;
 };
->>>>>>> Firebase
 
 export type DisplayModal = {
    signupModal: boolean;
@@ -130,14 +126,10 @@ const AppStyled = styled.div`
    display: flex;
    align-items: center;
    justify-content: center;
-<<<<<<< HEAD
-   background-color: ${theme.colors.background.antique};
-=======
    background-color: ${theme.colors.xtraLightGrey};
    h1:first-of-type {
       margin-top: 100px;
    }
->>>>>>> Firebase
 `;
 
 export default App;

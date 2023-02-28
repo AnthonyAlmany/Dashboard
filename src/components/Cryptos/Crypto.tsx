@@ -104,7 +104,7 @@ const CryptoPanelStyled = styled.div`
 
    h1 {
       font-family: "Source Sans Pro", sans-serif;
-      color: ${theme.fonts.color.white};
+      color: ${theme.colors.white};
       font-size: ${theme.fonts.size.M};
    }
    h4 {

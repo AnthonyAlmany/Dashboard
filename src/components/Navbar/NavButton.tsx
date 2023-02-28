@@ -34,7 +34,7 @@ const NavButtonStyled = styled(NavLink)`
    text-decoration: none;
    color: inherit;
    font-size: 16px;
-   color: ${theme.fonts.color.white};
+   color: ${theme.colors.white};
    margin-bottom: 4rem;
    width: 8rem;
    height: 3rem;

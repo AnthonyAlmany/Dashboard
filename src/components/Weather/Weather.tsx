@@ -8,29 +8,14 @@ import WeatherList from "./WeatherList";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-<<<<<<< HEAD
-import { WeatherDataType, weatherType } from "../../types/types";
-import { theme } from "../../theme/theme";
-import { isWhiteSpaceLike } from "typescript";
-import { FilledInput } from "@mui/material";
-=======
 import { weatherType } from "../../App";
->>>>>>> Firebase
 
 type City = {
    city: string;
    country: string;
 };
 
-<<<<<<< HEAD
-type props = {
-   weatherHandle: Function;
-};
-
-function Weather({ weatherHandle }: props) {
-=======
 function Weather({ weatherHandle }: any) {
->>>>>>> Firebase
    const uniqueCities = Array.from(
       new Set(citiesList.map((city) => JSON.stringify(city)))
    ).map((city) => JSON.parse(city));
@@ -64,11 +49,7 @@ function Weather({ weatherHandle }: any) {
       setCities(cities.filter((city) => city !== arg));
    };
 
-<<<<<<< HEAD
-   //  Fetch Searched City Data
-=======
    //  Fetch Favorite City Data
->>>>>>> Firebase
    useEffect(() => {
       if (!value) return;
       const fetchWeather = async () => {
@@ -77,11 +58,7 @@ function Weather({ weatherHandle }: any) {
                `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${value.city}`
             )
             .then((res) => {
-<<<<<<< HEAD
-               const data: WeatherDataType = {
-=======
                const data = {
->>>>>>> Firebase
                   city: res.data.location.name,
                   temperature: res.data.current.temp_c,
                   icon: res.data.current.condition.icon,
@@ -135,10 +112,7 @@ function Weather({ weatherHandle }: any) {
 
    return (
       <WeatherContainer>
-<<<<<<< HEAD
-=======
          <h1>WEATHER</h1>
->>>>>>> Firebase
          <TopContainer>
             <AutocompleteContainer>
                <Autocomplete
@@ -158,35 +132,13 @@ function Weather({ weatherHandle }: any) {
                   isOptionEqualToValue={(option, value) =>
                      option.city === value.city
                   }
-<<<<<<< HEAD
-                  //autoHighlight
-                  sx={{
-                     width: 400,
-                     backgroundColor: `${theme.colors.xtraLightSecondary}`,
-                     borderRadius: `${theme.borderRadius.rounded}`,
-                     "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
-                        {
-                           border: "1px solid #eee",
-                        },
-                  }}
-                  renderInput={(params) => (
-                     <TextField
-                        {...params}
-                        label={<h4>Choose a City</h4>}
-                        variant="filled"
-                     />
-                  )}
-               />
-               {isLoading && <h4>Loading...</h4>}
-=======
                   autoHighlight
-                  sx={{ width: 300 }}
+                  sx={{ width: 300, backgroundColor: "white" }}
                   renderInput={(params) => (
                      <TextField {...params} label="Choose city" />
                   )}
                />
                {isLoading && <h4>Fetching Data...</h4>}
->>>>>>> Firebase
             </AutocompleteContainer>
             {!isLoading ? (
                <FavoriteContainer>
@@ -227,29 +179,15 @@ const TopContainer = styled.div`
 
 const AutocompleteContainer = styled.div`
    display: flex;
-<<<<<<< HEAD
-   & :first-child {
-      margin-right: 10px;
-   }
-   border-color: ${theme.colors.secondary};
-   h4 {
-      color: ${theme.colors.secondary};
-      font-family: "Source Sans Pro", sans-serif;
-   }
-=======
    align-items: start;
    & :first-child {
       margin-right: 10px;
    }
->>>>>>> Firebase
 `;
 
 const FavoriteContainer = styled.div``;
 
 const WeatherContainer = styled.div`
-<<<<<<< HEAD
-   width: 90%;
-=======
    display: flex;
    width: 100%;
    position: absolute;
@@ -260,18 +198,13 @@ const WeatherContainer = styled.div`
    padding: 25px 0 50px 0;
    align-items: center;
    overflow: hidden;
->>>>>>> Firebase
 `;
 
 const WeatherCardsContainer = styled.div`
    height: 500px;
    display: flex;
    flex-direction: column;
-<<<<<<< HEAD
-   justify-content: start;
-=======
    justify-content: space-around;
->>>>>>> Firebase
 `;
 
 export default Weather;

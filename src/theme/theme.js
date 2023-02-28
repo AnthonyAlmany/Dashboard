@@ -24,18 +24,10 @@ const fonts = {
       XL: "20px",
       XXL: "25px",
    },
-<<<<<<< HEAD
-   weights: {},
-   color: {
-      white: "#e0e0e0",
-      green: "#4cceac",
-   }
-=======
    weights: {
       bold: 700,
       xtraBold: 900,
    },
->>>>>>> Firebase
 };
 
 const spacing = {};
