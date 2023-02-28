@@ -9,7 +9,7 @@ import styled from "styled-components";
 import { CryptoResponse, CryptoType } from "../../types/types";
 import { theme } from "../../theme/theme";
 
-function Crypto({ handleCrypto }: any) {
+function Crypto({ handleCrypto }: any): JSX.Element | null {
    const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
    const crypto: CryptoResponse | null = useFetch(baseURL, "market");
    const [value, setValue] = React.useState<CryptoType | null>(null);

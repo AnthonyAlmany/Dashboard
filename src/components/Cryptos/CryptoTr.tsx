@@ -8,7 +8,7 @@ type TrProps = {
    handleCrypto: Function;
 };
 
-function CryptoTr({ cryptos, handleCrypto }: TrProps) {
+function CryptoTr({ cryptos, handleCrypto }: TrProps): JSX.Element {
    return (
       <CryptoTrStyled>
          <td>{cryptos.market_cap_rank}</td>

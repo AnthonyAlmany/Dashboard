@@ -7,7 +7,7 @@ import FavoriteMovie from "./FavoriteMovie";
 import CryptoContainer from "./CryptoContainer";
 
 
-type props = {
+type HomeProps = {
    weatherFavorite: weatherType | null;
    favoriteCrypto: CryptoType[] | null;
    favoriteMovies: MovieType[] | null;
@@ -15,9 +15,11 @@ type props = {
    deleteCoin: Function;
 };
 
-function Home({ weatherFavorite, favoriteCrypto, favoriteMovies, deleteMovie, deleteCoin }: props) {
-
-
+function Home({
+   weatherFavorite,
+   favoriteCrypto,
+   favoriteMovies,
+}: HomeProps): JSX.Element {
    return (
       <HomeCardStyled>
 

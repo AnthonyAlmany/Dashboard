@@ -12,9 +12,33 @@ import MainContainer from "./components/containers/MainContainer";
 import NavbarContainer from "./components/containers/NavbarContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
+<<<<<<< HEAD
 import { CryptoType, MovieType, weatherType } from "./types/types";
+=======
+import { CryptoType, MovieType } from "./types/types";
+import TopbarContainer from "./components/containers/TopbarContainer";
+import TopbarRightSide from "./components/Topbar/TopbarRightSide";
+import Signup from "./components/Register/Signup";
+import Login from "./components/Register/Login";
+
+export type weatherType = {
+   city: string;
+   temperature: number;
+   icon: string;
+};
+>>>>>>> Firebase
+
+export type DisplayModal = {
+   signupModal: boolean;
+   loginModal: boolean;
+};
 
 function App() {
+   const [isConnected, setIsConnected] = React.useState<boolean>(false);
+   const [displayModal, setDisplayModal] = useState<DisplayModal>({
+      signupModal: false,
+      loginModal: false,
+   });
    const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(
       null
    );
@@ -47,9 +71,25 @@ function App() {
    return (
       <AppStyled>
          <MainContainer>
+            <Signup
+               signupModal={displayModal?.signupModal}
+               setDisplayModal={setDisplayModal}
+            />
+            <Login
+               loginModal={displayModal?.loginModal}
+               setDisplayModal={setDisplayModal}
+               setIsConnected={setIsConnected}
+            />
             <NavbarContainer>
                <Navbar />
             </NavbarContainer>
+            <TopbarContainer>
+               <TopbarRightSide
+                  setDisplayModal={setDisplayModal}
+                  isConnected={isConnected}
+                  setIsConnected={setIsConnected}
+               />
+            </TopbarContainer>
             <PanelContainer>
                <Routes>
                   <Route path="/" element={<Navigate to="/home" />} />
@@ -90,7 +130,14 @@ const AppStyled = styled.div`
    display: flex;
    align-items: center;
    justify-content: center;
+<<<<<<< HEAD
    background-color: ${theme.colors.background.antique};
+=======
+   background-color: ${theme.colors.xtraLightGrey};
+   h1:first-of-type {
+      margin-top: 100px;
+   }
+>>>>>>> Firebase
 `;
 
 export default App;

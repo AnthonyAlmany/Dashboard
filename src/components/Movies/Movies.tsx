@@ -47,25 +47,32 @@ function Movies({ handleMovie }: props) {
       return <div>Loading...</div>;
    }
 
-   if (error) {
-      return <div>An error occurred: {error.message}</div>;
+   function Movies({ handleMovie }: any): any {
+      const upcomingMovies: MovieResponse | null = useFetch(
+         `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR`,
+         "movie"
+      );
+      const nowPlayingMovies: MovieResponse | null = useFetch(
+         `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=fr-FR&page=1&region=FR
+      `,
+         "movie"
+      );
+
+      return (
+         <MoviesPanelStyled>
+            {data?.map((list: MovieDataType) => (
+               <MoviesList
+                  key={list.title}
+                  title={list.title}
+                  data={list.data}
+                  handleMovie={handleMovie}
+               />
+            ))}
+         </MoviesPanelStyled>
+      );
    }
 
-   return (
-      <MoviesPanelStyled>
-         {data?.map((list: MovieDataType) => (
-            <MoviesList
-               key={list.title}
-               title={list.title}
-               data={list.data}
-               handleMovie={handleMovie}
-            />
-         ))}
-      </MoviesPanelStyled>
-   );
-}
-
-const MoviesPanelStyled = styled.div`
+   const MoviesPanelStyled = styled.div`
    display: flex;
    align-items: start;
    width: 100%;
@@ -78,4 +85,4 @@ const MoviesPanelStyled = styled.div`
    overflow: hidden;
 `;
 
-export default Movies;
+   export default Movies;

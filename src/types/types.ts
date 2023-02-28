@@ -1,6 +1,7 @@
 import { MouseEventHandler } from "react";
 
 export type ContainerType = {
+<<<<<<< HEAD
    children: React.ReactNode
 }
 
@@ -8,6 +9,26 @@ export type ButtonProps = {
    label: string;
    onClick: MouseEventHandler;
 }
+=======
+   children: React.ReactNode;
+};
+
+export type ButtonProps = {
+   label: string;
+   onClick?: MouseEventHandler;
+   disabled: boolean;
+};
+export type AddButtonProps = Omit<ButtonProps, "disabled">;
+
+//User types
+
+export type UserType = {
+   username: string;
+   email: string;
+   password: string;
+   confirmPassword: string;
+};
+>>>>>>> Firebase
 
 // API datas types
 
@@ -63,6 +84,7 @@ export type CryptoType = {
    total_volume: number;
 };
 
+<<<<<<< HEAD
 // export type WeatherType = {
 //    location: string,
 //    temperature: number | null,
@@ -74,11 +96,19 @@ export type WeatherDataType = {
    temperature: number;
    icon: string;
 }
+=======
+export type WeatherType = {
+   location: string;
+   temperature: number | null;
+   condition: string;
+};
+>>>>>>> Firebase
 
 export type ResponseType = {
    isLoading: boolean;
 };
 
+<<<<<<< HEAD
 export type MovieDataType = {
    title: string;
    data: MovieType[];
@@ -93,3 +123,15 @@ export type CryptoResponse = ResponseType & {
 // export type WeatherResponse = ResponseType & {
 //    weatherDatas?: WeatherType
 // }
+=======
+export type MovieResponse = ResponseType & {
+   movieDatas?: MovieType[];
+   theaterDatas?: MovieType[];
+};
+export type CryptoResponse = ResponseType & {
+   cryptoDatas?: CryptoType[];
+};
+export type WeatherResponse = ResponseType & {
+   weatherDatas?: WeatherType;
+};
+>>>>>>> Firebase

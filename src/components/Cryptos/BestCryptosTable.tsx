@@ -9,7 +9,10 @@ export type TableProps = {
    handleCrypto: Function;
 };
 
-function BestCryptosTable({ bestCryptos, handleCrypto }: TableProps) {
+function BestCryptosTable({
+   bestCryptos,
+   handleCrypto,
+}: TableProps): JSX.Element {
    return (
       <TableStyled>
          <thead>

@@ -13,21 +13,23 @@ const PanelContainerStyled = styled.div`
    flex-direction: column;
    align-items: center;
    justify-content: space-evenly;
-   position: relative;
+   position: absolute;
+   right: 0;
+   top: 0;
+   z-index: 1;
    overflow: hidden;
    // overflow-y: scroll;
 
-   // &::-webkit-scrollbar {
-   //  background: ${theme.colors.xtraLightSecondary};
-   //  border-radius: 2rem;
-   //  }
+   &::-webkit-scrollbar {
+      background: ${theme.colors.xtraLightSecondary};
+      border-radius: 2rem;
+   }
 
-   //  &::-webkit-scrollbar-thumb {
-   //    background: ${theme.colors.secondary};
-   //    border-radius: 2rem;
-   //  }
-     
-      
+   &::-webkit-scrollbar-thumb {
+      background: ${theme.colors.secondary};
+      border-radius: 2rem;
+   }
+   padding: 100px 0;
 `;
 
 export default PanelContainer;

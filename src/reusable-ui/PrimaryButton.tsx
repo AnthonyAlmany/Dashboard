@@ -2,8 +2,12 @@ import styled from "styled-components";
 import { theme } from "../theme/theme";
 import { ButtonProps } from "../types/types";
 
-function PrimaryButton({ label, onClick }: ButtonProps) {
-   return <PrimaryButtonStyled onClick={onClick}>{label}</PrimaryButtonStyled>;
+function PrimaryButton({ label, onClick, disabled }: ButtonProps): JSX.Element {
+   return (
+      <PrimaryButtonStyled onClick={onClick} disabled={disabled}>
+         {label}
+      </PrimaryButtonStyled>
+   );
 }
 
 const PrimaryButtonStyled = styled.button`
