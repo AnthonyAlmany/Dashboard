@@ -13,7 +13,6 @@ type props = {
 };
 
 function WeatherList({ weather, weatherHandle, deleteCity }: props) {
-   console.log(weather);
    return (
       <WeatherCardStyled>
          <CityStyled>{weather?.city.toUpperCase()}</CityStyled>

@@ -50,7 +50,7 @@ function Login({
          <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            open={loginModal}
+            open={loginModal ? loginModal : false}
             onClose={handleClose}
             closeAfterTransition
             slots={{ backdrop: Backdrop }}

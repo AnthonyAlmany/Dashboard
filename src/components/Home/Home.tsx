@@ -10,7 +10,7 @@ import FavoritesContainer from "../containers/FavoritesContainer";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 type HomeProps = {
-   weatherFavorite: weatherType | null;
+   weatherFavorite: weatherType[] | null;
    favoriteCrypto: CryptoType[] | null;
    favoriteMovies: MovieType[] | null;
    deleteMovie: Function;

@@ -3,20 +3,20 @@ import { theme } from "../../theme/theme";
 import styled from "styled-components";
 import { weatherType } from "../../types/types";
 
-type props = {
-   weatherFavorite: weatherType | null;
+type WeatherContainerProps = {
+   weatherFavorite: weatherType[] | null;
 };
 
-function WeatherContainer({ weatherFavorite }: props) {
+function WeatherContainer({ weatherFavorite }: WeatherContainerProps) {
    return (
       <SmallContainerStyled>
          {!weatherFavorite ? (
             <h3>No Weather Favorite</h3>
          ) : (
             <div className="card">
-               <h3>{weatherFavorite?.city.toUpperCase()}</h3>
-               <h4>{weatherFavorite?.temperature} °C</h4>
-               <img src={weatherFavorite?.icon} alt="weather-icon" />
+               <h3>{weatherFavorite[0]?.city?.toUpperCase()}</h3>
+               <h4>{weatherFavorite[0]?.temperature} °C</h4>
+               <img src={weatherFavorite[0]?.icon} alt="weather-icon" />
             </div>
          )}
       </SmallContainerStyled>

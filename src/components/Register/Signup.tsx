@@ -43,6 +43,9 @@ function Signup({ signupModal, setDisplayModal }: SignupProps): JSX.Element {
             setDoc(user(authUser.user.uid), {
                username,
                email,
+               favoriteCitiesWeather: [],
+               favoriteCryptos: [],
+               favoriteMovies: [],
             });
          })
          .then((user) => {
