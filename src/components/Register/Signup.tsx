@@ -1,4 +1,3 @@
-import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -8,10 +7,11 @@ import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import SignupForm from "./SignupForm";
 import { UserType } from "../../types/types";
-import { UserContext } from "../../context/UserContext";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { ChangeEvent, useState } from "react";
 
 function Signup(): JSX.Element {
-   const { signup, displayModal, toggleModals } = React.useContext(UserContext);
+   const { signup, displayModal, toggleModals } = useCurrentUser();
 
    const datas: UserType = {
       username: "",
@@ -19,16 +19,16 @@ function Signup(): JSX.Element {
       password: "",
       confirmPassword: "",
    };
-   const [signupDatas, setSignupDatas] = React.useState<UserType>(datas);
+   const [signupDatas, setSignupDatas] = useState<UserType>(datas);
 
-   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       setSignupDatas({
          ...signupDatas,
          [event.target.id]: event.target.value,
       });
    };
 
-   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>): any => {
+   const handleSubmit = (event: ChangeEvent<HTMLFormElement>): any => {
       event.preventDefault();
       const { email, password, username } = signupDatas;
       signup(username, email, password);

@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
 import styled from "styled-components";
 import RegisterButtonsContainer from "./RegisterButtonsContainer";
 import Profile from "../Profile/Profile";
 import { theme } from "../../theme/theme";
-import { UserContext } from "../../context/UserContext";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 function TopbarRightSide(): JSX.Element {
-   const { currentUser } = useContext(UserContext);
+   const { currentUser } = useCurrentUser();
    return (
       <TopbarRightSideStyled>
          {!currentUser ? <RegisterButtonsContainer /> : <Profile />}

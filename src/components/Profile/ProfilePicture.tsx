@@ -12,8 +12,8 @@ function ProfilePicture(): JSX.Element {
 }
 
 const ProfilePictureStyled = styled.div`
-   width: 60px;
-   height: 60px;
+   width: 50px;
+   height: 50px;
    border-radius: 50%;
    overflow: hidden;
    object-fit: cover;

@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
 import styled from "styled-components";
-import { UserContext } from "../../context/UserContext";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
 import { theme } from "../../theme/theme";
 
 function RegisterButtonsContainer(): JSX.Element {
-   const { toggleModals } = useContext(UserContext);
+   const { toggleModals } = useCurrentUser();
    return (
       <RegisterButtonsContainerStyled>
          <PrimaryButton

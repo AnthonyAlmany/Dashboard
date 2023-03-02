@@ -1,10 +1,13 @@
 import { signOut } from "firebase/auth";
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent, useContext } from "react";
 import styled from "styled-components";
+import { UserContext } from "../../context/UserContext";
 import { auth } from "../../firebase/firebaseConfig";
 import { theme } from "../../theme/theme";
 
 function ProfileLeftSide(): JSX.Element {
+   const { userInfos } = useContext<any>(UserContext);
+
    const logout: React.EventHandler<SyntheticEvent> = async () => {
       try {
          await signOut(auth);
@@ -16,7 +19,10 @@ function ProfileLeftSide(): JSX.Element {
    };
    return (
       <ProfileLeftSideStyled>
-         <span className="username">Hi, Tom</span>
+         <span className="username" data-hover="Edit profile">
+            Hi, {userInfos.username}
+         </span>
+         <TooltipBox>Edit profile</TooltipBox>
          <span className="logout" onClick={logout}>
             Logout
          </span>
@@ -24,21 +30,43 @@ function ProfileLeftSide(): JSX.Element {
    );
 }
 
+const { colors, spacing, dimensions, fonts } = theme;
+
+const TooltipBox = styled.div`
+   display: none;
+   position: absolute;
+   z-index: 2;
+   top: ${spacing.l};
+   color: ${colors.white};
+   font-size: ${fonts.size.S};
+`;
+
 const ProfileLeftSideStyled = styled.div`
+   position: relative;
    display: flex;
    flex-direction: column;
-   height: ${theme.dimensions.percent.max};
+   height: ${dimensions.percent.max};
    align-items: flex-end;
-   justify-content: space-evenly;
-   color: ${theme.colors.secondary};
-   span:first-of-type {
-      font-size: ${theme.fonts.size.XL};
-      font-weight: ${theme.fonts.weights.xtraBold};
+   justify-content: space-between;
+   color: ${colors.secondary};
+
+   & span:first-of-type:hover + ${TooltipBox} {
+      display: unset;
    }
+
+   span:first-of-type {
+      font-size: ${fonts.size.XL};
+      font-weight: ${fonts.weights.xtraBold};
+      &:hover {
+         cursor: pointer;
+         color: ${colors.purple};
+      }
+   }
+
    span:last-of-type {
       text-decoration: underline;
-      text-underline-offset: ${theme.spacing.p2};
-      :hover {
+      text-underline-offset: ${spacing.p2};
+      &:hover {
          cursor: pointer;
       }
    }

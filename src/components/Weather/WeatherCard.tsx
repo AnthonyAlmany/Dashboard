@@ -1,13 +1,13 @@
 import React from "react";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
-import { weatherType } from "../../types/types";
+import { WeatherType } from "../../types/types";
 
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import AddIcon from "@mui/icons-material/Add";
 
 type props = {
-   weatherData?: weatherType;
+   weatherData?: WeatherType;
    weatherHandle: Function;
    clear: Function;
    addCity: Function;

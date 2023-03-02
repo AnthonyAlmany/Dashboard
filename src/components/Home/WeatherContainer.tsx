@@ -1,10 +1,10 @@
 import React from "react";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
-import { weatherType } from "../../types/types";
+import { WeatherType } from "../../types/types";
 
 type WeatherContainerProps = {
-   weatherFavorite: weatherType[] | null;
+   weatherFavorite: WeatherType[] | null;
 };
 
 function WeatherContainer({ weatherFavorite }: WeatherContainerProps) {

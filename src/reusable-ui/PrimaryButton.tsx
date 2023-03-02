@@ -10,16 +10,17 @@ function PrimaryButton({ label, onClick, disabled }: ButtonProps): JSX.Element {
    );
 }
 
+const { colors, spacing, borderRadius } = theme;
+
 const PrimaryButtonStyled = styled.button`
-   height: 30px;
    border: none;
-   font-family: 'Source Sans Pro', sans-serif;
-   color: ${theme.colors.white};
-   background-color: ${theme.colors.purple};
-   border-radius: ${theme.borderRadius.rounded};
+   color: ${colors.white};
+   background-color: ${colors.purple};
+   border-radius: ${borderRadius.rounded};
    &:hover {
       font-weight: bold;
       cursor: pointer;
+      border: ${spacing.p2} solid ${colors.white};
    }
 `;
 

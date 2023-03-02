@@ -3,12 +3,24 @@ import {
    onAuthStateChanged,
    signInWithEmailAndPassword,
 } from "firebase/auth";
-import { setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
-import { DisplayModal } from "../App";
-import { auth, user } from "../firebase/firebaseConfig";
+import { auth, firestore, user } from "../firebase/firebaseConfig";
+import { DisplayModal } from "../types/types";
 
-export const UserContext = createContext<any>({});
+export type CurrentUser = {
+   currentUser: object;
+   userInfos: object;
+   displayModal: {
+      signupModal: boolean;
+      loginModal: boolean;
+   };
+   toggleModals: Function;
+   signup: Function;
+   login: Function;
+};
+
+export const UserContext = createContext<CurrentUser | null>(null);
 
 export function UserContextProvider(props: PropsWithChildren) {
    const signup = (username: string, email: string, password: string) =>
@@ -30,11 +42,20 @@ export function UserContextProvider(props: PropsWithChildren) {
       signInWithEmailAndPassword(auth, email, password);
 
    const [currentUser, setCurrentUser] = useState<any>();
+   const [userInfos, setUserInfos] = useState<any>();
    const [loadingData, setLoadingData] = useState(true);
-   //console.log("MAJ", currentUser);
 
    useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+         if (currentUser !== null) {
+            const userId = currentUser.uid;
+            const docRef = doc(firestore, "users", userId);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+               const userInfos = docSnap.data();
+               setUserInfos(userInfos);
+            }
+         }
          setCurrentUser(currentUser);
          setLoadingData(false);
       });
@@ -70,7 +91,14 @@ export function UserContextProvider(props: PropsWithChildren) {
 
    return (
       <UserContext.Provider
-         value={{ currentUser, displayModal, toggleModals, signup, login }}
+         value={{
+            currentUser,
+            userInfos,
+            displayModal,
+            toggleModals,
+            signup,
+            login,
+         }}
       >
          {props.children}
       </UserContext.Provider>

@@ -7,8 +7,7 @@ import WeatherCard from "./WeatherCard";
 import WeatherList from "./WeatherList";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-
-import { weatherType } from "../../App";
+import { WeatherType } from "../../types/types";
 
 type City = {
    city: string;
@@ -25,11 +24,11 @@ function Weather({ weatherHandle }: any) {
    const [inputValue, setInputValue] = useState("");
 
    // Set Favorite state
-   const [weatherData, setWeatherData] = useState<weatherType>();
+   const [weatherData, setWeatherData] = useState<WeatherType>();
    const [isLoading, setIsLoading] = useState<boolean>(true);
 
    // Weather List state
-   const [weatherList, setWeatherList] = useState<weatherType[]>([]);
+   const [weatherList, setWeatherList] = useState<WeatherType[]>([]);
    const [cities, setCities] = useState<string[]>(["Rome", "Dubai", "Chicago"]);
 
    // Clear Autocomplete field function

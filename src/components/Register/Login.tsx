@@ -1,24 +1,24 @@
-import React, { useContext } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Backdrop, Fade, Modal, Typography } from "@mui/material";
 import { BoxStyled } from "./Signup";
 import LoginForm from "./LoginForm";
 import { UserType } from "../../types/types";
-import { UserContext } from "../../context/UserContext";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 function Login(): JSX.Element {
-   const { login, displayModal, toggleModals } = useContext(UserContext);
+   const { login, displayModal, toggleModals } = useCurrentUser();
    const datas: Omit<UserType, "username" | "confirmPassword"> = {
       email: "",
       password: "",
    };
    const [loginDatas, setLoginDatas] =
-      React.useState<Omit<UserType, "username" | "confirmPassword">>(datas);
+      useState<Omit<UserType, "username" | "confirmPassword">>(datas);
 
-   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       setLoginDatas({ ...loginDatas, [event.target.id]: event.target.value });
    };
 
-   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
       const { email, password } = loginDatas;
       event.preventDefault();
       login(email, password);

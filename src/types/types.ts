@@ -22,12 +22,6 @@ export type UserType = {
 
 // API datas types
 
-export type weatherType = {
-   city: string;
-   temperature: number;
-   icon: string;
-};
-
 export type MovieType = {
    poster_path: string | undefined;
    adult: boolean;
@@ -75,9 +69,20 @@ export type CryptoType = {
 };
 
 export type WeatherType = {
-   location: string;
-   temperature: number | null;
-   condition: string;
+   city: string;
+   temperature: number;
+   icon: string;
+};
+
+export type DisplayModal = {
+   signupModal: boolean;
+   loginModal: boolean;
+};
+
+export type Favorites = {
+   favoriteCitiesWeather: WeatherType[];
+   favoriteCryptos: CryptoType[];
+   favoriteMovies: MovieType[];
 };
 
 export type ResponseType = {

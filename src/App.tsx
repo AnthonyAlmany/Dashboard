@@ -11,7 +11,7 @@ import Movies from "./components/Movies/Movies";
 import MainContainer from "./components/containers/MainContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
-import { CryptoType, MovieType } from "./types/types";
+import { CryptoType, Favorites, MovieType, WeatherType } from "./types/types";
 import TopbarContainer from "./components/containers/TopbarContainer";
 import TopbarRightSide from "./components/Topbar/TopbarRightSide";
 import Signup from "./components/Register/Signup";
@@ -19,30 +19,13 @@ import Login from "./components/Register/Login";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { firestore } from "./firebase/firebaseConfig";
 
-export type weatherType = {
-   city: string;
-   temperature: number;
-   icon: string;
-};
-
-export type DisplayModal = {
-   signupModal: boolean;
-   loginModal: boolean;
-};
-
-type Favorites = {
-   favoriteCitiesWeather: weatherType[];
-   favoriteCryptos: CryptoType[];
-   favoriteMovies: MovieType[];
-};
-
 function App() {
    const [favorites, setFavorites] = useState<Favorites>({
       favoriteMovies: [],
       favoriteCryptos: [],
       favoriteCitiesWeather: [],
    });
-   const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(
+   const [weatherFavorite, setWeatherFavorite] = useState<null | WeatherType>(
       null
    );
    const [favoriteCrypto, setFavoriteCrypto] = useState<CryptoType[]>([]);
@@ -50,7 +33,7 @@ function App() {
 
    const [userSession, setUserSession] = useState<any>(null);
 
-   const weatherHandle = (value: weatherType) => {
+   const weatherHandle = (value: WeatherType) => {
       setWeatherFavorite(value);
       const cityRef = doc(firestore, "users", userSession.uid);
       updateDoc(cityRef, {
