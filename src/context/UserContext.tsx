@@ -3,14 +3,14 @@ import {
    onAuthStateChanged,
    signInWithEmailAndPassword,
 } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, onSnapshot, setDoc } from "firebase/firestore";
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
 import { auth, firestore, user } from "../firebase/firebaseConfig";
-import { DisplayModal } from "../types/types";
+import { CryptoType, DisplayModal, MovieType } from "../types/types";
 
 export type CurrentUser = {
-   currentUser: object;
-   userInfos: object;
+   currentUser: any;
+   userInfos: UserInfos;
    displayModal: {
       signupModal: boolean;
       loginModal: boolean;
@@ -18,6 +18,14 @@ export type CurrentUser = {
    toggleModals: Function;
    signup: Function;
    login: Function;
+};
+
+export type UserInfos = {
+   username: string;
+   email: string;
+   favoriteCitiesWeather: object[];
+   favoriteCryptos: CryptoType[];
+   favoriteMovies: MovieType[];
 };
 
 export const UserContext = createContext<CurrentUser | null>(null);
@@ -42,7 +50,7 @@ export function UserContextProvider(props: PropsWithChildren) {
       signInWithEmailAndPassword(auth, email, password);
 
    const [currentUser, setCurrentUser] = useState<any>();
-   const [userInfos, setUserInfos] = useState<any>();
+   const [userInfos, setUserInfos] = useState<any>({});
    const [loadingData, setLoadingData] = useState(true);
 
    useEffect(() => {
@@ -55,11 +63,14 @@ export function UserContextProvider(props: PropsWithChildren) {
                const userInfos = docSnap.data();
                setUserInfos(userInfos);
             }
+            onSnapshot(doc(firestore, "users", currentUser.uid), (doc) => {
+               //console.log("Current data: ", doc.data());
+               setUserInfos(doc.data());
+            });
          }
          setCurrentUser(currentUser);
          setLoadingData(false);
       });
-
       return unsubscribe;
    }, []);
 

@@ -18,11 +18,14 @@ import Signup from "./components/Register/Signup";
 import Login from "./components/Register/Login";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { firestore } from "./firebase/firebaseConfig";
+import { useCurrentUser } from "./hooks/useCurrentUser";
 
 function App() {
+   const { userInfos, currentUser } = useCurrentUser();
+
    const [favorites, setFavorites] = useState<Favorites>({
-      favoriteMovies: [],
-      favoriteCryptos: [],
+      favoriteMovies: userInfos.favoriteMovies,
+      favoriteCryptos: userInfos.favoriteCryptos,
       favoriteCitiesWeather: [],
    });
    const [weatherFavorite, setWeatherFavorite] = useState<null | WeatherType>(
@@ -35,7 +38,7 @@ function App() {
 
    const weatherHandle = (value: WeatherType) => {
       setWeatherFavorite(value);
-      const cityRef = doc(firestore, "users", userSession.uid);
+      const cityRef = doc(firestore, "users", currentUser.uid);
       updateDoc(cityRef, {
          favoriteCitiesWeather: [value],
       });
@@ -45,14 +48,16 @@ function App() {
       if (!favoriteCrypto.includes(value) && favoriteCrypto.length < 5) {
          setFavoriteCrypto([...favoriteCrypto, value]);
       }
-      const cryptoRef = doc(firestore, "users", userSession.uid);
+      const cryptoRef = doc(firestore, "users", currentUser.uid);
       updateDoc(cryptoRef, {
          favoriteCryptos: arrayUnion(value),
       });
    };
 
    const handleMovie = (value: MovieType) => {
-      const movieRef = doc(firestore, "users", userSession.uid);
+      console.log("hello");
+
+      const movieRef = doc(firestore, "users", currentUser.uid);
       updateDoc(movieRef, {
          favoriteMovies: arrayUnion(value),
       });
@@ -62,7 +67,7 @@ function App() {
    };
 
    const deleteMovie = async (arg: number) => {
-      const movieRef = doc(firestore, "users", userSession.uid);
+      const movieRef = doc(firestore, "users", currentUser.uid);
       const newDatas = favoriteMovies.filter((movie) => movie.id !== arg);
       updateDoc(movieRef, {
          favoriteMovies: newDatas,
@@ -71,7 +76,7 @@ function App() {
    };
 
    const deleteCoin = (arg: string) => {
-      const cryptoRef = doc(firestore, "users", userSession.uid);
+      const cryptoRef = doc(firestore, "users", currentUser.uid);
       const newDatas = favoriteCrypto.filter((coin) => coin.id !== arg);
       updateDoc(cryptoRef, {
          favoriteCryptos: newDatas,
@@ -95,8 +100,8 @@ function App() {
                      element={
                         <Home
                            weatherFavorite={favorites.favoriteCitiesWeather}
-                           favoriteCrypto={favorites.favoriteCryptos}
-                           favoriteMovies={favorites.favoriteMovies}
+                           favoriteCrypto={userInfos.favoriteCryptos}
+                           favoriteMovies={userInfos.favoriteMovies}
                            deleteMovie={deleteMovie}
                            deleteCoin={deleteCoin}
                         />

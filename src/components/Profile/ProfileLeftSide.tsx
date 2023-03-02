@@ -1,12 +1,12 @@
 import { signOut } from "firebase/auth";
-import React, { SyntheticEvent, useContext } from "react";
+import React, { SyntheticEvent } from "react";
 import styled from "styled-components";
-import { UserContext } from "../../context/UserContext";
 import { auth } from "../../firebase/firebaseConfig";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { theme } from "../../theme/theme";
 
 function ProfileLeftSide(): JSX.Element {
-   const { userInfos } = useContext<any>(UserContext);
+   const { userInfos } = useCurrentUser();
 
    const logout: React.EventHandler<SyntheticEvent> = async () => {
       try {
