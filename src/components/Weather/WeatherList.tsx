@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
-
 import { WeatherType } from "../../types/types";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
-type props = {
+type WeatherListProps = {
    weather: WeatherType;
-   weatherHandle: Function;
    deleteCity: Function;
 };
 
-function WeatherList({ weather, weatherHandle, deleteCity }: props) {
+function WeatherList({ weather, deleteCity }: WeatherListProps) {
+   const { weatherHandle } = useCurrentUser();
    return (
       <WeatherCardStyled>
          <CityStyled>{weather?.city.toUpperCase()}</CityStyled>

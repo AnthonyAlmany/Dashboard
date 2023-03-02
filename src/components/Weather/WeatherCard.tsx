@@ -2,18 +2,18 @@ import React from "react";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
 import { WeatherType } from "../../types/types";
-
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import AddIcon from "@mui/icons-material/Add";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
-type props = {
+type WeatherCardProps = {
    weatherData?: WeatherType;
-   weatherHandle: Function;
    clear: Function;
    addCity: Function;
 };
 
-function WeatherCard({ weatherData, weatherHandle, clear, addCity }: props) {
+function WeatherCard({ weatherData, clear, addCity }: WeatherCardProps) {
+   const { weatherHandle } = useCurrentUser();
    const buttonHandler = () => {
       weatherHandle(weatherData);
       clear();

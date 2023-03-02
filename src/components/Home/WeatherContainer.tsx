@@ -1,22 +1,24 @@
 import React from "react";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
-import { WeatherType } from "../../types/types";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
-type WeatherContainerProps = {
-   weatherFavorite: WeatherType[] | null;
-};
-
-function WeatherContainer({ weatherFavorite }: WeatherContainerProps) {
+function WeatherContainer() {
+   const { userInfos } = useCurrentUser();
    return (
       <SmallContainerStyled>
-         {!weatherFavorite ? (
+         {!userInfos.favoriteCitiesWeather ? (
             <h3>No Weather Favorite</h3>
          ) : (
             <div className="card">
-               <h3>{weatherFavorite[0]?.city?.toUpperCase()}</h3>
-               <h4>{weatherFavorite[0]?.temperature} °C</h4>
-               <img src={weatherFavorite[0]?.icon} alt="weather-icon" />
+               <h3>
+                  {userInfos.favoriteCitiesWeather[0]?.city?.toUpperCase()}
+               </h3>
+               <h4>{userInfos.favoriteCitiesWeather[0]?.temperature} °C</h4>
+               <img
+                  src={userInfos.favoriteCitiesWeather[0]?.icon}
+                  alt="weather-icon"
+               />
             </div>
          )}
       </SmallContainerStyled>

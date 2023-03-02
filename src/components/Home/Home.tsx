@@ -1,7 +1,5 @@
-import { WeatherType } from "../../types/types";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
-import { CryptoType, MovieType } from "../../types/types";
 import WeatherContainer from "./WeatherContainer";
 import FavoriteMovie from "./FavoriteMovie";
 import FavoriteCrypto from "./FavoriteCrypto";
@@ -11,22 +9,8 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import DefaultHome from "./DefaultHome";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 
-type HomeProps = {
-   weatherFavorite: WeatherType[] | null;
-   favoriteCrypto: CryptoType[] | null;
-   favoriteMovies: MovieType[] | null;
-   deleteMovie: Function;
-   deleteCoin: Function;
-};
-
-function Home({
-   weatherFavorite,
-   favoriteCrypto,
-   favoriteMovies,
-   deleteCoin,
-   deleteMovie,
-}: HomeProps): JSX.Element {
-   const { currentUser } = useCurrentUser();
+function Home(): JSX.Element {
+   const { currentUser, deleteMovie, deleteCoin, userInfos } = useCurrentUser();
 
    return (
       <HomeStyled>
@@ -35,7 +19,7 @@ function Home({
                <FavoritesContainer>
                   <h4>Coins List</h4>
 
-                  {favoriteCrypto?.map((coin, index) => (
+                  {userInfos.favoriteCryptos?.map((coin, index) => (
                      <FavoriteCrypto
                         coin={coin}
                         index={index}
@@ -44,12 +28,12 @@ function Home({
                   ))}
                </FavoritesContainer>
                <FavoritesContainer>
-                  <WeatherContainer weatherFavorite={weatherFavorite} />
+                  <WeatherContainer />
                </FavoritesContainer>
                <FavoritesContainer>
                   <h4>Watch List</h4>
 
-                  {favoriteMovies?.map((movie, index) => (
+                  {userInfos.favoriteMovies?.map((movie, index) => (
                      <FavoriteMovie
                         key={movie.id}
                         movie={movie}

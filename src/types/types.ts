@@ -23,7 +23,7 @@ export type UserType = {
 // API datas types
 
 export type MovieType = {
-   poster_path: string | undefined;
+   poster_path: string | null;
    adult: boolean;
    overview: string;
    release_date: string;

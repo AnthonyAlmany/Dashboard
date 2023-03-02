@@ -8,13 +8,14 @@ import WeatherList from "./WeatherList";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { WeatherType } from "../../types/types";
+import { theme } from "../../theme/theme";
 
 type City = {
    city: string;
    country: string;
 };
 
-function Weather({ weatherHandle }: any) {
+function Weather() {
    const uniqueCities = Array.from(
       new Set(citiesList.map((city) => JSON.stringify(city)))
    ).map((city) => JSON.parse(city));
@@ -144,7 +145,6 @@ function Weather({ weatherHandle }: any) {
                   {value && (
                      <WeatherCard
                         weatherData={weatherData}
-                        weatherHandle={weatherHandle}
                         clear={clearAutocomplete}
                         addCity={addCity}
                      />
@@ -154,15 +154,10 @@ function Weather({ weatherHandle }: any) {
                <FavoriteContainer></FavoriteContainer>
             )}
          </TopContainer>
-
+         <h2>List</h2>
          <WeatherCardsContainer>
             {weatherList.map((weather: any, i: any) => (
-               <WeatherList
-                  key={i}
-                  weather={weather}
-                  weatherHandle={weatherHandle}
-                  deleteCity={deleteCity}
-               />
+               <WeatherList key={i} weather={weather} deleteCity={deleteCity} />
             ))}
          </WeatherCardsContainer>
       </WeatherContainer>
@@ -170,7 +165,7 @@ function Weather({ weatherHandle }: any) {
 }
 
 const TopContainer = styled.div`
-   min-height: 18rem;
+   min-height: 12rem;
    display: flex;
    flex-direction: column;
    justify-content: start;
@@ -197,10 +192,14 @@ const WeatherContainer = styled.div`
    padding: 25px 0 50px 0;
    align-items: center;
    overflow: hidden;
+   h1,
+   h2 {
+      color: ${theme.colors.white};
+   }
 `;
 
 const WeatherCardsContainer = styled.div`
-   height: 500px;
+   height: 300px;
    display: flex;
    flex-direction: column;
    justify-content: space-around;

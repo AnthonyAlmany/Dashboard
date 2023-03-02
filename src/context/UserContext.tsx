@@ -3,10 +3,22 @@ import {
    onAuthStateChanged,
    signInWithEmailAndPassword,
 } from "firebase/auth";
-import { doc, getDoc, onSnapshot, setDoc } from "firebase/firestore";
+import {
+   arrayUnion,
+   doc,
+   getDoc,
+   onSnapshot,
+   setDoc,
+   updateDoc,
+} from "firebase/firestore";
 import { createContext, PropsWithChildren, useEffect, useState } from "react";
 import { auth, firestore, user } from "../firebase/firebaseConfig";
-import { CryptoType, DisplayModal, MovieType } from "../types/types";
+import {
+   CryptoType,
+   DisplayModal,
+   MovieType,
+   WeatherType,
+} from "../types/types";
 
 export type CurrentUser = {
    currentUser: any;
@@ -18,12 +30,17 @@ export type CurrentUser = {
    toggleModals: Function;
    signup: Function;
    login: Function;
+   weatherHandle: Function;
+   handleMovie: Function;
+   handleCrypto: Function;
+   deleteMovie: Function;
+   deleteCoin: Function;
 };
 
 export type UserInfos = {
    username: string;
    email: string;
-   favoriteCitiesWeather: object[];
+   favoriteCitiesWeather: WeatherType[];
    favoriteCryptos: CryptoType[];
    favoriteMovies: MovieType[];
 };
@@ -100,6 +117,45 @@ export function UserContextProvider(props: PropsWithChildren) {
       }
    };
 
+   const weatherHandle = async (value: WeatherType) => {
+      const cityRef = doc(firestore, "users", currentUser.uid);
+      await updateDoc(cityRef, {
+         favoriteCitiesWeather: [value],
+      });
+   };
+
+   const handleMovie = async (value: MovieType) => {
+      const movieRef = doc(firestore, "users", currentUser.uid);
+      await updateDoc(movieRef, {
+         favoriteMovies: arrayUnion(value),
+      });
+   };
+   const handleCrypto = async (value: CryptoType) => {
+      const cryptoRef = doc(firestore, "users", currentUser.uid);
+      await updateDoc(cryptoRef, {
+         favoriteCryptos: arrayUnion(value),
+      });
+   };
+   const deleteMovie = async (arg: number) => {
+      const movieRef = doc(firestore, "users", currentUser.uid);
+      const newDatas = userInfos.favoriteMovies.filter(
+         (movie: MovieType) => movie.id !== arg
+      );
+      await updateDoc(movieRef, {
+         favoriteMovies: newDatas,
+      });
+   };
+
+   const deleteCoin = async (arg: string) => {
+      const cryptoRef = doc(firestore, "users", currentUser.uid);
+      const newDatas = userInfos.favoriteCryptos.filter(
+         (coin: CryptoType) => coin.id !== arg
+      );
+      await updateDoc(cryptoRef, {
+         favoriteCryptos: newDatas,
+      });
+   };
+
    return (
       <UserContext.Provider
          value={{
@@ -109,6 +165,11 @@ export function UserContextProvider(props: PropsWithChildren) {
             toggleModals,
             signup,
             login,
+            weatherHandle,
+            handleMovie,
+            handleCrypto,
+            deleteMovie,
+            deleteCoin,
          }}
       >
          {props.children}

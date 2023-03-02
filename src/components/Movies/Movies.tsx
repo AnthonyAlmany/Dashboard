@@ -6,12 +6,14 @@ import styled from "styled-components";
 import MoviesList from "./MoviesList";
 import { MovieType } from "../../types/types";
 import { useFetch } from "../../hooks/useFetch";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 type props = {
    handleMovie: Function;
 };
 
-function Movies({ handleMovie }: props) {
+function Movies() {
+   const { handleMovie } = useCurrentUser();
    const [data, setData] = useState<any[] | undefined>([]);
    const [error, setError] = useState<any>(null);
    const [loading, setLoading] = useState<boolean>(false);
