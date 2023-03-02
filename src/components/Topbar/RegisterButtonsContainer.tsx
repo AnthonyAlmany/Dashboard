@@ -1,30 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { UserContext } from "../../context/UserContext";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
 import { theme } from "../../theme/theme";
 
-type RegisterButtonsContainerProps = {
-   setDisplayModal: any;
-};
-
-function RegisterButtonsContainer({
-   setDisplayModal,
-}: RegisterButtonsContainerProps): JSX.Element {
+function RegisterButtonsContainer(): JSX.Element {
+   const { toggleModals } = useContext(UserContext);
    return (
       <RegisterButtonsContainerStyled>
          <PrimaryButton
             disabled={false}
             label={"SIGNUP"}
-            onClick={() =>
-               setDisplayModal({ signupModal: true, loginModal: false })
-            }
+            onClick={() => toggleModals("signup")}
          />
          <PrimaryButton
             disabled={false}
             label={"LOGIN"}
-            onClick={() => {
-               setDisplayModal({ loginModal: true, signupModal: false });
-            }}
+            onClick={() => toggleModals("login")}
          />
       </RegisterButtonsContainerStyled>
    );

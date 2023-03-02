@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import Home from "./components/Home/Home";
 import { theme } from "./theme/theme";
@@ -16,15 +16,8 @@ import TopbarContainer from "./components/containers/TopbarContainer";
 import TopbarRightSide from "./components/Topbar/TopbarRightSide";
 import Signup from "./components/Register/Signup";
 import Login from "./components/Register/Login";
-import {
-   arrayUnion,
-   doc,
-   getDoc,
-   onSnapshot,
-   updateDoc,
-} from "firebase/firestore";
-import { auth, firestore, user } from "./firebase/firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { firestore } from "./firebase/firebaseConfig";
 
 export type weatherType = {
    city: string;
@@ -44,11 +37,6 @@ type Favorites = {
 };
 
 function App() {
-   const [isConnected, setIsConnected] = React.useState<boolean>(false);
-   const [displayModal, setDisplayModal] = useState<DisplayModal>({
-      signupModal: false,
-      loginModal: false,
-   });
    const [favorites, setFavorites] = useState<Favorites>({
       favoriteMovies: [],
       favoriteCryptos: [],
@@ -60,35 +48,7 @@ function App() {
    const [favoriteCrypto, setFavoriteCrypto] = useState<CryptoType[]>([]);
    const [favoriteMovies, setFavoriteMovies] = useState<MovieType[]>([]);
 
-   //firebase get userData
-   const navigate = useNavigate();
    const [userSession, setUserSession] = useState<any>(null);
-   const [userData, setUserData] = useState<any>(null);
-
-   useEffect(() => {
-      const listener = onAuthStateChanged(auth, (user) => {
-         user ? setUserSession(user) : navigate("/");
-      });
-      if (!!userSession) {
-         const colRef = user(userSession.uid);
-         getDoc(colRef)
-            .then((snapshot) => {
-               if (snapshot.exists()) {
-                  const docData = snapshot.data();
-                  setUserData(docData);
-                  setFavorites({
-                     favoriteMovies: docData.favoriteMovies,
-                     favoriteCryptos: docData.favoriteCryptos,
-                     favoriteCitiesWeather: docData.favoriteCitiesWeather,
-                  });
-               }
-            })
-            .catch((error) => {
-               console.log(error);
-            });
-      }
-      return listener();
-   }, [userSession]);
 
    const weatherHandle = (value: weatherType) => {
       setWeatherFavorite(value);
@@ -138,24 +98,11 @@ function App() {
    return (
       <AppStyled>
          <MainContainer>
-            <Signup
-               signupModal={displayModal?.signupModal}
-               setDisplayModal={setDisplayModal}
-            />
-            <Login
-               loginModal={displayModal?.loginModal}
-               setDisplayModal={setDisplayModal}
-               setIsConnected={setIsConnected}
-            />
-
+            <Signup />
+            <Login />
             <Navbar />
-
             <TopbarContainer>
-               <TopbarRightSide
-                  setDisplayModal={setDisplayModal}
-                  isConnected={isConnected}
-                  setIsConnected={setIsConnected}
-               />
+               <TopbarRightSide />
             </TopbarContainer>
             <PanelContainer>
                <Routes>

@@ -71,6 +71,10 @@ function SignupForm({
          </InputContainer>
          <PrimaryButton
             disabled={
+               !signupDatas.username ||
+               !signupDatas.email ||
+               !signupDatas.password ||
+               !signupDatas.confirmPassword ||
                signupDatas.password !== signupDatas.confirmPassword
                   ? true
                   : false
@@ -90,12 +94,13 @@ export const FormStyled = styled.form`
    button {
       width: 50%;
       height: 40px;
-      background-color: white;
-      color: ${theme.colors.secondary};
+      background-color: ${theme.colors.purple};
+      color: ${theme.colors.white};
       font-weight: bold;
       border: 2px solid ${theme.colors.secondary};
       &:hover {
-         background-color: white;
+         background-color: ${theme.colors.white};
+         color: ${theme.colors.purple};
       }
       &:disabled {
          background-color: lightgrey;
@@ -105,6 +110,9 @@ export const FormStyled = styled.form`
             box-shadow: none;
          }
       }
+   }
+   svg {
+      color: ${theme.colors.purple};
    }
 `;
 

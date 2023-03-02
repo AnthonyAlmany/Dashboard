@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useNavigate } from "react-router-dom";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -7,19 +6,13 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth, user } from "../../firebase/firebaseConfig";
-import { setDoc } from "firebase/firestore";
 import SignupForm from "./SignupForm";
 import { UserType } from "../../types/types";
+import { UserContext } from "../../context/UserContext";
 
-type SignupProps = {
-   signupModal: boolean;
-   setDisplayModal: any;
-};
+function Signup(): JSX.Element {
+   const { signup, displayModal, toggleModals } = React.useContext(UserContext);
 
-function Signup({ signupModal, setDisplayModal }: SignupProps): JSX.Element {
-   const navigate = useNavigate();
    const datas: UserType = {
       username: "",
       email: "",
@@ -38,28 +31,12 @@ function Signup({ signupModal, setDisplayModal }: SignupProps): JSX.Element {
    const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>): any => {
       event.preventDefault();
       const { email, password, username } = signupDatas;
-      createUserWithEmailAndPassword(auth, email, password)
-         .then((authUser) => {
-            setDoc(user(authUser.user.uid), {
-               username,
-               email,
-               favoriteCitiesWeather: [],
-               favoriteCryptos: [],
-               favoriteMovies: [],
-            });
-         })
-         .then((user) => {
-            setSignupDatas(datas);
-            setDisplayModal({ signupModal: false });
-            navigate("/");
-         })
-         .catch((error) => {
-            setSignupDatas(datas);
-         });
+      signup(username, email, password);
+      toggleModals("close");
    };
 
    const handleClose = (): void => {
-      setDisplayModal({ signupModal: false });
+      toggleModals("close");
       setSignupDatas(datas);
    };
 
@@ -68,7 +45,7 @@ function Signup({ signupModal, setDisplayModal }: SignupProps): JSX.Element {
          <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            open={signupModal ? signupModal : false}
+            open={displayModal?.signupModal ? displayModal.signupModal : false}
             onClose={handleClose}
             closeAfterTransition
             slots={{ backdrop: Backdrop }}
@@ -78,7 +55,7 @@ function Signup({ signupModal, setDisplayModal }: SignupProps): JSX.Element {
                },
             }}
          >
-            <Fade in={signupModal}>
+            <Fade in={displayModal?.signupModal}>
                <BoxStyled>
                   <Typography
                      id="transition-modal-title"
@@ -115,14 +92,14 @@ export const BoxStyled = styled(Box)`
    width: 350px;
    padding: 25px 0;
    background-color: ${theme.colors.primary};
-   border: 5px solid ${theme.colors.secondary};
+   border: 5px solid ${theme.colors.purple};
    border-radius: 20px;
    h2:first-of-type {
-      color: ${theme.colors.secondary};
+      color: ${theme.colors.purple};
       font-weight: ${theme.fonts.weights.xtraBold};
    }
    p {
-      color: ${theme.colors.secondary};
+      color: ${theme.colors.purple};
       font-size: 12px;
    }
 `;

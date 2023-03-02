@@ -1,24 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Backdrop, Fade, Modal, Typography } from "@mui/material";
 import { BoxStyled } from "./Signup";
 import LoginForm from "./LoginForm";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/firebaseConfig";
-import { useNavigate } from "react-router-dom";
 import { UserType } from "../../types/types";
+import { UserContext } from "../../context/UserContext";
 
-type LoginProps = {
-   loginModal: boolean;
-   setDisplayModal: any;
-   setIsConnected: any;
-};
-
-function Login({
-   loginModal,
-   setDisplayModal,
-   setIsConnected,
-}: LoginProps): JSX.Element {
-   const navigate = useNavigate();
+function Login(): JSX.Element {
+   const { login, displayModal, toggleModals } = useContext(UserContext);
    const datas: Omit<UserType, "username" | "confirmPassword"> = {
       email: "",
       password: "",
@@ -33,24 +21,16 @@ function Login({
    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       const { email, password } = loginDatas;
       event.preventDefault();
-      signInWithEmailAndPassword(auth, email, password)
-         .then((user) => {
-            setLoginDatas(datas);
-            setDisplayModal({ loginModal: false });
-            setIsConnected(true);
-            navigate("/home");
-         })
-         .catch((error) => {
-            setLoginDatas(datas);
-         });
+      login(email, password);
+      toggleModals("close");
    };
-   const handleClose = (): void => setDisplayModal({ loginModal: false });
+   const handleClose = (): void => toggleModals("close");
    return (
       <>
          <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
-            open={loginModal ? loginModal : false}
+            open={displayModal?.loginModal ? displayModal.loginModal : false}
             onClose={handleClose}
             closeAfterTransition
             slots={{ backdrop: Backdrop }}
@@ -60,7 +40,7 @@ function Login({
                },
             }}
          >
-            <Fade in={loginModal}>
+            <Fade in={displayModal?.loginModal}>
                <BoxStyled>
                   <Typography
                      id="transition-modal-title"

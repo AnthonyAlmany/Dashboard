@@ -1,27 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import RegisterButtonsContainer from "./RegisterButtonsContainer";
 import Profile from "../Profile/Profile";
 import { theme } from "../../theme/theme";
+import { UserContext } from "../../context/UserContext";
 
-type TopBarRightSidePropsType = {
-   setDisplayModal: any;
-   isConnected: boolean;
-   setIsConnected: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-function TopbarRightSide({
-   setDisplayModal,
-   isConnected,
-   setIsConnected,
-}: TopBarRightSidePropsType): JSX.Element {
+function TopbarRightSide(): JSX.Element {
+   const { currentUser } = useContext(UserContext);
    return (
       <TopbarRightSideStyled>
-         {!isConnected ? (
-            <RegisterButtonsContainer setDisplayModal={setDisplayModal} />
-         ) : (
-            <Profile setIsConnected={setIsConnected} />
-         )}
+         {!currentUser ? <RegisterButtonsContainer /> : <Profile />}
       </TopbarRightSideStyled>
    );
 }
