@@ -1,20 +1,16 @@
-import React from "react";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
 import { MovieType } from "../../types/types";
 import ClearIcon from "@mui/icons-material/Clear";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
-type FavoriteMoviePropsType = {
+type FavoriteMovieProps = {
    movie: MovieType;
    index: number;
-   deleteMovie: Function;
 };
 
-function FavoriteMovie({
-   movie,
-   index,
-   deleteMovie,
-}: FavoriteMoviePropsType): JSX.Element {
+function FavoriteMovie({ movie, index }: FavoriteMovieProps): JSX.Element {
+   const { deleteMovie } = useCurrentUser();
    return (
       <LargeContainerStyled index={index}>
          <div className="data-container">

@@ -1,20 +1,16 @@
-import React from "react";
 import { CryptoType } from "../../types/types";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
 import ClearIcon from "@mui/icons-material/Clear";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 type FavoriteCryptoPropsType = {
    coin: CryptoType;
    index: number;
-   deleteCoin: Function;
 };
 
-function FavoriteCrypto({
-   coin,
-   index,
-   deleteCoin,
-}: FavoriteCryptoPropsType): JSX.Element {
+function FavoriteCrypto({ coin, index }: FavoriteCryptoPropsType): JSX.Element {
+   const { deleteCoin } = useCurrentUser();
    return (
       <FavoriteCryptoStyled index={index}>
          <div className="data-container">

@@ -10,7 +10,7 @@ import DefaultHome from "./DefaultHome";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 function Home(): JSX.Element {
-   const { currentUser, deleteMovie, deleteCoin, userInfos } = useCurrentUser();
+   const { currentUser, userInfos } = useCurrentUser();
 
    return (
       <HomeStyled>
@@ -20,11 +20,7 @@ function Home(): JSX.Element {
                   <h4>Coins List</h4>
 
                   {userInfos.favoriteCryptos?.map((coin, index) => (
-                     <FavoriteCrypto
-                        coin={coin}
-                        index={index}
-                        deleteCoin={deleteCoin}
-                     />
+                     <FavoriteCrypto key={coin.id} coin={coin} index={index} />
                   ))}
                </FavoritesContainer>
                <FavoritesContainer>
@@ -38,7 +34,6 @@ function Home(): JSX.Element {
                         key={movie.id}
                         movie={movie}
                         index={index}
-                        deleteMovie={deleteMovie}
                      />
                   ))}
                </FavoritesContainer>
