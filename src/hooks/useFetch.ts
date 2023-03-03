@@ -1,11 +1,9 @@
 import { useEffect, useReducer } from "react";
 
-import { CryptoType } from "../types/types";
-
-type State = {
+export type State = {
    status: string;
    isLoading: boolean;
-   data: CryptoType[] | null;
+   data: any;
    error: any;
 };
 type Action =
@@ -48,7 +46,7 @@ const reducer = (state: State, action: Action): State => {
    }
 };
 
-export function useFetch(fetch: Function) {
+export function useFetch(fetch: any) {
    const [state, dispatch] = useReducer<
       (state: State, action: Action) => State
    >(reducer, initialState);

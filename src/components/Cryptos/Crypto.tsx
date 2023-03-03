@@ -32,8 +32,6 @@ function Crypto(): JSX.Element | null {
          </CryptoPanelStyled>
       );
    } else if (!crypto?.isLoading && crypto?.data) {
-      const cryptos: CryptoType[] = crypto.data;
-
       return (
          <CryptoPanelStyled>
             <h1>CRYPTO CURRENCIES</h1>
@@ -55,7 +53,7 @@ function Crypto(): JSX.Element | null {
                   backgroundColor: `${theme.colors.xtraLightSecondary}`,
                   borderRadius: `${theme.borderRadius.rounded}`,
                }}
-               options={cryptos}
+               options={crypto.data}
                autoHighlight
                getOptionLabel={(option) => option.name}
                renderOption={(props, option) => (

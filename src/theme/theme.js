@@ -45,7 +45,13 @@ const spacing = {
    xtra: "200px",
 };
 const dimensions = {
-   percent: { small: "25%", medium: "50%", tall: "90%", max: "100%" },
+   percent: {
+      xs: "20%",
+      small: "25%",
+      medium: "50%",
+      tall: "90%",
+      max: "100%",
+   },
    pixels: {
       xxxs: "1px",
       xs: "25px",

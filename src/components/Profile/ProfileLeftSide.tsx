@@ -1,16 +1,19 @@
 import { signOut } from "firebase/auth";
 import React, { SyntheticEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { auth } from "../../firebase/firebaseConfig";
 import { useCurrentUser } from "../../hooks/useCurrentUser";
 import { theme } from "../../theme/theme";
 
 function ProfileLeftSide(): JSX.Element {
+   const navigate = useNavigate();
    const { userInfos } = useCurrentUser();
 
    const logout: React.EventHandler<SyntheticEvent> = async () => {
       try {
          await signOut(auth);
+         navigate("/home");
       } catch {
          alert(
             "For some reasons we can't deconnect, please check your internet connexion and retry."

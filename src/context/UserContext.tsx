@@ -68,7 +68,6 @@ export function UserContextProvider(props: PropsWithChildren) {
 
    const [currentUser, setCurrentUser] = useState<any>();
    const [userInfos, setUserInfos] = useState<any>({});
-   const [loadingData, setLoadingData] = useState(true);
 
    useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -81,12 +80,10 @@ export function UserContextProvider(props: PropsWithChildren) {
                setUserInfos(userInfos);
             }
             onSnapshot(doc(firestore, "users", currentUser.uid), (doc) => {
-               //console.log("Current data: ", doc.data());
                setUserInfos(doc.data());
             });
          }
          setCurrentUser(currentUser);
-         setLoadingData(false);
       });
       return unsubscribe;
    }, []);

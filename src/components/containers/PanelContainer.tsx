@@ -7,8 +7,8 @@ function PanelContainer({ children }: ContainerType) {
 }
 
 const PanelContainerStyled = styled.div`
-   height: 98%;
-   width: 84%;
+   height: 100%;
+   width: 80%;
    display: flex;
    flex-direction: column;
    align-items: center;

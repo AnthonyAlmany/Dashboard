@@ -11,25 +11,26 @@ import { theme } from "../../theme/theme";
 
 function Navbar(): JSX.Element {
    return (
-      <LinksContainerStyled>
+      <NavbarStyled>
          <Title />
          <NavButton label="Home" icon={<GridViewOutlinedIcon />} />
          <NavButton label="Weather" icon={<WbSunnyOutlinedIcon />} />
          <NavButton label="Market" icon={<AccountBalanceOutlinedIcon />} />
          <NavButton label="Movies" icon={<MovieOutlinedIcon />} />
          {/* <Searchbar /> */}
-      </LinksContainerStyled>
+      </NavbarStyled>
    );
 }
 
 const { colors, dimensions } = theme;
 
-const LinksContainerStyled = styled.div`
+const NavbarStyled = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
    height: ${dimensions.percent.max};
-   width: ${dimensions.pixels.xlarge};
+   width: ${dimensions.percent.xs};
+   min-width: ${dimensions.pixels.large};
    position: absolute;
    left: 0;
    z-index: 3;
