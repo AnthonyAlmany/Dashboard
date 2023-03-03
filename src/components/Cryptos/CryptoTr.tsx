@@ -2,13 +2,15 @@ import AddButton from "../../reusable-ui/AddButton";
 import styled from "styled-components";
 import { theme } from "../../theme/theme";
 import { CryptoType } from "../../types/types";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
 type TrProps = {
    cryptos: CryptoType;
-   handleCrypto: Function;
 };
 
-function CryptoTr({ cryptos, handleCrypto }: TrProps): JSX.Element {
+function CryptoTr({ cryptos }: TrProps): JSX.Element {
+   const { handleCrypto } = useCurrentUser();
+
    return (
       <CryptoTrStyled>
          <td>{cryptos.market_cap_rank}</td>
@@ -30,21 +32,19 @@ function CryptoTr({ cryptos, handleCrypto }: TrProps): JSX.Element {
 const CryptoTrStyled = styled.tr`
    display: grid;
    grid-template-columns: repeat(8, 1fr);
+   margin-bottom: ${theme.spacing.xs};
    td {
       display: flex;
       align-items: center;
       justify-content: center;
-      
-
    }
    img {
-      width: 20px;
-      height: 20px;
+      width: ${theme.dimensions.pixels.xs};
+      height: ${theme.dimensions.pixels.xs};
    }
-
    button {
-      &:hover{
-      background-color: ${theme.colors.purple};
+      &:hover {
+         background-color: ${theme.colors.purple};
       }
    }
 `;

@@ -6,21 +6,22 @@ function AddButton({ label, onClick }: AddButtonProps): JSX.Element {
    return <AddButtonStyled onClick={onClick}>{label}</AddButtonStyled>;
 }
 
+const { colors, dimensions, fonts, borderRadius } = theme;
+
 const AddButtonStyled = styled.button`
-   width: 25px;
-   height: 25px;
-   border-radius: ${theme.borderRadius.circle};
+   width: ${dimensions.pixels.xs};
+   height: ${dimensions.pixels.xs};
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: ${borderRadius.circle};
    border: none;
-   background-color: ${theme.colors.secondary};
-   color: white;
+   background-color: ${colors.secondary};
+   color: ${colors.white};
    &:hover {
       cursor: pointer;
-      font-size: 20px;
+      font-size: ${fonts.size.XXL};
    }
 `;
 
 export default AddButton;
-
-
-// Source sans pro 4 6 700, sans serif
-

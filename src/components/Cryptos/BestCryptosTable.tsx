@@ -6,15 +6,11 @@ import { CryptoType } from "../../types/types";
 
 export type TableProps = {
    bestCryptos?: CryptoType[];
-   handleCrypto: Function;
 };
 
-function BestCryptosTable({
-   bestCryptos,
-   handleCrypto,
-}: TableProps): JSX.Element {
+function BestCryptosTable({ bestCryptos }: TableProps): JSX.Element {
    return (
-      <TableStyled>
+      <BestCryptosTableStyled>
          <thead>
             <tr className="table-name">
                <th>---Top 5---</th>
@@ -32,38 +28,33 @@ function BestCryptosTable({
                <td>Add favorites</td>
             </tr>
             {bestCryptos?.map((cryptos: CryptoType): JSX.Element => {
-               return (
-                  <CryptoTr
-                     key={cryptos.id}
-                     cryptos={cryptos}
-                     handleCrypto={handleCrypto}
-                  />
-               );
+               return <CryptoTr key={cryptos.id} cryptos={cryptos} />;
             })}
          </tbody>
-      </TableStyled>
+      </BestCryptosTableStyled>
    );
 }
 
-const TableStyled = styled.table`
+const { colors, spacing, fonts, dimensions, borderRadius } = theme;
+
+const BestCryptosTableStyled = styled.table`
    display: flex;
    flex-direction: column;
    align-items: center;
-   width: 90%;
-   padding: 25px 10px;
-   background-color: ${theme.colors.secondary};
-   border-radius: ${theme.borderRadius.extraRounded};
+   width: ${dimensions.percent.tall};
+   padding: ${spacing.l} ${spacing.xs};
+   background-color: ${colors.secondary};
+   border-radius: ${borderRadius.extraRounded};
    overflow: hidden;
    thead,
    tbody {
       display: flex;
       flex-direction: column;
-      width: 100%;
-      margin-bottom: 20px;
+      width: ${dimensions.percent.max};
+      margin-bottom: ${spacing.m};
       tr {
          display: grid;
          grid-template-columns: repeat(8, 1fr);
-
          td {
             display: flex;
             align-items: center;
@@ -72,24 +63,26 @@ const TableStyled = styled.table`
       }
       th,
       td {
-         color: ${theme.colors.white};
-         background-color: ${theme.colors.secondary};
-         font-family: "Source Sans Pro", sans-serif;
+         color: ${colors.white};
+         background-color: ${colors.secondary};
       }
       th {
-         font-size: ${theme.fonts.size.M};
+         font-size: ${fonts.size.M};
       }
       .table-name {
          display: flex;
          align-items: center;
          justify-content: center;
-         width: 100%;
-         color: ${theme.colors.secondary};
-         font-size: 25px;
+         width: ${dimensions.percent.max};
+         color: ${colors.secondary};
+         font-size: ${fonts.size.XXL};
       }
       .columns-names {
-         margin-bottom: 15px;
-         background-color: ${theme.colors.background.bisque};
+         margin-bottom: ${spacing.s};
+         background-color: ${colors.background.bisque};
+         td {
+            color: ${colors.purple};
+         }
       }
    }
 `;

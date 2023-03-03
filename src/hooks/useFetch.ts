@@ -1,58 +1,65 @@
-import React from "react";
-import { customAxios } from "../../src/axios/axios";
-import {
-   CryptoResponse,
-   CryptoType,
-   MovieResponse,
-   MovieType,
-   // WeatherResponse,
-   // WeatherType,
-} from "../types/types";
+import { useEffect, useReducer } from "react";
 
-export function useFetch(
-   baseURL: string,
-   api: string
-): CryptoResponse | MovieResponse | null {
-   const [cryptoDatas, setCryprosDatas] = React.useState<CryptoType[]>();
-   const [movieDatas, setMovieDatas] = React.useState<MovieType[]>([]);
-   // const [weatherDatas, setWeatherDatas] = React.useState<WeatherType>({
-   //    location: "",
-   //    temperature: null,
-   //    condition: "",
-   // });
-   const [isLoading, setIsLoading] = React.useState(true);
-   React.useEffect(() => {
-      if (!baseURL) return;
-      async function fetchData() {
-         await customAxios({ baseURL })
-            .get(baseURL)
-            .then((res) => {
-               switch (api) {
-                  case "market":
-                     setCryprosDatas(res.data);
-                     break;
-                  case "movie":
-                     setMovieDatas(res.data.results);
-                     break;
-                  // case "weather":
-                  //    setWeatherDatas({
-                  //       location: res.data.location.name,
-                  //       temperature: res.data.current.temp_c,
-                  //       condition: res.data.current.condition.text,
-                  //    });
-                  //    break;
-                  default:
-                     break;
-               }
-               setIsLoading(false);
-            })
-            .catch((error) => console.log(error));
-      }
-      setIsLoading(true);
-      fetchData();
-   }, [baseURL, api]);
-   if (baseURL.includes("market")) return { cryptoDatas, isLoading };
-   else if (baseURL.includes("themoviedb")) return { movieDatas, isLoading };
-   // else if (baseURL.includes("weather")) return { weatherDatas, isLoading };
-   else return null;
+import { CryptoType } from "../types/types";
+
+type State = {
+   status: string;
+   isLoading: boolean;
+   data: CryptoType[] | null;
+   error: any;
+};
+type Action =
+   | { type: "fetching" }
+   | { type: "done"; payload: any }
+   | { type: "fail"; error: any };
+
+const initialState = {
+   status: "",
+   isLoading: false,
+   data: null,
+   error: null,
+};
+
+const reducer = (state: State, action: Action): State => {
+   switch (action.type) {
+      case "fetching":
+         return {
+            status: "fetching",
+            isLoading: true,
+            data: null,
+            error: null,
+         };
+      case "done":
+         return {
+            status: "done",
+            isLoading: false,
+            data: action.payload,
+            error: null,
+         };
+      case "fail":
+         return {
+            status: "fail",
+            isLoading: false,
+            data: null,
+            error: action.error,
+         };
+      default:
+         throw new Error("Action non supportée");
+   }
+};
+
+export function useFetch(fetch: Function) {
+   const [state, dispatch] = useReducer<
+      (state: State, action: Action) => State
+   >(reducer, initialState);
+   useEffect(() => {
+      dispatch({ type: "fetching" });
+      fetch()
+         .then((data: any) => {
+            dispatch({ type: "done", payload: data });
+         })
+         .catch((error: any) => dispatch({ type: "fail", error }));
+   }, [fetch]);
+
+   return state;
 }

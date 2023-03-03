@@ -17,6 +17,7 @@ const PrimaryButtonStyled = styled.button`
    color: ${colors.white};
    background-color: ${colors.purple};
    border-radius: ${borderRadius.rounded};
+   border: ${spacing.p2} solid ${colors.purple};
    &:hover {
       font-weight: bold;
       cursor: pointer;

@@ -1,4 +1,3 @@
-import { useFetch } from "../../hooks/useFetch";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -6,14 +5,13 @@ import * as React from "react";
 import CryptoCard from "./CryptoCard";
 import BestCryptosTable from "./BestCryptosTable";
 import styled from "styled-components";
-import { CryptoResponse, CryptoType } from "../../types/types";
+import { CryptoType } from "../../types/types";
 import { theme } from "../../theme/theme";
-import { useCurrentUser } from "../../hooks/useCurrentUser";
+import { fetchCryptos } from "./helper";
+import { useFetch } from "../../hooks/useFetch";
 
 function Crypto(): JSX.Element | null {
-   const { handleCrypto } = useCurrentUser();
-   const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
-   const crypto: CryptoResponse | null = useFetch(baseURL, "market");
+   const crypto = useFetch(fetchCryptos);
    const [value, setValue] = React.useState<CryptoType | null>(null);
    const [inputValue, setInputValue] = React.useState("");
 
@@ -24,7 +22,7 @@ function Crypto(): JSX.Element | null {
       }
       return bestCryptos;
    };
-   getBestCryptos(crypto?.cryptoDatas);
+   getBestCryptos(crypto?.data);
 
    if (crypto?.isLoading) {
       return (
@@ -33,17 +31,14 @@ function Crypto(): JSX.Element | null {
             {/* Add a loader */}
          </CryptoPanelStyled>
       );
-   } else if (!crypto?.isLoading && crypto?.cryptoDatas) {
-      const cryptos: any = crypto.cryptoDatas; //any?
+   } else if (!crypto?.isLoading && crypto?.data) {
+      const cryptos: CryptoType[] = crypto.data;
 
       return (
          <CryptoPanelStyled>
             <h1>CRYPTO CURRENCIES</h1>
             {bestCryptos ? (
-               <BestCryptosTable
-                  bestCryptos={bestCryptos}
-                  handleCrypto={handleCrypto}
-               />
+               <BestCryptosTable bestCryptos={bestCryptos} />
             ) : null}
             <Autocomplete
                id="crypto-select"
@@ -87,31 +82,30 @@ function Crypto(): JSX.Element | null {
                   />
                )}
             />
-            {value && <CryptoCard value={value} handleCrypto={handleCrypto} />}
+            {value && <CryptoCard value={value} />}
          </CryptoPanelStyled>
       );
    } else return null;
 }
 
+const { colors, spacing, fonts, dimensions } = theme;
+
 const CryptoPanelStyled = styled.div`
    display: flex;
-   width: 100%;
+   width: ${dimensions.percent.max};
    position: absolute;
-   top: 0;
-   right: 0;
+   top: ${spacing.null};
+   right: ${spacing.null};
    flex-direction: column;
-   row-gap: 25px;
-   padding: 25px 0 50px 0;
+   row-gap: ${spacing.l};
+   padding: ${spacing.l} ${spacing.null} ${spacing.xl};
    align-items: center;
-
    h1 {
-      font-family: "Source Sans Pro", sans-serif;
-      color: ${theme.colors.white};
-      font-size: ${theme.fonts.size.M};
+      color: ${colors.white};
+      font-size: ${fonts.size.M};
    }
    h4 {
-      color: ${theme.colors.secondary};
-      font-family: "Source Sans Pro", sans-serif;
+      color: ${colors.secondary};
    }
 `;
 

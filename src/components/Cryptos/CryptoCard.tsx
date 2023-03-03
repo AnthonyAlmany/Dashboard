@@ -1,16 +1,15 @@
-import React from "react";
 import { theme } from "../../theme/theme";
 import styled from "styled-components";
 import PrimaryButton from "../../reusable-ui/PrimaryButton";
 import { CryptoType } from "../../types/types";
+import { useCurrentUser } from "../../hooks/useCurrentUser";
 
-type ValueProps = {
+type CryptoCardProps = {
    value: CryptoType;
-   handleCrypto?: any;
 };
 
-function CryptoCard({ value, handleCrypto }: ValueProps): JSX.Element {
-   const pathname: string = window.location.pathname;
+function CryptoCard({ value }: CryptoCardProps): JSX.Element {
+   const { handleCrypto, currentUser } = useCurrentUser();
 
    const { image, name, current_price } = value;
 
@@ -19,7 +18,7 @@ function CryptoCard({ value, handleCrypto }: ValueProps): JSX.Element {
          <img src={image} alt="crypto-logo" />
          <h3>{name.toUpperCase()}</h3>
          <p>{current_price} $</p>
-         {pathname === "/market" && (
+         {currentUser && (
             <PrimaryButton
                disabled={false}
                label={"Add to favorite"}
@@ -30,25 +29,25 @@ function CryptoCard({ value, handleCrypto }: ValueProps): JSX.Element {
    );
 }
 
+const { colors, dimensions, borderRadius } = theme;
+
 const CryptoCardStyled = styled.div`
-   width: 200px;
-   height: 250px;
+   width: ${dimensions.pixels.large};
+   height: ${dimensions.pixels.xlarge};
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: space-around;
-   font-family: 'Source Sans Pro', sans-serif;
-   color: ${theme.colors.white};
-   border-radius: ${theme.borderRadius.rounded};
-   background-color: ${theme.colors.secondary};
-
+   color: ${colors.white};
+   border-radius: ${borderRadius.rounded};
+   background-color: ${colors.secondary};
    img {
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
+      height: ${dimensions.pixels.l};
+      width: ${dimensions.pixels.l};
+      border-radius: ${borderRadius.circle};
    }
-   p{
-      color: ${theme.colors.green};
+   p {
+      color: ${colors.green};
    }
 `;
 
