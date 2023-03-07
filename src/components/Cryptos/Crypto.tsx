@@ -12,6 +12,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 function Crypto(): JSX.Element | null {
    const crypto = useFetch(fetchCryptos);
+
    const [value, setValue] = React.useState<CryptoType | null>(null);
    const [inputValue, setInputValue] = React.useState("");
 

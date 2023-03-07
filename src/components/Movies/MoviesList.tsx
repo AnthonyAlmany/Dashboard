@@ -29,6 +29,7 @@ function MoviesList({ title, moviesList }: MoviesListProps) {
    }, [distance]);
 
    function handleClick(direction: string) {
+      if (!data) return;
       if (direction === "left" && slideNumber > 0) {
          setSlideNumber(slideNumber - 1);
          setDistance((prev) => prev + 250);

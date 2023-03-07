@@ -1,3 +1,5 @@
+import { AxiosError } from "axios";
+import { AxiosResponse } from "axios";
 import { MovieType } from "./../../types/types";
 import { customAxios } from "../../axios/axios";
 
@@ -12,29 +14,29 @@ const getbaseUrl = (name: string): string => {
    }
 };
 
-export const fetchPlayingMovies = async () => {
-   const baseURL = getbaseUrl("playing");
+export const fetchPlayingMovies = async (): Promise<MovieType> => {
+   const baseURL: string = getbaseUrl("playing");
    return new Promise<MovieType>((resolve, reject) => {
       customAxios({ baseURL })
          .get(baseURL)
-         .then((res: any) => {
+         .then((res: AxiosResponse) => {
             resolve(res.data.results);
          })
-         .catch((error: any) => {
+         .catch((error: AxiosError) => {
             reject(error);
          });
    });
 };
 
-export const fetchUpcomingMovies = async () => {
-   const baseURL = getbaseUrl("upcoming");
-   return new Promise<MovieType>((resolve, reject) => {
+export const fetchUpcomingMovies = async (): Promise<MovieType[]> => {
+   const baseURL: string = getbaseUrl("upcoming");
+   return new Promise<MovieType[]>((resolve, reject) => {
       customAxios({ baseURL })
          .get(baseURL)
-         .then((res: any) => {
+         .then((res: AxiosResponse) => {
             resolve(res.data.results);
          })
-         .catch((error: any) => {
+         .catch((error: AxiosError) => {
             reject(error);
          });
    });

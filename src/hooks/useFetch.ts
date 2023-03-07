@@ -1,15 +1,16 @@
+import { AxiosError } from "axios";
 import { useEffect, useReducer } from "react";
 
 export type State = {
    status: string;
    isLoading: boolean;
-   data: any;
-   error: any;
+   data: [] | null;
+   error: AxiosError | null;
 };
 type Action =
    | { type: "fetching" }
-   | { type: "done"; payload: any }
-   | { type: "fail"; error: any };
+   | { type: "done"; payload: [] }
+   | { type: "fail"; error: AxiosError };
 
 const initialState = {
    status: "",
@@ -46,17 +47,17 @@ const reducer = (state: State, action: Action): State => {
    }
 };
 
-export function useFetch(fetch: any) {
+export function useFetch(fetch: Function) {
    const [state, dispatch] = useReducer<
       (state: State, action: Action) => State
    >(reducer, initialState);
    useEffect(() => {
       dispatch({ type: "fetching" });
       fetch()
-         .then((data: any) => {
+         .then((data: []) => {
             dispatch({ type: "done", payload: data });
          })
-         .catch((error: any) => dispatch({ type: "fail", error }));
+         .catch((error: AxiosError) => dispatch({ type: "fail", error }));
    }, [fetch]);
 
    return state;
