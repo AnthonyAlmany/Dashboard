@@ -2,11 +2,29 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Environnements variables
+
+Create a .env file with :
+
+API:
+
+REACT_APP_WEATHER_API_KEY:
+REACT_APP_MOVIES_API_KEY:
+
+Firebase Config:
+
+REACT_APP_FIREBASE_API_KEY
+REACT_APP_FIREBASE_AUTH_DOMAIN
+REACT_APP_FIREBASE_PROJECT_ID
+REACT_APP_FIREBASE_STORAGE_BUCKET
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID
+REACT_APP_FIREBASE_APP_ID
+
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm start` (on development branch)
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
