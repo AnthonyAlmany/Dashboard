@@ -10,8 +10,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 
 import { WeatherDataType, weatherType } from "../../types/types";
 import { theme } from "../../theme/theme";
-import { isWhiteSpaceLike } from "typescript";
-import { FilledInput } from "@mui/material";
+
 
 type City = {
    city: string;
@@ -144,9 +143,9 @@ function Weather({ weatherHandle }: props) {
                      backgroundColor: `${theme.colors.xtraLightSecondary}`,
                      borderRadius: `${theme.borderRadius.rounded}`,
                      "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
-                        {
-                           border: "1px solid #eee",
-                        },
+                     {
+                        border: "1px solid #eee",
+                     },
                   }}
                   renderInput={(params) => (
                      <TextField

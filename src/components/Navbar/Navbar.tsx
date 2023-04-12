@@ -1,4 +1,4 @@
-import Searchbar from "../Searchbar";
+
 
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import WbSunnyOutlinedIcon from "@mui/icons-material/WbSunnyOutlined";
@@ -7,7 +7,7 @@ import MovieOutlinedIcon from "@mui/icons-material/MovieOutlined";
 import styled from "styled-components";
 import NavButton from "./NavButton";
 import Title from "./Title";
-import { NavLink } from "react-router-dom";
+
 
 function Navbar() {
    return (
