@@ -57,11 +57,12 @@ function Weather({ weatherHandle }: props) {
 
    //  Fetch Searched City Data
    useEffect(() => {
+      const apiKey = process.env.REACT_APP_WEATHER_API_KEY
       if (!value) return;
       const fetchWeather = async () => {
          await axios
             .get(
-               `https://api.weatherapi.com/v1/current.json?key=${process.env.REACT_APP_WEATHER_API_KEY}&q=${value.city}`
+               `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${value.city}`
             )
             .then((res) => {
                const data: WeatherDataType = {

@@ -17,14 +17,15 @@ function Movies({ handleMovie }: props) {
    const [loading, setLoading] = useState<boolean>(false);
 
    useEffect(() => {
+      const apiKey = process.env.REACT_APP_MOVIES_API_KEY
       setLoading(true);
       const apiData = [
          {
-            url: `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=en-EN&page=1&region=US`,
+            url: `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}&language=en-EN&page=1&region=US`,
             title: "Upcoming",
          },
          {
-            url: `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_MOVIES_API_KEY}&language=en-EN&page=1&region=US`,
+            url: `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-EN&page=1&region=US`,
             title: "Now Playing",
          },
       ];
