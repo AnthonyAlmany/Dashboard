@@ -13,7 +13,7 @@ type props = {
 }
 
 function WeatherList({ weather, weatherHandle, deleteCity }: props) {
-    console.log(weather)
+
     return (
 
         <WeatherCardStyled>
@@ -59,10 +59,6 @@ const WeatherCardStyled = styled.div`
       &:hover {
          cursor: pointer;
          font-weight: bold;
-        //  border: 2px solid ${theme.colors.secondary};
-        //  color: ${theme.colors.secondary};
-        //  background-color: ${theme.colors.primary};
-        //  box-shadow: 3px 3px 5px ${theme.colors.tertiary};
       }
    }
    .favorite{

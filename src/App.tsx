@@ -12,14 +12,14 @@ import MainContainer from "./components/containers/MainContainer";
 import NavbarContainer from "./components/containers/NavbarContainer";
 import Navbar from "./components/Navbar/Navbar";
 import PanelContainer from "./components/containers/PanelContainer";
+import favCity from "./fav/favCities";
+import favMovies from "./fav/favMovies";
 import { CryptoType, MovieType, weatherType } from "./types/types";
 
 function App() {
-   const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(
-      null
-   );
+   const [weatherFavorite, setWeatherFavorite] = useState<null | weatherType>(favCity);
    const [favoriteCrypto, setFavoriteCrypto] = useState<CryptoType[]>([]);
-   const [favoriteMovies, setFavoriteMovies] = useState<MovieType[]>([]);
+   const [favoriteMovies, setFavoriteMovies] = useState<MovieType[]>(favMovies);
 
    const weatherHandle = (value: weatherType) => {
       setWeatherFavorite(value);

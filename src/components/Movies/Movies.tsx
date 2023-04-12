@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import styled from "styled-components";
+import { theme } from "../../theme/theme";
 
 import MoviesList from "./MoviesList";
 import { MovieDataType } from "../../types/types";
@@ -44,7 +45,7 @@ function Movies({ handleMovie }: props) {
    }, []);
 
    if (loading) {
-      return <div>Loading...</div>;
+      return <h3>Loading...</h3>;
    }
 
    if (error) {
@@ -76,6 +77,11 @@ const MoviesPanelStyled = styled.div`
    row-gap: 25px;
    padding: 25px 0 50px 0;
    overflow: hidden;
+
+   h3{
+      color: ${theme.fonts.color.white};
+      font-family: 'Source Sans Pro', sans-serif;
+   }
 `;
 
 export default Movies;
