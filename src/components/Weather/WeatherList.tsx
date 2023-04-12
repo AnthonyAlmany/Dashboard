@@ -17,7 +17,7 @@ function WeatherList({ weather, weatherHandle, deleteCity }: props) {
     return (
 
         <WeatherCardStyled>
-            <CityStyled>{weather?.city.toUpperCase()}</CityStyled>
+            <CityStyled>{weather?.city}</CityStyled>
             <h4>{weather?.temperature} °C</h4>
             <img src={weather?.icon} alt="weather-icon" />
             <ButtonsContainer>
